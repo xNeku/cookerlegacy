@@ -113,6 +113,10 @@ pause={
 2d_physics/layer_5="enemy_hitbox"
 2d_physics/layer_6="pickups"
 
+[physics]
+
+common/physics_interpolation=true
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

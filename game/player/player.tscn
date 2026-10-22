@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/player/player.gd" id="1_player"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/shadow_placeholder.png" id="2_shadow"]
+[ext_resource type="SpriteFrames" path="res://game/player/chef_placeholder_frames.tres" id="3_frames"]
+[ext_resource type="Script" path="res://game/core/state_machine.gd" id="4_sm"]
+[ext_resource type="Script" path="res://game/player/states/idle.gd" id="5_idle"]
+[ext_resource type="Script" path="res://game/player/states/move.gd" id="6_move"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
+radius = 5.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("2_shadow")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+sprite_frames = ExtResource("3_frames")
+animation = &"idle_down"
+autoplay = "idle_down"
+offset = Vector2(0, -15)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_feet")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("4_sm")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_idle")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("6_move")
