@@ -1,0 +1,94 @@
+[gd_scene load_steps=24 format=3]
+
+[ext_resource type="Script" path="res://game/enemies/enemy.gd" id="1_enemy"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/shadow_placeholder.png" id="2_shadow"]
+[ext_resource type="PackedScene" path="res://game/combat/hitbox.tscn" id="3_hitbox"]
+[ext_resource type="PackedScene" path="res://game/combat/hurtbox.tscn" id="4_hurtbox"]
+[ext_resource type="Script" path="res://game/combat/health.gd" id="5_health"]
+[ext_resource type="Script" path="res://game/fx/hit_flash.gd" id="6_flash"]
+[ext_resource type="Material" path="res://game/fx/hit_flash_material.tres" id="7_mat"]
+[ext_resource type="Script" path="res://game/core/state_machine.gd" id="8_sm"]
+[ext_resource type="Script" path="res://game/enemies/states/idle.gd" id="9_idle"]
+[ext_resource type="Script" path="res://game/enemies/states/chase.gd" id="10_chase"]
+[ext_resource type="Script" path="res://game/enemies/states/windup.gd" id="11_windup"]
+[ext_resource type="Script" path="res://game/enemies/states/attack.gd" id="12_attack"]
+[ext_resource type="Script" path="res://game/enemies/states/recover.gd" id="13_recover"]
+[ext_resource type="Script" path="res://game/enemies/states/hurt.gd" id="14_hurt"]
+[ext_resource type="Script" path="res://game/enemies/states/airborne.gd" id="15_air"]
+[ext_resource type="Script" path="res://game/enemies/states/dead.gd" id="16_dead"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(16, 12)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 7
+motion_mode = 1
+script = ExtResource("1_enemy")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_shadow")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_feet")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_hitbox")]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+collision_layer = 16
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_hurtbox")]
+unique_name_in_owner = true
+collision_mask = 8
+health = NodePath("../Health")
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -6)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Health" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("5_health")
+
+[node name="HitFlash" type="Node" parent="." node_paths=PackedStringArray("hurtbox", "target")]
+script = ExtResource("6_flash")
+hurtbox = NodePath("../Hurtbox")
+target = NodePath("../Sprite")
+flash_material = ExtResource("7_mat")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("8_sm")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("9_idle")
+
+[node name="Chase" type="Node" parent="StateMachine"]
+script = ExtResource("10_chase")
+
+[node name="Windup" type="Node" parent="StateMachine"]
+script = ExtResource("11_windup")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("12_attack")
+
+[node name="Recover" type="Node" parent="StateMachine"]
+script = ExtResource("13_recover")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("14_hurt")
+
+[node name="Airborne" type="Node" parent="StateMachine"]
+script = ExtResource("15_air")
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("16_dead")

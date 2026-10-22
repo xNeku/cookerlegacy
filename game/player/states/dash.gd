@@ -18,6 +18,8 @@ func enter(_previous: State) -> void:
 	player.velocity = _dir * player.dash_speed
 	player.use_dash_charge()
 	player.invulnerable = true
+	# Atraviesa enemigos (capa 3) durante el dash: un grupo no te encierra.
+	player.set_collision_mask_value(3, false)
 	player.gravity_paused = player.dash_suspends_gravity and player.is_airborne()
 	player.sprite.speed_scale = 1.0
 	player.sprite.modulate = player.dash_color
@@ -25,6 +27,7 @@ func enter(_previous: State) -> void:
 
 func exit() -> void:
 	player.invulnerable = false
+	player.set_collision_mask_value(3, true)
 	player.gravity_paused = false
 	player.sprite.modulate = Color.WHITE
 

@@ -68,6 +68,22 @@ extends CharacterBody2D
 ## Tamaño mínimo de la sombra en lo alto del salto.
 @export_range(0.1, 1.0) var shadow_min_scale: float = 0.6
 
+@export_group("Recibir daño")
+## Tiempo aturdido al recibir un golpe (s). Se puede cortar con dash.
+@export var hurt_time: float = 0.2
+## Desde cuándo el dash corta el aturdimiento (s).
+@export var hurt_dash_cancel_from: float = 0.08
+## Invulnerabilidad tras recibir un golpe (s), para que un grupo no te encadene.
+@export var hurt_iframes: float = 0.6
+## Parpadeo durante esa invulnerabilidad (s por ciclo).
+@export var hurt_blink_period: float = 0.08
+## Congelado al recibir un golpe (s).
+@export var hurt_hitstop: float = 0.06
+## Temblor de cámara al recibir un golpe (px).
+@export var hurt_shake: float = 3.0
+## Por encima de esta altura (px) el salto esquiva los ataques a ras de suelo.
+@export var jump_dodge_height: float = 8.0
+
 @export_group("Fluidez")
 ## Si pulsas una acción un poco antes de poder hacerla, se guarda este tiempo (s)
 ## y sale en cuanto se pueda. Es lo que hace que las cadenas encajen.
@@ -81,7 +97,7 @@ extends CharacterBody2D
 
 ## Dirección cardinal a la que mira: DOWN, UP, LEFT o RIGHT.
 var facing: Vector2 = Vector2.DOWN
-## Si está activo, no recibe daño (dash). Lo leerá su Hurtbox cuando la tenga.
+## Invulnerable por dash. (La Hurtbox también ignora golpes con i-frames y en lo alto del salto.)
 var invulnerable: bool = false
 ## Altura sobre el suelo (salto). El cuerpo no se mueve; sube el sprite.
 ## Va por su cuenta (gravedad propia), así se puede pegar o hacer dash en el aire.
@@ -96,6 +112,8 @@ const BUFFERED_ACTIONS: Array[StringName] = [&"attack_light", &"attack_heavy", &
 ## El buffer y los combos miden con este, no con el reloj real.
 var _clock: float = 0.0
 var _vertical_speed: float = 0.0
+## Invulnerabilidad que queda tras recibir un golpe (s).
+var _iframes_left: float = 0.0
 var _dash_charges: int = 0
 var _dash_recharge: float = 0.0
 ## Momento (reloj de juego) en que se pulsó cada acción y aún no se ha usado.
@@ -105,13 +123,17 @@ var _buffer: Dictionary = {}
 @onready var state_machine: StateMachine = %StateMachine
 @onready var hitbox: Hitbox = %Hitbox
 @onready var shadow: Sprite2D = %Shadow
+@onready var hurtbox: Hurtbox = %Hurtbox
+@onready var health: Health = %Health
 
 ## Posición original del sprite: la altura se suma sobre ella.
 @onready var _sprite_base_position: Vector2 = sprite.position
 
 
 func _ready() -> void:
+	add_to_group(&"player")
 	_dash_charges = dash_max_charges
+	hurtbox.hit_received.connect(_on_hit_received)
 
 
 # Corre antes que la StateMachine (los padres procesan antes que los hijos).
@@ -119,6 +141,7 @@ func _physics_process(delta: float) -> void:
 	_clock += delta
 	_update_dash_charges(delta)
 	_update_height(delta)
+	_update_invulnerability(delta)
 
 
 ## True si `action` se pulsó hace menos de `input_buffer_time` y no se ha usado.
@@ -259,6 +282,25 @@ func update_walk_anim_speed() -> void:
 		return
 	var ratio := velocity.length() / max_speed
 	sprite.speed_scale = clampf(ratio, min_walk_anim_speed, 1.0)
+
+
+func _on_hit_received(hb: Hitbox) -> void:
+	velocity = hb.direction * hb.knockback
+	_iframes_left = hurt_iframes
+	HitStop.freeze(hurt_hitstop)
+	get_tree().call_group(&"game_camera", &"shake", hurt_shake, 0.15)
+	state_machine.change_to(&"Hurt")
+
+
+func _update_invulnerability(delta: float) -> void:
+	_iframes_left = maxf(_iframes_left - delta, 0.0)
+	hurtbox.invulnerable = invulnerable or _iframes_left > 0.0 or height > jump_dodge_height
+	# Parpadeo con self_modulate (no pisa el tinte del dash o la carga, que usan modulate).
+	if _iframes_left > 0.0:
+		var on := fmod(_iframes_left, hurt_blink_period) < hurt_blink_period / 2.0
+		sprite.self_modulate.a = 0.35 if on else 1.0
+	else:
+		sprite.self_modulate.a = 1.0
 
 
 # Las pulsaciones se apuntan en cuanto llegan (no una vez por frame de física):

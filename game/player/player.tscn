@@ -16,9 +16,17 @@
 [ext_resource type="Script" path="res://game/player/states/jump.gd" id="14_jump"]
 [ext_resource type="Script" path="res://game/combat/hit_feedback.gd" id="15_feedback"]
 [ext_resource type="PackedScene" path="res://game/fx/hit_spark.tscn" id="16_spark"]
+[ext_resource type="PackedScene" path="res://game/combat/hurtbox.tscn" id="17_hurtbox"]
+[ext_resource type="Script" path="res://game/combat/health.gd" id="18_health"]
+[ext_resource type="Script" path="res://game/fx/hit_flash.gd" id="19_flash"]
+[ext_resource type="Material" path="res://game/fx/hit_flash_material.tres" id="20_mat"]
+[ext_resource type="Script" path="res://game/player/states/hurt.gd" id="21_hurt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(12, 22)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -48,6 +56,28 @@ shape = SubResource("CircleShape2D_feet")
 unique_name_in_owner = true
 position = Vector2(0, -10)
 collision_layer = 8
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("17_hurtbox")]
+unique_name_in_owner = true
+collision_mask = 16
+health = NodePath("../Health")
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="Health" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("18_health")
+immortal = true
+
+[node name="HitFlash" type="Node" parent="." node_paths=PackedStringArray("hurtbox", "target")]
+script = ExtResource("19_flash")
+hurtbox = NodePath("../Hurtbox")
+target = NodePath("../Sprite")
+flash_material = ExtResource("20_mat")
+flash_color = Color(1, 0.3, 0.3, 1)
+squash_amount = 0.1
 
 [node name="HitFeedback" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
 script = ExtResource("15_feedback")
@@ -92,3 +122,6 @@ script = ExtResource("13_dash")
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("14_jump")
+
+[node name="Hurt" type="Node" parent="StateMachine"]
+script = ExtResource("21_hurt")
