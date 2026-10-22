@@ -39,6 +39,26 @@ extends CharacterBody2D
 ## Velocidad del parpadeo con la carga llena (segundos por ciclo).
 @export var charge_blink_period: float = 0.12
 
+@export_group("Dash")
+## Velocidad del dash (px/s).
+@export var dash_speed: float = 380.0
+## Duración del dash en segundos (distancia ≈ velocidad × duración).
+@export var dash_duration: float = 0.14
+## Tiempo de espera tras acabar un dash para poder hacer otro.
+@export var dash_cooldown: float = 0.3
+## Tinte durante el dash (placeholder hasta que haya estela/animación).
+@export var dash_color: Color = Color(0.6, 0.85, 1.0, 0.7)
+
+@export_group("Salto")
+## Altura máxima del salto en píxeles.
+@export var jump_height: float = 18.0
+## Duración total del salto en segundos.
+@export var jump_duration: float = 0.45
+## Control en el aire (1 = como en el suelo, 0 = sin control).
+@export_range(0.0, 1.0) var jump_air_control: float = 1.0
+## Tamaño mínimo de la sombra en lo alto del salto.
+@export_range(0.1, 1.0) var shadow_min_scale: float = 0.6
+
 @export_group("Animación")
 ## La animación de andar va más rápida o lenta según la velocidad real (útil con stick a medias).
 @export var scale_walk_with_speed: bool = true
@@ -47,10 +67,21 @@ extends CharacterBody2D
 
 ## Dirección cardinal a la que mira: DOWN, UP, LEFT o RIGHT.
 var facing: Vector2 = Vector2.DOWN
+## Si está activo, no recibe daño (dash). Lo leerá su Hurtbox cuando la tenga.
+var invulnerable: bool = false
+## Altura sobre el suelo (salto). El cuerpo no se mueve; sube el sprite.
+var height: float = 0.0
+
+## Momento (segundos de juego) a partir del cual se puede volver a hacer dash.
+var _dash_ready_at: float = 0.0
 
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var state_machine: StateMachine = %StateMachine
 @onready var hitbox: Hitbox = %Hitbox
+@onready var shadow: Sprite2D = %Shadow
+
+## Posición original del sprite: la altura se suma sobre ella.
+@onready var _sprite_base_position: Vector2 = sprite.position
 
 
 ## Vector del stick/WASD. Longitud 0..1 (analógico real; en teclado la diagonal se normaliza).
@@ -96,6 +127,22 @@ func update_facing(direction: Vector2) -> void:
 		facing = Vector2(0.0, signf(direction.y))
 
 
+func can_dash() -> bool:
+	return _now() >= _dash_ready_at
+
+
+func start_dash_cooldown() -> void:
+	_dash_ready_at = _now() + dash_duration + dash_cooldown
+
+
+## Sube el sprite `value` píxeles y encoge la sombra en proporción.
+func set_height(value: float) -> void:
+	height = value
+	sprite.position = _sprite_base_position + Vector2(0.0, -height)
+	var ratio := clampf(height / jump_height, 0.0, 1.0) if jump_height > 0.0 else 0.0
+	shadow.scale = Vector2.ONE * lerpf(1.0, shadow_min_scale, ratio)
+
+
 ## Dirección del ataque. Con ratón: hacia el cursor. Con mando: hacia el stick,
 ## o hacia donde mira si el stick está suelto. InputMode decide cuál se usa.
 func get_attack_direction() -> Vector2:
@@ -126,3 +173,7 @@ func update_walk_anim_speed() -> void:
 		return
 	var ratio := velocity.length() / max_speed
 	sprite.speed_scale = clampf(ratio, min_walk_anim_speed, 1.0)
+
+
+func _now() -> float:
+	return Time.get_ticks_msec() / 1000.0

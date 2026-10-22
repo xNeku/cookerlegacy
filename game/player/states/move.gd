@@ -3,11 +3,7 @@ extends PlayerState
 
 
 func physics_update(delta: float) -> void:
-	if Input.is_action_just_pressed("attack_light"):
-		machine.change_to(&"LightAttack")
-		return
-	if Input.is_action_just_pressed("attack_heavy"):
-		machine.change_to(&"Charge")
+	if try_start_action():
 		return
 	var input := player.get_move_input()
 	if input.is_zero_approx():

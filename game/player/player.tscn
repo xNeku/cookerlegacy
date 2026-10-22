@@ -12,6 +12,8 @@
 [ext_resource type="Resource" path="res://game/weapons/spatula/spatula_heavy_combo.tres" id="10_heavy"]
 [ext_resource type="Resource" path="res://game/weapons/spatula/spatula_charged_attack.tres" id="11_charged"]
 [ext_resource type="Script" path="res://game/player/states/charge.gd" id="12_charge"]
+[ext_resource type="Script" path="res://game/player/states/dash.gd" id="13_dash"]
+[ext_resource type="Script" path="res://game/player/states/jump.gd" id="14_jump"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 5.0
@@ -26,6 +28,7 @@ heavy_combo = ExtResource("10_heavy")
 charged_attack = ExtResource("11_charged")
 
 [node name="Shadow" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 texture = ExtResource("2_shadow")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
@@ -76,3 +79,9 @@ combo_slot = 2
 input_action = &"attack_heavy"
 switch_action = &"attack_light"
 switch_state = &"LightAttack"
+
+[node name="Dash" type="Node" parent="StateMachine"]
+script = ExtResource("13_dash")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("14_jump")

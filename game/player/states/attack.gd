@@ -50,6 +50,12 @@ func physics_update(delta: float) -> void:
 	# Sin animación de ataque (placeholder): si te mueves pegando, anda en vez de patinar.
 	player.play_animation(_attack.animation, "idle" if input.is_zero_approx() else "walk")
 
+	# Dash-cancel: en cuanto pasa la ventana de daño, el dash corta el golpe.
+	if _time >= _attack.hit_end and Input.is_action_just_pressed("dash") and player.can_dash():
+		_finish()
+		machine.change_to(&"Dash")
+		return
+
 	if _time >= _attack.chain_from:
 		if _buffered and _has_next_step():
 			_begin(_next_step())

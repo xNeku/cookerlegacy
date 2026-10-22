@@ -18,6 +18,9 @@ func exit() -> void:
 
 
 func physics_update(delta: float) -> void:
+	if Input.is_action_just_pressed("dash") and player.can_dash():
+		machine.change_to(&"Dash")
+		return
 	if not Input.is_action_pressed("attack_heavy"):
 		machine.change_to(&"ChargedAttack" if _full else &"HeavyAttack")
 		return
