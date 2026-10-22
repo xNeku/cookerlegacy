@@ -33,12 +33,12 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 ## Cambia al estado hijo con ese nombre de nodo, p. ej. change_to(&"Move").
+## Cambiar al mismo estado en el que se está lo reinicia (exit + enter): sirve para
+## dash → dash o empezar un combo nuevo tras el último golpe.
 func change_to(state_name: StringName) -> void:
 	var next := get_node_or_null(NodePath(state_name)) as State
 	if next == null:
 		push_error("StateMachine: no existe el estado '%s'" % state_name)
-		return
-	if next == current:
 		return
 	_switch(next)
 

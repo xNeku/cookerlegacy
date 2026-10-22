@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://game/fx/hit_flash.gdshader" id="1_6vq8h"]
+
+[resource]
+shader = ExtResource("1_6vq8h")
+shader_parameter/flash_color = null
+shader_parameter/flash_amount = null

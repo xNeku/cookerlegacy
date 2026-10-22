@@ -2,6 +2,7 @@ extends PlayerState
 ## Ataque de un combo. El mismo script sirve para □, △ y el cargado:
 ## cada nodo dice en el Inspector qué combo usa y con qué botón encadena.
 ## Pulsar antes de `chain_from` se guarda y el siguiente golpe sale justo al llegar.
+## Dash y salto lo cortan desde `cancel_from` del golpe. En el aire, se sigue cayendo.
 
 enum ComboSlot { LIGHT, HEAVY, CHARGED }
 
@@ -36,9 +37,15 @@ func exit() -> void:
 
 func physics_update(delta: float) -> void:
 	_time += delta
-	if Input.is_action_just_pressed(input_action):
+	# Dash y salto cortan el golpe desde `cancel_from` (por defecto, desde el primer frame).
+	if _time >= _attack.cancel_from and (try_dash() or try_jump()):
+		_finish()
+		return
+	# Solo se "gasta" la pulsación si hay siguiente golpe; si no, se queda en el buffer
+	# y al acabar empieza un combo nuevo.
+	if _has_next_step() and player.consume_action(input_action):
 		_buffered = true
-	if switch_action != &"" and Input.is_action_just_pressed(switch_action):
+	if switch_action != &"" and player.consume_action(switch_action):
 		_switch_buffered = true
 
 	player.hitbox.set_active(_time >= _attack.hit_start and _time < _attack.hit_end)
@@ -50,24 +57,25 @@ func physics_update(delta: float) -> void:
 	# Sin animación de ataque (placeholder): si te mueves pegando, anda en vez de patinar.
 	player.play_animation(_attack.animation, "idle" if input.is_zero_approx() else "walk")
 
-	# Dash-cancel: en cuanto pasa la ventana de daño, el dash corta el golpe.
-	if _time >= _attack.hit_end and Input.is_action_just_pressed("dash") and player.can_dash():
-		_finish()
-		machine.change_to(&"Dash")
-		return
-
 	if _time >= _attack.chain_from:
 		if _buffered and _has_next_step():
 			_begin(_next_step())
 			return
 		if _switch_buffered:
 			_finish()
-			machine.change_to(switch_state)
+			# △ en el aire no carga: va directo al golpe fuerte.
+			var target := switch_state
+			if target == &"Charge" and player.is_airborne():
+				target = &"HeavyAttack"
+			machine.change_to(target)
 			return
 
 	if _time >= _attack.duration:
 		_finish()
-		machine.change_to(&"Idle" if input.is_zero_approx() else &"Move")
+		# Si quedó algo pulsado justo al final, sale ya; si no, a estado libre (o al aire).
+		if try_start_action():
+			return
+		machine.change_to(player.free_state())
 
 
 func _begin(step: int) -> void:
@@ -79,7 +87,7 @@ func _begin(step: int) -> void:
 	player.update_facing(dir)
 	player.sprite.speed_scale = 1.0
 	player.hitbox.set_active(false)
-	player.hitbox.configure(_attack.hitbox_size, _attack.hitbox_distance, dir, _attack.damage, _attack.knockback)
+	player.hitbox.configure(_attack, dir)
 	# Conserva parte de la inercia y suma el pasito: así andar y pegar no frena en seco.
 	player.velocity = player.velocity * player.attack_momentum_keep + dir * _attack.lunge_speed
 

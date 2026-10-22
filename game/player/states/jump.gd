@@ -1,31 +1,22 @@
 extends PlayerState
-## Salto. En vista cenital el cuerpo (y su colisión) sigue en el suelo:
-## sube el sprite y la sombra se queda abajo y encoge. Te puedes mover en el aire.
-## Aquí se enganchará el SaltoGolpe (salto + △) en Fase 4.
-
-var _time: float = 0.0
+## En el aire (subiendo o cayendo). La altura la lleva el Player con su gravedad;
+## este estado solo controla el movimiento aéreo y qué se puede hacer en el aire:
+## dash (aéreo) y atacar. Al tocar suelo vuelve a Idle/Move.
+## Se entra tras saltar, o al acabar un dash/golpe estando en el aire.
 
 
 func enter(_previous: State) -> void:
-	_time = 0.0
 	player.sprite.speed_scale = 1.0
 
 
-func exit() -> void:
-	player.set_height(0.0)
-
-
 func physics_update(delta: float) -> void:
-	_time += delta
-	var t := clampf(_time / player.jump_duration, 0.0, 1.0)
-	# Parábola: 0 al despegar, 1 en lo alto (mitad del salto), 0 al aterrizar.
-	player.set_height(player.jump_height * 4.0 * t * (1.0 - t))
-
+	if try_dash() or try_attack():
+		return
 	var input := player.get_move_input()
 	player.update_facing(input)
-	player.steer(input, player.jump_air_control, delta)
+	player.air_steer(input, delta)
 	player.move_and_slide()
 	player.play_animation("jump", "idle")
 
-	if t >= 1.0:
-		machine.change_to(&"Idle" if input.is_zero_approx() else &"Move")
+	if not player.is_airborne():
+		machine.change_to(player.free_state())
