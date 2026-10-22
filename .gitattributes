@@ -1,0 +1,13 @@
+# Saltos de línea LF en todo (Android, Mac y Windows trabajan sobre el mismo repo)
+* text=auto eol=lf
+
+# Binarios
+*.png binary
+*.jpg binary
+*.ase binary
+*.aseprite binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.ttf binary
+*.otf binary

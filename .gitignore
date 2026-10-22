@@ -1,0 +1,14 @@
+# Godot 4: caché del editor e importados (se regeneran solos)
+.godot/
+
+# Builds exportados
+/export/
+/build/
+
+# Credenciales de exportación (nunca al repo)
+export_credentials.cfg
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.tmp
