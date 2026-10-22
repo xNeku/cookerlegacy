@@ -35,6 +35,7 @@ lunge_speed = 130.0
 [sub_resource type="Resource" id="Resource_vymmo"]
 script = ExtResource("1_a6h4c")
 animation = &"attack_4"
+move_speed_multiplier = 0.15
 duration = 0.48
 hit_start = 0.12
 hit_end = 0.22

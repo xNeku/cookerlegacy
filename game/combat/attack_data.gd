@@ -31,3 +31,7 @@ extends Resource
 @export var lunge_speed: float = 120.0
 ## Cuánto dura el pasito antes de frenar.
 @export var lunge_time: float = 0.08
+
+@export_group("Movimiento durante el golpe")
+## Tras el pasito, cuánto puedes moverte mientras pegas (1 = velocidad normal, 0 = clavado).
+@export_range(0.0, 1.0) var move_speed_multiplier: float = 0.35

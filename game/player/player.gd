@@ -19,6 +19,8 @@ extends CharacterBody2D
 @export_group("Combate")
 ## Combo del ataque básico (□ / clic izquierdo). En Fase 4 vendrá del arma equipada.
 @export var light_combo: ComboData
+## Parte de la velocidad que se conserva al empezar un golpe (0 = frena en seco, 1 = toda).
+@export_range(0.0, 1.0) var attack_momentum_keep: float = 0.4
 
 @export_group("Animación")
 ## La animación de andar va más rápida o lenta según la velocidad real (útil con stick a medias).
@@ -51,6 +53,14 @@ func accelerate_towards(direction: Vector2, delta: float) -> void:
 
 func apply_friction(delta: float) -> void:
 	velocity = velocity.move_toward(Vector2.ZERO, friction * delta)
+
+
+## Moverse a velocidad reducida (al pegar, al cargar...). Sin input, frena.
+func steer(direction: Vector2, speed_multiplier: float, delta: float) -> void:
+	if direction.is_zero_approx():
+		apply_friction(delta)
+	else:
+		velocity = velocity.move_toward(direction * max_speed * speed_multiplier, acceleration * delta)
 
 
 ## Actualiza `facing` a la dirección cardinal más cercana a `direction`.

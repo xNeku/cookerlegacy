@@ -22,9 +22,12 @@ func physics_update(delta: float) -> void:
 
 	player.hitbox.set_active(_time >= _attack.hit_start and _time < _attack.hit_end)
 
+	var input := player.get_move_input()
 	if _time >= _attack.lunge_time:
-		player.apply_friction(delta)
+		player.steer(input, _attack.move_speed_multiplier, delta)
 	player.move_and_slide()
+	# Sin animación de ataque (placeholder): si te mueves pegando, anda en vez de patinar.
+	player.play_animation(_attack.animation, "idle" if input.is_zero_approx() else "walk")
 
 	if _buffered and _time >= _attack.chain_from and player.has_next_combo_step():
 		_begin(player.next_combo_step())
@@ -43,7 +46,7 @@ func _begin(step: int) -> void:
 	var dir := player.get_attack_direction()
 	player.update_facing(dir)
 	player.sprite.speed_scale = 1.0
-	player.play_animation(_attack.animation, "idle")
 	player.hitbox.set_active(false)
 	player.hitbox.configure(_attack.hitbox_size, _attack.hitbox_distance, dir, _attack.damage, _attack.knockback)
-	player.velocity = dir * _attack.lunge_speed
+	# Conserva parte de la inercia y suma el pasito: así andar y pegar no frena en seco.
+	player.velocity = player.velocity * player.attack_momentum_keep + dir * _attack.lunge_speed
