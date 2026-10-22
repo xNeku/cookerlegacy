@@ -6,13 +6,14 @@
 [sub_resource type="Resource" id="Resource_bamdr"]
 script = ExtResource("1_kj1ad")
 animation = &"charged"
-knockup_height = 26.0
 duration = 0.6
 hit_start = 0.08
 hit_end = 0.22
 chain_from = 0.6
 damage = 45.0
 knockback = 360.0
+is_heavy = true
+knockup_height = 26.0
 hitbox_size = Vector2(44, 40)
 hitbox_distance = 20.0
 lunge_speed = 260.0

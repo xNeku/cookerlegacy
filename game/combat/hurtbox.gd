@@ -9,6 +9,8 @@ signal hit_received(hitbox: Hitbox)
 ## Vida a la que se resta el daño. Puede quedar vacía si solo interesa la señal.
 @export var health: Health
 
+## Multiplicador de daño de los golpes fuertes (`AttackData.is_heavy`). Lo pone el dueño.
+var heavy_damage_multiplier: float = 1.0
 ## Si está activo, ignora los golpes (dash, invulnerabilidad tras recibir daño...).
 ## Lo gestiona el dueño.
 var invulnerable: bool = false
@@ -23,6 +25,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if hitbox == null or invulnerable:
 		return
 	if health:
-		health.take_damage(hitbox.damage)
+		var heavy := hitbox.attack != null and hitbox.attack.is_heavy
+		health.take_damage(hitbox.damage * (heavy_damage_multiplier if heavy else 1.0))
 	hit_received.emit(hitbox)
 	hitbox.hit_landed.emit(self)

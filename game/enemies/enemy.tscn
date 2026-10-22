@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3]
+[gd_scene load_steps=25 format=3]
 
 [ext_resource type="Script" path="res://game/enemies/enemy.gd" id="1_enemy"]
 [ext_resource type="Texture2D" path="res://assets/placeholder/shadow_placeholder.png" id="2_shadow"]
@@ -16,6 +16,7 @@
 [ext_resource type="Script" path="res://game/enemies/states/hurt.gd" id="14_hurt"]
 [ext_resource type="Script" path="res://game/enemies/states/airborne.gd" id="15_air"]
 [ext_resource type="Script" path="res://game/enemies/states/dead.gd" id="16_dead"]
+[ext_resource type="Script" path="res://game/enemies/states/bones.gd" id="17_bones"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 4.0
@@ -92,3 +93,6 @@ script = ExtResource("15_air")
 
 [node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("16_dead")
+
+[node name="Bones" type="Node" parent="StateMachine"]
+script = ExtResource("17_bones")

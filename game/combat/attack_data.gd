@@ -21,6 +21,9 @@ extends Resource
 @export var damage: float = 10.0
 ## Fuerza del empujón al enemigo (px/s).
 @export var knockback: float = 80.0
+## Golpe fuerte (△, cargado...). Algunos enemigos solo se aturden o se mueven con
+## golpes fuertes y reciben más daño de ellos (ver EnemyData).
+@export var is_heavy: bool = false
 ## Si es mayor que 0, levanta al enemigo por los aires esta altura (px). Cargado, SaltoGolpe...
 @export var knockup_height: float = 0.0
 

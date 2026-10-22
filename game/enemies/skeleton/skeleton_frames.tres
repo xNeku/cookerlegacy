@@ -1,0 +1,92 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/skeleton_placeholder.png" id="1_oh4c3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yae5f"]
+atlas = ExtResource("1_oh4c3")
+region = Rect2(0, 96, 28, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wg24w"]
+atlas = ExtResource("1_oh4c3")
+region = Rect2(0, 160, 28, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x74qt"]
+atlas = ExtResource("1_oh4c3")
+region = Rect2(0, 128, 28, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wdqw"]
+atlas = ExtResource("1_oh4c3")
+region = Rect2(0, 0, 28, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2konc"]
+atlas = ExtResource("1_oh4c3")
+region = Rect2(28, 0, 28, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5es0x"]
+atlas = ExtResource("1_oh4c3")
+region = Rect2(0, 32, 28, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibqfn"]
+atlas = ExtResource("1_oh4c3")
+region = Rect2(28, 32, 28, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rojoj"]
+atlas = ExtResource("1_oh4c3")
+region = Rect2(0, 64, 28, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yae5f")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wg24w")
+}],
+"loop": 1,
+"name": &"bones",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x74qt")
+}],
+"loop": 1,
+"name": &"hurt",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wdqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2konc")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5es0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibqfn")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rojoj")
+}],
+"loop": 1,
+"name": &"windup",
+"speed": 1.0
+}]

@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://game/enemies/enemy.tscn" id="1_base"]
+[ext_resource type="Resource" path="res://game/enemies/skeleton/skeleton_data.tres" id="2_data"]
+[ext_resource type="SpriteFrames" path="res://game/enemies/skeleton/skeleton_frames.tres" id="3_frames"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_skel"]
+size = Vector2(14, 26)
+
+[node name="Skeleton" instance=ExtResource("1_base")]
+data = ExtResource("2_data")
+windup_color = Color(1, 0.55, 0.2, 1)
+windup_shake = 0.5
+
+[node name="Sprite" parent="." index="1"]
+sprite_frames = ExtResource("3_frames")
+animation = &"idle"
+autoplay = "idle"
+offset = Vector2(0, -15)
+
+[node name="Collision" parent="." index="2"]
+position = Vector2(0, -3)
+
+[node name="Shape" parent="Hurtbox" index="0"]
+position = Vector2(0, -13)
+shape = SubResource("RectangleShape2D_skel")
