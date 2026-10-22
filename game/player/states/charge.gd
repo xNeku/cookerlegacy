@@ -18,7 +18,7 @@ func exit() -> void:
 
 
 func physics_update(delta: float) -> void:
-	if try_dash() or try_jump():
+	if try_dash() or try_jump() or try_spin():
 		return
 	if not Input.is_action_pressed("attack_heavy"):
 		machine.change_to(&"ChargedAttack" if _full else &"HeavyAttack")

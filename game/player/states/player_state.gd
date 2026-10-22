@@ -27,6 +27,14 @@ func try_jump() -> bool:
 	return false
 
 
+## Golpe giratorio (R1 / Q) si está listo. Vale también en el aire.
+func try_spin() -> bool:
+	if player.can_spin() and player.consume_action(&"skill_1"):
+		machine.change_to(&"Spin")
+		return true
+	return false
+
+
 ## Ataques. En el suelo △ empieza a cargar; en el aire sale el golpe fuerte directo
 ## (el SaltoGolpe de Fase 4 irá aquí).
 func try_attack() -> bool:
@@ -41,4 +49,4 @@ func try_attack() -> bool:
 
 ## Todas las acciones, en orden de prioridad. Para estados libres (Idle, Move, Jump).
 func try_start_action() -> bool:
-	return try_dash() or try_jump() or try_attack()
+	return try_dash() or try_jump() or try_spin() or try_attack()

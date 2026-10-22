@@ -21,6 +21,8 @@
 [ext_resource type="Script" path="res://game/fx/hit_flash.gd" id="19_flash"]
 [ext_resource type="Material" path="res://game/fx/hit_flash_material.tres" id="20_mat"]
 [ext_resource type="Script" path="res://game/player/states/hurt.gd" id="21_hurt"]
+[ext_resource type="Script" path="res://game/player/states/spin.gd" id="22_spin"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_spin.tres" id="23_spinatk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 5.0
@@ -36,6 +38,7 @@ script = ExtResource("1_player")
 light_combo = ExtResource("9_combo")
 heavy_combo = ExtResource("10_heavy")
 charged_attack = ExtResource("11_charged")
+spin_attack = ExtResource("23_spinatk")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -125,3 +128,6 @@ script = ExtResource("14_jump")
 
 [node name="Hurt" type="Node" parent="StateMachine"]
 script = ExtResource("21_hurt")
+
+[node name="Spin" type="Node" parent="StateMachine"]
+script = ExtResource("22_spin")

@@ -40,7 +40,7 @@ func exit() -> void:
 func physics_update(delta: float) -> void:
 	_time += delta
 	# Dash y salto cortan el golpe desde `cancel_from` (por defecto, desde el primer frame).
-	if _time >= _attack.cancel_from and (try_dash() or try_jump()):
+	if _time >= _attack.cancel_from and (try_dash() or try_jump() or try_spin()):
 		_finish()
 		return
 	_collect_inputs()

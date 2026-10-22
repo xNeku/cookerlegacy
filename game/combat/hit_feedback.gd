@@ -40,5 +40,6 @@ func _spawn_spark(hurtbox: Area2D) -> void:
 			break
 	var parent := get_tree().current_scene if get_tree().current_scene else hurtbox.owner.get_parent()
 	parent.add_child(spark)
-	spark.global_position = target_pos - hitbox.direction * 4.0
-	spark.rotation = hitbox.direction.angle()
+	var dir := hitbox.get_knockback_direction(target_pos)
+	spark.global_position = target_pos - dir * 4.0
+	spark.rotation = dir.angle()

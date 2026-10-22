@@ -15,11 +15,3 @@ script = ExtResource("1_hb")
 unique_name_in_owner = true
 shape = SubResource("RectangleShape2D_hit")
 disabled = true
-
-[node name="DebugShape" type="ColorRect" parent="."]
-unique_name_in_owner = true
-visible = false
-offset_right = 22.0
-offset_bottom = 18.0
-mouse_filter = 2
-color = Color(1, 0.85, 0.4, 0.45)

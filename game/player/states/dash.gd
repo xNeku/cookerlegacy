@@ -46,6 +46,6 @@ func physics_update(delta: float) -> void:
 		if not player.is_airborne():
 			player.velocity = player.velocity.limit_length(player.max_speed)
 		# Lo que se pulsó durante el dash sale ahora (dash-strike, dash-dash...).
-		if try_dash() or try_attack():
+		if try_dash() or try_spin() or try_attack():
 			return
 		machine.change_to(player.free_state())

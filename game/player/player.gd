@@ -27,6 +27,14 @@ extends CharacterBody2D
 ## Parte de la velocidad que se conserva al empezar un golpe (0 = frena en seco, 1 = toda).
 @export_range(0.0, 1.0) var attack_momentum_keep: float = 0.4
 
+@export_group("Golpe giratorio (R1 / Q)")
+## El golpe del giro (área circular, multi-golpe). En Fase 4 vendrá del arma.
+@export var spin_attack: AttackData
+## Espera entre giros (s), contada desde que empieza uno.
+@export var spin_cooldown: float = 1.2
+## Cada cuánto cambia de dirección el sprite al girar (s). Placeholder hasta tener animación.
+@export var spin_face_period: float = 0.04
+
 @export_group("Carga (△ mantenido)")
 ## Segundos manteniendo △ hasta tener la carga llena.
 @export var charge_time: float = 0.6
@@ -106,12 +114,14 @@ var height: float = 0.0
 var gravity_paused: bool = false
 
 ## Acciones que pasan por el buffer de input.
-const BUFFERED_ACTIONS: Array[StringName] = [&"attack_light", &"attack_heavy", &"dash", &"jump"]
+const BUFFERED_ACTIONS: Array[StringName] = [&"attack_light", &"attack_heavy", &"dash", &"jump", &"skill_1"]
 
 ## Reloj de juego (s): avanza con el tiempo del juego, así que se para en el hitstop.
 ## El buffer y los combos miden con este, no con el reloj real.
 var _clock: float = 0.0
 var _vertical_speed: float = 0.0
+## Momento (reloj de juego) en que se puede volver a girar.
+var _spin_ready_at: float = 0.0
 ## Invulnerabilidad que queda tras recibir un golpe (s).
 var _iframes_left: float = 0.0
 var _dash_charges: int = 0
@@ -222,6 +232,14 @@ func use_dash_charge() -> void:
 	_dash_charges -= 1
 
 
+func can_spin() -> bool:
+	return spin_attack != null and _clock >= _spin_ready_at
+
+
+func start_spin_cooldown() -> void:
+	_spin_ready_at = _clock + spin_cooldown
+
+
 func is_airborne() -> bool:
 	return height > 0.0 or _vertical_speed > 0.0
 
@@ -285,7 +303,7 @@ func update_walk_anim_speed() -> void:
 
 
 func _on_hit_received(hb: Hitbox) -> void:
-	velocity = hb.direction * hb.knockback
+	velocity = hb.get_knockback_direction(global_position) * hb.knockback
 	_iframes_left = hurt_iframes
 	HitStop.freeze(hurt_hitstop)
 	get_tree().call_group(&"game_camera", &"shake", hurt_shake, 0.15)

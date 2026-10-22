@@ -117,7 +117,7 @@ func _on_hit_received(hb: Hitbox) -> void:
 	var heavy := hb.attack != null and hb.attack.is_heavy
 	var resistance := data.heavy_knockback_resistance if heavy else data.knockback_resistance
 	# Empujón (también al morir: sale despedido).
-	velocity = hb.direction * hb.knockback * (1.0 - resistance)
+	velocity = hb.get_knockback_direction(global_position) * hb.knockback * (1.0 - resistance)
 	var current := state_machine.current.name
 	if health.current <= 0.0 or current == &"Bones":
 		return
