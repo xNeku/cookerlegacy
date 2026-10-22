@@ -1,0 +1,78 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/debug/input_tester.gd" id="1_script"]
+
+[node name="InputTester" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.168627, 0.133333, 0.2, 1)
+
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 8
+
+[node name="Columns" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+theme_override_constants/separation = 32
+
+[node name="ActionsColumn" type="VBoxContainer" parent="Margin/Columns"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="Margin/Columns/ActionsColumn"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.94902, 0.639216, 0.227451, 1)
+theme_override_font_sizes/font_size = 10
+text = "INPUT TEST (B-004)"
+
+[node name="ActionsLabel" type="Label" parent="Margin/Columns/ActionsColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+
+[node name="StickColumn" type="VBoxContainer" parent="Margin/Columns"]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="StickArea" type="Panel" parent="Margin/Columns/StickColumn"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="StickDot" type="ColorRect" parent="Margin/Columns/StickColumn/StickArea"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 6.0
+offset_bottom = 6.0
+color = Color(0.94902, 0.639216, 0.227451, 1)
+
+[node name="StickLabel" type="Label" parent="Margin/Columns/StickColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+
+[node name="DeviceLabel" type="Label" parent="Margin/Columns/StickColumn"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
