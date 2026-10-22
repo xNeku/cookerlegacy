@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="PackedScene" path="res://game/debug/input_tester.tscn" id="1_tester"]
+[ext_resource type="PackedScene" path="res://game/levels/arena/arena.tscn" id="1_arena"]
 
 [node name="Main" type="Node"]
 
-[node name="InputTester" parent="." instance=ExtResource("1_tester")]
+[node name="Arena" parent="." instance=ExtResource("1_arena")]
