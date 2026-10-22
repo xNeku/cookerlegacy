@@ -6,6 +6,9 @@
 [ext_resource type="Script" path="res://game/core/state_machine.gd" id="4_sm"]
 [ext_resource type="Script" path="res://game/player/states/idle.gd" id="5_idle"]
 [ext_resource type="Script" path="res://game/player/states/move.gd" id="6_move"]
+[ext_resource type="Script" path="res://game/player/states/attack.gd" id="7_attack"]
+[ext_resource type="PackedScene" path="res://game/combat/hitbox.tscn" id="8_hitbox"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_light_combo.tres" id="9_combo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 5.0
@@ -15,6 +18,7 @@ collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_player")
+light_combo = ExtResource("9_combo")
 
 [node name="Shadow" type="Sprite2D" parent="."]
 texture = ExtResource("2_shadow")
@@ -30,6 +34,11 @@ offset = Vector2(0, -15)
 position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_feet")
 
+[node name="Hitbox" parent="." instance=ExtResource("8_hitbox")]
+unique_name_in_owner = true
+position = Vector2(0, -10)
+collision_layer = 8
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true
 script = ExtResource("4_sm")
@@ -40,3 +49,6 @@ script = ExtResource("5_idle")
 
 [node name="Move" type="Node" parent="StateMachine"]
 script = ExtResource("6_move")
+
+[node name="Attack" type="Node" parent="StateMachine"]
+script = ExtResource("7_attack")

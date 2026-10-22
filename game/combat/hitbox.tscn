@@ -1,0 +1,25 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/combat/hitbox.gd" id="1_hb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hit"]
+size = Vector2(22, 18)
+
+[node name="Hitbox" type="Area2D"]
+collision_layer = 0
+collision_mask = 0
+monitoring = false
+script = ExtResource("1_hb")
+
+[node name="Shape" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_hit")
+disabled = true
+
+[node name="DebugShape" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_right = 22.0
+offset_bottom = 18.0
+mouse_filter = 2
+color = Color(1, 0.85, 0.4, 0.45)

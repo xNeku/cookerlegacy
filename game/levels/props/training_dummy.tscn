@@ -1,0 +1,55 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/levels/props/training_dummy.gd" id="1_td"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/dummy_placeholder.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/shadow_placeholder.png" id="3_sh"]
+[ext_resource type="PackedScene" path="res://game/combat/hurtbox.tscn" id="4_hu"]
+[ext_resource type="Script" path="res://game/combat/health.gd" id="5_he"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_base"]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(14, 22)
+
+[node name="TrainingDummy" type="StaticBody2D"]
+collision_mask = 0
+script = ExtResource("1_td")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("3_sh")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+texture = ExtResource("2_tex")
+offset = Vector2(0, -16)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+shape = SubResource("CircleShape2D_base")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("5_he")
+immortal = true
+
+[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_hu")]
+unique_name_in_owner = true
+collision_mask = 8
+health = NodePath("../Health")
+
+[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="InfoLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -30.0
+offset_top = -58.0
+offset_right = 30.0
+offset_bottom = -34.0
+theme_override_font_sizes/font_size = 8
+horizontal_alignment = 1
+
+[node name="ResetTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
