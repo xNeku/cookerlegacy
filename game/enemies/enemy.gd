@@ -36,6 +36,9 @@ var knockup_height: float = 0.0
 ## Su hueco alrededor del cocinero (ángulo, rad). Cada uno nace con uno distinto.
 var surround_angle: float = 0.0
 
+## Si está ahora como montón de huesos (rearmarse).
+var is_bones: bool = false
+
 var _next_attack_at: float = 0.0
 
 @onready var sprite: AnimatedSprite2D = %Sprite
@@ -50,6 +53,7 @@ var _next_attack_at: float = 0.0
 func _ready() -> void:
 	health.max_health = data.max_health
 	health.current = data.max_health
+	hurtbox.heavy_damage_multiplier = data.heavy_damage_multiplier
 	health.died.connect(_on_died)
 	hurtbox.hit_received.connect(_on_hit_received)
 	surround_angle = randf() * TAU
@@ -110,20 +114,28 @@ func set_sprite_offset(offset: Vector2) -> void:
 
 
 func _on_hit_received(hb: Hitbox) -> void:
+	var heavy := hb.attack != null and hb.attack.is_heavy
+	var resistance := data.heavy_knockback_resistance if heavy else data.knockback_resistance
 	# Empujón (también al morir: sale despedido).
-	velocity = hb.direction * hb.knockback * (1.0 - data.knockback_resistance)
-	if health.current <= 0.0:
-		return
+	velocity = hb.direction * hb.knockback * (1.0 - resistance)
 	var current := state_machine.current.name
+	if health.current <= 0.0 or current == &"Bones":
+		return
 	if hb.attack and hb.attack.knockup_height > 0.0 and current != &"Airborne":
 		knockup_height = hb.attack.knockup_height
 		state_machine.change_to(&"Airborne")
-	elif current != &"Airborne":
-		# Golpe = interrumpe lo que hiciera, aviso incluido.
+	elif current == &"Airborne":
+		return
+	elif heavy or data.light_hits_stagger or current == &"Windup":
+		# Interrumpe lo que hiciera. El aviso se interrumpe siempre.
 		state_machine.change_to(&"Hurt")
 
 
 func _on_died() -> void:
+	# Primera "muerte" con rearmarse activo: se queda como montón de huesos.
+	if data.reassemble_enabled and not is_bones:
+		state_machine.change_to(&"Bones")
+		return
 	state_machine.change_to(&"Dead")
 	died.emit(self)
 

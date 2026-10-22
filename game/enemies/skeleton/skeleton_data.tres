@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="EnemyData" format=3]
+
+[ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_tfl5x"]
+[ext_resource type="Script" path="res://game/enemies/enemy_data.gd" id="2_poqfw"]
+
+[sub_resource type="Resource" id="Resource_gurrc"]
+script = ExtResource("1_tfl5x")
+animation = &"attack"
+duration = 0.45
+hit_start = 0.04
+hit_end = 0.2
+damage = 14.0
+knockback = 220.0
+is_heavy = true
+hitbox_size = Vector2(26, 34)
+lunge_speed = 70.0
+lunge_time = 0.1
+
+[resource]
+script = ExtResource("2_poqfw")
+max_health = 60.0
+knockback_resistance = 0.9
+heavy_knockback_resistance = 0.35
+heavy_damage_multiplier = 1.5
+light_hits_stagger = false
+hurt_time = 0.3
+move_speed = 55.0
+acceleration = 400.0
+friction = 700.0
+detect_range = 230.0
+lose_range = 450.0
+attack = SubResource("Resource_gurrc")
+windup_time = 0.7
+recovery_time = 0.9
+attack_cooldown = 0.6
