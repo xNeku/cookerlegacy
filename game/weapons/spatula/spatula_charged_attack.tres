@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="ComboData" format=3]
+
+[ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_kj1ad"]
+[ext_resource type="Script" path="res://game/combat/combo_data.gd" id="2_m567o"]
+
+[sub_resource type="Resource" id="Resource_bamdr"]
+script = ExtResource("1_kj1ad")
+animation = &"charged"
+duration = 0.6
+hit_start = 0.08
+hit_end = 0.22
+chain_from = 0.6
+damage = 45.0
+knockback = 360.0
+hitbox_size = Vector2(44, 40)
+hitbox_distance = 20.0
+lunge_speed = 260.0
+lunge_time = 0.14
+move_speed_multiplier = 0.1
+
+[resource]
+script = ExtResource("2_m567o")
+attacks = Array[ExtResource("1_kj1ad")]([SubResource("Resource_bamdr")])
+reset_time = 0.0

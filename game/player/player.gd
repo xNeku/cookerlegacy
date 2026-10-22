@@ -17,10 +17,27 @@ extends CharacterBody2D
 @export_range(0.0, 0.5) var facing_hysteresis: float = 0.15
 
 @export_group("Combate")
-## Combo del ataque básico (□ / clic izquierdo). En Fase 4 vendrá del arma equipada.
+## Combos del arma (en Fase 4 vendrán del arma equipada).
+## □ / clic izquierdo.
 @export var light_combo: ComboData
+## △ / clic derecho, tocando.
+@export var heavy_combo: ComboData
+## △ / clic derecho, manteniendo hasta cargar del todo (un solo golpe).
+@export var charged_attack: ComboData
 ## Parte de la velocidad que se conserva al empezar un golpe (0 = frena en seco, 1 = toda).
 @export_range(0.0, 1.0) var attack_momentum_keep: float = 0.4
+
+@export_group("Carga (△ mantenido)")
+## Segundos manteniendo △ hasta tener la carga llena.
+@export var charge_time: float = 0.6
+## Velocidad mientras cargas (1 = normal).
+@export_range(0.0, 1.0) var charge_move_multiplier: float = 0.35
+## Tinte al ir cargando (placeholder hasta que haya efecto de carga).
+@export var charge_color: Color = Color(1.0, 0.6, 0.25)
+## Destello cuando la carga está llena.
+@export var charge_full_color: Color = Color(2.0, 2.0, 2.0)
+## Velocidad del parpadeo con la carga llena (segundos por ciclo).
+@export var charge_blink_period: float = 0.12
 
 @export_group("Animación")
 ## La animación de andar va más rápida o lenta según la velocidad real (útil con stick a medias).
@@ -30,11 +47,6 @@ extends CharacterBody2D
 
 ## Dirección cardinal a la que mira: DOWN, UP, LEFT o RIGHT.
 var facing: Vector2 = Vector2.DOWN
-
-## Golpe del combo en el que vamos (-1 = ninguno).
-var _combo_step: int = -1
-## Momento (en segundos de juego) en que se pierde el combo si no se sigue.
-var _combo_expires_at: float = 0.0
 
 @onready var sprite: AnimatedSprite2D = %Sprite
 @onready var state_machine: StateMachine = %StateMachine
@@ -94,30 +106,6 @@ func get_attack_direction() -> Vector2:
 	return to_mouse.normalized() if not to_mouse.is_zero_approx() else facing
 
 
-## Devuelve qué golpe del combo toca ahora y avanza el contador.
-func next_combo_step() -> int:
-	var now := _now()
-	var continuing := _combo_step >= 0 and (now <= _combo_expires_at or _combo_expires_at < 0.0)
-	_combo_step = _combo_step + 1 if continuing else 0
-	if _combo_step >= light_combo.attacks.size():
-		_combo_step = 0
-	_combo_expires_at = -1.0  # mientras se ataca, el combo no caduca
-	return _combo_step
-
-
-func has_next_combo_step() -> bool:
-	return _combo_step + 1 < light_combo.attacks.size()
-
-
-## Al acabar un golpe sin encadenar: abre la ventana para seguir el combo,
-## salvo que fuera el último golpe (entonces vuelve a empezar).
-func finish_attack() -> void:
-	if has_next_combo_step():
-		_combo_expires_at = _now() + light_combo.reset_time
-	else:
-		_combo_step = -1
-
-
 ## Reproduce "<base>_down/up/side" según `facing`. El lado izquierdo es el derecho en espejo.
 ## Si esa animación no existe todavía (falta arte), usa `fallback`.
 func play_animation(base: String, fallback: String = "") -> void:
@@ -129,9 +117,6 @@ func play_animation(base: String, fallback: String = "") -> void:
 	if sprite.animation != anim:
 		sprite.play(anim)
 
-
-func _now() -> float:
-	return Time.get_ticks_msec() / 1000.0
 
 
 ## Ajusta la velocidad de la animación de andar a lo rápido que se mueve.

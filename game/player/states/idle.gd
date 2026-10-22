@@ -9,7 +9,10 @@ func enter(_previous: State) -> void:
 
 func physics_update(delta: float) -> void:
 	if Input.is_action_just_pressed("attack_light"):
-		machine.change_to(&"Attack")
+		machine.change_to(&"LightAttack")
+		return
+	if Input.is_action_just_pressed("attack_heavy"):
+		machine.change_to(&"Charge")
 		return
 	if not player.get_move_input().is_zero_approx():
 		machine.change_to(&"Move")

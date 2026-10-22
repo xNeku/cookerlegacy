@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="ComboData" format=3]
+
+[ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_02tf5"]
+[ext_resource type="Script" path="res://game/combat/combo_data.gd" id="2_lguhw"]
+
+[sub_resource type="Resource" id="Resource_5ge3v"]
+script = ExtResource("1_02tf5")
+animation = &"heavy_1"
+duration = 0.45
+hit_start = 0.14
+hit_end = 0.24
+chain_from = 0.32
+damage = 18.0
+knockback = 160.0
+hitbox_size = Vector2(28, 24)
+hitbox_distance = 16.0
+lunge_speed = 150.0
+lunge_time = 0.1
+move_speed_multiplier = 0.2
+
+[sub_resource type="Resource" id="Resource_8rpoc"]
+script = ExtResource("1_02tf5")
+animation = &"heavy_2"
+duration = 0.55
+hit_start = 0.16
+hit_end = 0.28
+chain_from = 0.55
+damage = 26.0
+knockback = 240.0
+hitbox_size = Vector2(32, 30)
+hitbox_distance = 17.0
+lunge_speed = 170.0
+lunge_time = 0.12
+move_speed_multiplier = 0.15
+
+[resource]
+script = ExtResource("2_lguhw")
+attacks = Array[ExtResource("1_02tf5")]([SubResource("Resource_5ge3v"), SubResource("Resource_8rpoc")])
+reset_time = 0.45
