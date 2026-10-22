@@ -1,0 +1,80 @@
+[gd_resource type="SpriteFrames" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/rat_placeholder.png" id="1_ppxq5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lq1d"]
+atlas = ExtResource("1_ppxq5")
+region = Rect2(0, 48, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l45mk"]
+atlas = ExtResource("1_ppxq5")
+region = Rect2(0, 64, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qt573"]
+atlas = ExtResource("1_ppxq5")
+region = Rect2(0, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p42bd"]
+atlas = ExtResource("1_ppxq5")
+region = Rect2(24, 0, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_64snx"]
+atlas = ExtResource("1_ppxq5")
+region = Rect2(0, 16, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sqa4u"]
+atlas = ExtResource("1_ppxq5")
+region = Rect2(24, 16, 24, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_felpe"]
+atlas = ExtResource("1_ppxq5")
+region = Rect2(0, 32, 24, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lq1d")
+}],
+"loop": 1,
+"name": &"attack",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l45mk")
+}],
+"loop": 1,
+"name": &"hurt",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qt573")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p42bd")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_64snx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sqa4u")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_felpe")
+}],
+"loop": 1,
+"name": &"windup",
+"speed": 1.0
+}]

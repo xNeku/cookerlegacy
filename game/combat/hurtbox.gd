@@ -9,6 +9,10 @@ signal hit_received(hitbox: Hitbox)
 ## Vida a la que se resta el daño. Puede quedar vacía si solo interesa la señal.
 @export var health: Health
 
+## Si está activo, ignora los golpes (dash, invulnerabilidad tras recibir daño...).
+## Lo gestiona el dueño.
+var invulnerable: bool = false
+
 
 func _ready() -> void:
 	area_entered.connect(_on_area_entered)
@@ -16,7 +20,7 @@ func _ready() -> void:
 
 func _on_area_entered(area: Area2D) -> void:
 	var hitbox := area as Hitbox
-	if hitbox == null:
+	if hitbox == null or invulnerable:
 		return
 	if health:
 		health.take_damage(hitbox.damage)

@@ -6,6 +6,7 @@
 [sub_resource type="Resource" id="Resource_bamdr"]
 script = ExtResource("1_kj1ad")
 animation = &"charged"
+knockup_height = 26.0
 duration = 0.6
 hit_start = 0.08
 hit_end = 0.22

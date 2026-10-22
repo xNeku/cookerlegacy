@@ -5,6 +5,9 @@
 [ext_resource type="PackedScene" path="res://game/levels/props/crate.tscn" id="3_crate"]
 [ext_resource type="PackedScene" path="res://game/camera/game_camera.tscn" id="4_cam"]
 [ext_resource type="PackedScene" path="res://game/levels/props/training_dummy.tscn" id="5_dummy"]
+[ext_resource type="PackedScene" path="res://game/ui/player_hud.tscn" id="6_hud"]
+[ext_resource type="Script" path="res://game/levels/enemy_spawner.gd" id="7_spawner"]
+[ext_resource type="PackedScene" path="res://game/enemies/rat/rat.tscn" id="8_rat"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h"]
 size = Vector2(1024, 32)
@@ -73,3 +76,12 @@ limit_top = 0
 limit_right = 960
 limit_bottom = 540
 target = NodePath("../World/Player")
+
+[node name="RatSpawner" type="Marker2D" parent="." node_paths=PackedStringArray("container")]
+position = Vector2(760, 150)
+script = ExtResource("7_spawner")
+enemy_scene = ExtResource("8_rat")
+container = NodePath("../World")
+
+[node name="PlayerHud" parent="." node_paths=PackedStringArray("health") instance=ExtResource("6_hud")]
+health = NodePath("../World/Player/Health")
