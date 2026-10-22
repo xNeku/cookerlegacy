@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WaveData" format=3]
+
+[ext_resource type="Script" path="res://game/levels/waves/wave_entry.gd" id="1_lxkqw"]
+[ext_resource type="PackedScene" path="res://game/enemies/rat/rat.tscn" id="2_cgrjr"]
+[ext_resource type="Script" path="res://game/levels/waves/wave_data.gd" id="3_httby"]
+
+[sub_resource type="Resource" id="Resource_vxkl0"]
+script = ExtResource("1_lxkqw")
+enemy_scene = ExtResource("2_cgrjr")
+count = 4
+
+[resource]
+script = ExtResource("3_httby")
+entries = Array[ExtResource("1_lxkqw")]([SubResource("Resource_vxkl0")])
+delay = 1.0

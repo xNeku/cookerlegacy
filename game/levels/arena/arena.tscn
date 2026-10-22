@@ -6,9 +6,14 @@
 [ext_resource type="PackedScene" path="res://game/camera/game_camera.tscn" id="4_cam"]
 [ext_resource type="PackedScene" path="res://game/levels/props/training_dummy.tscn" id="5_dummy"]
 [ext_resource type="PackedScene" path="res://game/ui/player_hud.tscn" id="6_hud"]
-[ext_resource type="Script" path="res://game/levels/enemy_spawner.gd" id="7_spawner"]
-[ext_resource type="PackedScene" path="res://game/enemies/rat/rat.tscn" id="8_rat"]
-[ext_resource type="PackedScene" path="res://game/enemies/skeleton/skeleton.tscn" id="9_skel"]
+[ext_resource type="Script" path="res://game/levels/waves/wave_spawner.gd" id="7_waves"]
+[ext_resource type="Script" path="res://game/levels/waves/wave_data.gd" id="8_wavedata"]
+[ext_resource type="Resource" path="res://game/levels/arena/waves/wave_01.tres" id="9_w1"]
+[ext_resource type="Resource" path="res://game/levels/arena/waves/wave_02.tres" id="10_w2"]
+[ext_resource type="Resource" path="res://game/levels/arena/waves/wave_03.tres" id="11_w3"]
+[ext_resource type="Resource" path="res://game/levels/arena/waves/wave_04.tres" id="12_w4"]
+[ext_resource type="Resource" path="res://game/levels/arena/waves/wave_05.tres" id="13_w5"]
+[ext_resource type="PackedScene" path="res://game/ui/wave_hud.tscn" id="14_wavehud"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h"]
 size = Vector2(1024, 32)
@@ -78,20 +83,25 @@ limit_right = 960
 limit_bottom = 540
 target = NodePath("../World/Player")
 
-[node name="RatSpawner" type="Marker2D" parent="." node_paths=PackedStringArray("container")]
-position = Vector2(760, 150)
-script = ExtResource("7_spawner")
-enemy_scene = ExtResource("8_rat")
-container = NodePath("../World")
-
-[node name="SkeletonSpawner" type="Marker2D" parent="." node_paths=PackedStringArray("container")]
-position = Vector2(200, 140)
-script = ExtResource("7_spawner")
-enemy_scene = ExtResource("9_skel")
-container = NodePath("../World")
-count = 2
-spawn_radius = 25.0
-respawn_delay = 3.0
-
 [node name="PlayerHud" parent="." node_paths=PackedStringArray("health") instance=ExtResource("6_hud")]
 health = NodePath("../World/Player/Health")
+
+[node name="WaveSpawner" type="Node2D" parent="." node_paths=PackedStringArray("container")]
+script = ExtResource("7_waves")
+waves = Array[ExtResource("8_wavedata")]([ExtResource("9_w1"), ExtResource("10_w2"), ExtResource("11_w3"), ExtResource("12_w4"), ExtResource("13_w5")])
+container = NodePath("../World")
+
+[node name="SpawnTopLeft" type="Marker2D" parent="WaveSpawner"]
+position = Vector2(110, 90)
+
+[node name="SpawnTopRight" type="Marker2D" parent="WaveSpawner"]
+position = Vector2(850, 90)
+
+[node name="SpawnBottomLeft" type="Marker2D" parent="WaveSpawner"]
+position = Vector2(110, 470)
+
+[node name="SpawnBottomRight" type="Marker2D" parent="WaveSpawner"]
+position = Vector2(850, 470)
+
+[node name="WaveHud" parent="." node_paths=PackedStringArray("spawner") instance=ExtResource("14_wavehud")]
+spawner = NodePath("../WaveSpawner")
