@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://game/player/states/charge.gd" id="12_charge"]
 [ext_resource type="Script" path="res://game/player/states/dash.gd" id="13_dash"]
 [ext_resource type="Script" path="res://game/player/states/jump.gd" id="14_jump"]
+[ext_resource type="Script" path="res://game/combat/hit_feedback.gd" id="15_feedback"]
+[ext_resource type="PackedScene" path="res://game/fx/hit_spark.tscn" id="16_spark"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
 radius = 5.0
@@ -46,6 +48,11 @@ shape = SubResource("CircleShape2D_feet")
 unique_name_in_owner = true
 position = Vector2(0, -10)
 collision_layer = 8
+
+[node name="HitFeedback" type="Node" parent="." node_paths=PackedStringArray("hitbox")]
+script = ExtResource("15_feedback")
+hitbox = NodePath("../Hitbox")
+spark_scene = ExtResource("16_spark")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 unique_name_in_owner = true

@@ -1,7 +1,7 @@
 extends PlayerState
 ## Manteniendo △: carga. Soltar antes de llenarse = golpe fuerte normal.
 ## Soltar con la carga llena = ataque cargado. Te mueves despacio mientras cargas.
-## Un toque rápido de △ pasa por aquí un instante y sale como golpe fuerte normal.
+## Dash y salto cortan la carga en cualquier momento.
 
 var _held: float = 0.0
 var _full: bool = false
@@ -18,8 +18,7 @@ func exit() -> void:
 
 
 func physics_update(delta: float) -> void:
-	if Input.is_action_just_pressed("dash") and player.can_dash():
-		machine.change_to(&"Dash")
+	if try_dash() or try_jump():
 		return
 	if not Input.is_action_pressed("attack_heavy"):
 		machine.change_to(&"ChargedAttack" if _full else &"HeavyAttack")

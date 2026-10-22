@@ -14,6 +14,8 @@ extends Resource
 @export var hit_end: float = 0.14
 ## Desde cuándo sale el siguiente golpe si ya pulsaste (se puede pulsar antes: se guarda).
 @export var chain_from: float = 0.18
+## Desde cuándo se puede cortar el golpe con dash o salto (0 = siempre).
+@export var cancel_from: float = 0.0
 
 @export_group("Daño")
 @export var damage: float = 10.0
@@ -31,6 +33,14 @@ extends Resource
 @export var lunge_speed: float = 120.0
 ## Cuánto dura el pasito antes de frenar.
 @export var lunge_time: float = 0.08
+
+@export_group("Sensación (game feel)")
+## Congelado del juego al impactar (s). Da peso al golpe. 0 = sin hitstop.
+@export var hitstop_time: float = 0.04
+## Fuerza del temblor de cámara al impactar (px). 0 = sin temblor.
+@export var shake_strength: float = 1.5
+## Duración del temblor (s).
+@export var shake_time: float = 0.1
 
 @export_group("Movimiento durante el golpe")
 ## Tras el pasito, cuánto puedes moverte mientras pegas (1 = velocidad normal, 0 = clavado).

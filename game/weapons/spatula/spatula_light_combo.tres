@@ -31,11 +31,12 @@ damage = 12.0
 hitbox_size = Vector2(24, 22)
 hitbox_distance = 15.0
 lunge_speed = 130.0
+hitstop_time = 0.05
+shake_strength = 2.0
 
 [sub_resource type="Resource" id="Resource_vymmo"]
 script = ExtResource("1_a6h4c")
 animation = &"attack_4"
-move_speed_multiplier = 0.15
 duration = 0.48
 hit_start = 0.12
 hit_end = 0.22
@@ -46,6 +47,10 @@ hitbox_size = Vector2(30, 28)
 hitbox_distance = 17.0
 lunge_speed = 190.0
 lunge_time = 0.11
+hitstop_time = 0.09
+shake_strength = 4.0
+shake_time = 0.18
+move_speed_multiplier = 0.15
 
 [resource]
 script = ExtResource("2_ukdw2")
