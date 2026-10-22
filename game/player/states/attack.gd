@@ -19,14 +19,16 @@ enum ComboSlot { LIGHT, HEAVY, CHARGED }
 var _combo: ComboData
 var _attack: AttackData
 var _time: float = 0.0
-var _buffered: bool = false
-var _switch_buffered: bool = false
+## Lo que has ido pulsando durante el combo, en orden (□, □, △...). Se sirve
+## en cada punto de encadenado. Así spamear o mezclar botones nunca pierde nada.
+var _queue: Array[StringName] = []
 ## Golpe en el que vamos (-1 = ninguno) y cuándo se pierde el combo si no se sigue.
 var _step: int = -1
 var _expires_at: float = 0.0
 
 
 func enter(_previous: State) -> void:
+	_queue.clear()
 	_combo = _get_combo()
 	_begin(_next_step())
 
@@ -41,12 +43,7 @@ func physics_update(delta: float) -> void:
 	if _time >= _attack.cancel_from and (try_dash() or try_jump()):
 		_finish()
 		return
-	# Solo se "gasta" la pulsación si hay siguiente golpe; si no, se queda en el buffer
-	# y al acabar empieza un combo nuevo.
-	if _has_next_step() and player.consume_action(input_action):
-		_buffered = true
-	if switch_action != &"" and player.consume_action(switch_action):
-		_switch_buffered = true
+	_collect_inputs()
 
 	player.hitbox.set_active(_time >= _attack.hit_start and _time < _attack.hit_end)
 
@@ -57,18 +54,19 @@ func physics_update(delta: float) -> void:
 	# Sin animación de ataque (placeholder): si te mueves pegando, anda en vez de patinar.
 	player.play_animation(_attack.animation, "idle" if input.is_zero_approx() else "walk")
 
-	if _time >= _attack.chain_from:
-		if _buffered and _has_next_step():
+	if _time >= _attack.chain_from and not _queue.is_empty():
+		var next: StringName = _queue.pop_front()
+		if next == input_action:
 			_begin(_next_step())
 			return
-		if _switch_buffered:
-			_finish()
-			# △ en el aire no carga: va directo al golpe fuerte.
-			var target := switch_state
-			if target == &"Charge" and player.is_airborne():
-				target = &"HeavyAttack"
-			machine.change_to(target)
-			return
+		_finish()
+		_queue.clear()
+		# △ en el aire no carga: va directo al golpe fuerte.
+		var target := switch_state
+		if target == &"Charge" and player.is_airborne():
+			target = &"HeavyAttack"
+		machine.change_to(target)
+		return
 
 	if _time >= _attack.duration:
 		_finish()
@@ -81,8 +79,6 @@ func physics_update(delta: float) -> void:
 func _begin(step: int) -> void:
 	_attack = _combo.attacks[step]
 	_time = 0.0
-	_buffered = false
-	_switch_buffered = false
 	var dir := player.get_attack_direction()
 	player.update_facing(dir)
 	player.sprite.speed_scale = 1.0
@@ -90,6 +86,20 @@ func _begin(step: int) -> void:
 	player.hitbox.configure(_attack, dir)
 	# Conserva parte de la inercia y suma el pasito: así andar y pegar no frena en seco.
 	player.velocity = player.velocity * player.attack_momentum_keep + dir * _attack.lunge_speed
+
+
+## Apunta en la cola lo pulsado. □ solo se apunta si quedan golpes en el combo para
+## gastarlo (si no, se queda en el buffer del Player y al acabar empieza un combo nuevo).
+## Tras un cambio de botón (△) ya no se apunta nada más: el resto lo lleva el otro estado.
+func _collect_inputs() -> void:
+	if switch_action != &"" and switch_action in _queue:
+		return
+	var pending_same := _queue.count(input_action)
+	var remaining := _combo.attacks.size() - 1 - _step
+	if pending_same < remaining and player.consume_action(input_action):
+		_queue.append(input_action)
+	if switch_action != &"" and player.consume_action(switch_action):
+		_queue.append(switch_action)
 
 
 ## Qué golpe toca: sigue el combo si no ha caducado; si no, vuelve al primero.
@@ -123,5 +133,6 @@ func _get_combo() -> ComboData:
 	return player.light_combo
 
 
+## Reloj de juego del Player (se para en el hitstop).
 func _now() -> float:
-	return Time.get_ticks_msec() / 1000.0
+	return player.game_time()

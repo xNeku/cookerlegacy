@@ -92,10 +92,13 @@ var gravity_paused: bool = false
 ## Acciones que pasan por el buffer de input.
 const BUFFERED_ACTIONS: Array[StringName] = [&"attack_light", &"attack_heavy", &"dash", &"jump"]
 
+## Reloj de juego (s): avanza con el tiempo del juego, así que se para en el hitstop.
+## El buffer y los combos miden con este, no con el reloj real.
+var _clock: float = 0.0
 var _vertical_speed: float = 0.0
 var _dash_charges: int = 0
 var _dash_recharge: float = 0.0
-## Última vez (s) que se pulsó cada acción y aún no se ha usado.
+## Momento (reloj de juego) en que se pulsó cada acción y aún no se ha usado.
 var _buffer: Dictionary = {}
 
 @onready var sprite: AnimatedSprite2D = %Sprite
@@ -113,7 +116,7 @@ func _ready() -> void:
 
 # Corre antes que la StateMachine (los padres procesan antes que los hijos).
 func _physics_process(delta: float) -> void:
-	_record_buffer()
+	_clock += delta
 	_update_dash_charges(delta)
 	_update_height(delta)
 
@@ -123,14 +126,19 @@ func _physics_process(delta: float) -> void:
 func consume_action(action: StringName) -> bool:
 	if not _buffer.has(action):
 		return false
-	var fresh: bool = _now() - _buffer[action] <= input_buffer_time
+	var fresh: bool = _clock - _buffer[action] <= input_buffer_time
 	_buffer.erase(action)
 	return fresh
 
 
 ## Como consume_action pero sin gastarla (para mirar sin usar).
 func has_buffered(action: StringName) -> bool:
-	return _buffer.has(action) and _now() - _buffer[action] <= input_buffer_time
+	return _buffer.has(action) and _clock - _buffer[action] <= input_buffer_time
+
+
+## Tiempo de juego (s). Se para durante el hitstop.
+func game_time() -> float:
+	return _clock
 
 
 ## Estado "libre" al que volver tras una acción: en el aire, Jump; si no, Idle o Move.
@@ -253,10 +261,14 @@ func update_walk_anim_speed() -> void:
 	sprite.speed_scale = clampf(ratio, min_walk_anim_speed, 1.0)
 
 
-func _record_buffer() -> void:
+# Las pulsaciones se apuntan en cuanto llegan (no una vez por frame de física):
+# así no se pierde ninguna, ni siquiera un toque rapidísimo o durante el hitstop.
+func _input(event: InputEvent) -> void:
+	if event.is_echo():
+		return
 	for action in BUFFERED_ACTIONS:
-		if Input.is_action_just_pressed(action):
-			_buffer[action] = _now()
+		if event.is_action_pressed(action):
+			_buffer[action] = _clock
 
 
 func _update_dash_charges(delta: float) -> void:
@@ -280,6 +292,3 @@ func _update_height(delta: float) -> void:
 		_vertical_speed = 0.0
 	set_height(new_height)
 
-
-func _now() -> float:
-	return Time.get_ticks_msec() / 1000.0
