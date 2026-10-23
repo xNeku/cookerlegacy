@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 InputMode="*res://game/autoload/input_mode.tscn"
 HitStop="*res://game/autoload/hit_stop.tscn"
+Storage="*res://game/autoload/storage.tscn"
 
 [display]
 

@@ -21,6 +21,12 @@ extends Camera3D
 ## Sigue la altura del salto (si no, la cámara no sube al saltar).
 @export var follow_height: bool = false
 
+## Adelanta el encuadre hacia donde se mueve el objetivo (s de anticipación; 0 = nada).
+## Ayuda a ver lo que viene cuando avanzas.
+@export var lead_time: float = 0.0
+## Suavizado de ese adelanto (más alto = reacciona antes).
+@export var lead_smoothing: float = 2.5
+
 @export_group("Límites (m)")
 @export var limit_enabled: bool = true
 @export var limit_min: Vector2 = Vector2(6.5, 3.0)
@@ -37,6 +43,7 @@ extends Camera3D
 @export var punch_return_time: float = 0.18
 
 var _focus: Vector3
+var _lead: Vector3
 var _shake_strength: float = 0.0
 var _shake_time: float = 0.0
 var _shake_left: float = 0.0
@@ -77,6 +84,7 @@ func _process(delta: float) -> void:
 	# Tiempo real: el temblor sigue durante el hitstop (se nota más el golpe).
 	var real_delta := delta / maxf(Engine.time_scale, 0.001)
 	if target:
+		_update_lead(delta)
 		_focus = _focus.lerp(_target_point(), 1.0 - exp(-follow_speed * delta))
 	_place()
 	if _shake_left > 0.0:
@@ -89,8 +97,16 @@ func _process(delta: float) -> void:
 		v_offset = 0.0
 
 
+func _update_lead(delta: float) -> void:
+	var wanted := Vector3.ZERO
+	if lead_time > 0.0 and target is CharacterBody3D:
+		var v := (target as CharacterBody3D).velocity
+		wanted = Vector3(v.x, 0.0, v.z) * lead_time
+	_lead = _lead.lerp(wanted, 1.0 - exp(-lead_smoothing * delta))
+
+
 func _target_point() -> Vector3:
-	var p := target.global_position
+	var p := target.global_position + _lead
 	if not follow_height:
 		p.y = 0.0
 	if limit_enabled:

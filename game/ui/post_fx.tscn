@@ -2,9 +2,11 @@
 
 [ext_resource type="Material" path="res://game/fx/materials/tilt_shift_material.tres" id="1_qquvu"]
 [ext_resource type="Material" path="res://game/fx/materials/vignette_material.tres" id="2_o5of8"]
+[ext_resource type="Script" path="res://game/ui/post_fx.gd" id="9_pfx"]
 
 [node name="PostFx" type="CanvasLayer" unique_id=741211325]
 layer = 0
+script = ExtResource("9_pfx")
 
 [node name="TiltShift" type="ColorRect" parent="." unique_id=1210705918]
 material = ExtResource("1_qquvu")

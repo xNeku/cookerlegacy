@@ -14,7 +14,7 @@ func enter(_previous: State) -> void:
 func physics_update(delta: float) -> void:
 	var data := enemy.data
 	var dist := enemy.distance_to_target()
-	if dist > data.lose_range:
+	if dist > data.lose_range and not enemy.always_chase:
 		machine.change_to(&"Idle")
 		return
 	if dist <= data.attack_range and enemy.can_attack():

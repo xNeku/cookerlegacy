@@ -1,0 +1,228 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/levels/valley/night_cycle.gd" id="1_xkm6l"]
+[ext_resource type="Script" path="res://game/levels/valley/valley_path.gd" id="2_8eqgf"]
+[ext_resource type="Material" path="res://game/levels/materials/cliff_rock_material.tres" id="3_wot16"]
+[ext_resource type="Material" path="res://game/levels/materials/valley_ground_material.tres" id="4_rsrlj"]
+[ext_resource type="Material" path="res://game/levels/materials/dirt_path_material.tres" id="5_3pfkq"]
+[ext_resource type="PackedScene" path="res://game/levels/props/tree.tscn" id="6_56c0d"]
+[ext_resource type="PackedScene" path="res://game/levels/props/bush.tscn" id="7_gmpte"]
+[ext_resource type="PackedScene" path="res://game/levels/props/rock.tscn" id="8_2m06k"]
+[ext_resource type="PackedScene" path="res://game/levels/props/grass_tuft.tscn" id="9_xb1fq"]
+[ext_resource type="PackedScene" path="res://game/levels/props/brazier.tscn" id="10_0q7pb"]
+[ext_resource type="PackedScene" path="res://game/player/player.tscn" id="11_pgrf6"]
+[ext_resource type="Script" path="res://game/player/player.gd" id="12_y883p"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_light_combo.tres" id="13_krdi2"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_heavy_combo.tres" id="14_7xpy3"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_charged_attack.tres" id="15_7th37"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_spin.tres" id="16_w20hy"]
+[ext_resource type="PackedScene" path="res://game/fx/dust_puff.tscn" id="17_lhwfh"]
+[ext_resource type="PackedScene" path="res://game/fx/dust_burst.tscn" id="18_xctod"]
+[ext_resource type="PackedScene" path="res://game/fx/afterimage_fx.tscn" id="19_x8d6j"]
+[ext_resource type="PackedScene" path="res://game/fx/ring_fx.tscn" id="20_3cq21"]
+[ext_resource type="Script" path="res://game/levels/valley/horde_director.gd" id="21_37nuk"]
+[ext_resource type="Script" path="res://game/levels/valley/horde_entry.gd" id="22_7i4k4"]
+[ext_resource type="Resource" path="res://game/levels/valley/hordes/rats.tres" id="23_cr46d"]
+[ext_resource type="Resource" path="res://game/levels/valley/hordes/skeletons.tres" id="24_474aq"]
+[ext_resource type="PackedScene" path="res://game/fx/spawn_fx.tscn" id="25_cb044"]
+[ext_resource type="PackedScene" path="res://game/camera/game_camera.tscn" id="26_oe0in"]
+[ext_resource type="Script" path="res://game/camera/game_camera.gd" id="27_euyej"]
+[ext_resource type="PackedScene" path="res://game/ui/player_hud.tscn" id="28_chpsp"]
+[ext_resource type="Script" path="res://game/ui/player_hud.gd" id="29_ikwui"]
+[ext_resource type="PackedScene" path="res://game/ui/night_summary.tscn" id="30_1kixo"]
+[ext_resource type="Script" path="res://game/ui/night_summary.gd" id="31_hpjsh"]
+[ext_resource type="PackedScene" path="res://game/ui/loot_row.tscn" id="32_8xpqm"]
+[ext_resource type="Script" path="res://game/levels/valley/night_run.gd" id="33_7n4mn"]
+[ext_resource type="PackedScene" path="res://game/ui/night_hud.tscn" id="34_nxrvb"]
+[ext_resource type="Script" path="res://game/ui/night_hud.gd" id="35_yqn20"]
+[ext_resource type="PackedScene" path="res://game/ui/post_fx.tscn" id="36_n08gl"]
+[ext_resource type="Script" path="res://game/ui/post_fx.gd" id="37_7q5kx"]
+[ext_resource type="Material" path="res://game/levels/valley/valley_tilt_shift.tres" id="38_4vm3n"]
+[ext_resource type="Material" path="res://game/levels/valley/valley_vignette.tres" id="39_gmw22"]
+
+[sub_resource type="Environment" id="Environment_j58y8"]
+background_mode = 1
+background_color = Color(0.03, 0.035, 0.07, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.3, 0.32, 0.46, 1)
+ambient_light_energy = 0.5
+tonemap_mode = 3
+tonemap_exposure = 1.2
+ssao_enabled = true
+ssao_radius = 0.8
+ssao_intensity = 1.6
+glow_enabled = true
+glow_intensity = 0.9
+glow_bloom = 0.04
+fog_enabled = true
+fog_light_color = Color(0.1, 0.12, 0.22, 1)
+fog_density = 0.012
+fog_sky_affect = 0.0
+adjustment_enabled = true
+adjustment_contrast = 1.08
+adjustment_saturation = 1.15
+
+[sub_resource type="Gradient" id="Gradient_3pawa"]
+offsets = PackedFloat32Array(0, 0.65, 0.86, 1)
+colors = PackedColorArray(0.03, 0.035, 0.07, 1, 0.045, 0.05, 0.1, 1, 0.2, 0.12, 0.22, 1, 0.6, 0.38, 0.32, 1)
+
+[sub_resource type="Gradient" id="Gradient_yvwsj"]
+offsets = PackedFloat32Array(0, 0.7, 0.9, 1)
+colors = PackedColorArray(0.3, 0.32, 0.46, 1, 0.33, 0.34, 0.5, 1, 0.5, 0.38, 0.46, 1, 0.78, 0.62, 0.55, 1)
+
+[sub_resource type="Gradient" id="Gradient_gx4bx"]
+offsets = PackedFloat32Array(0, 0.7, 1)
+colors = PackedColorArray(0.1, 0.12, 0.22, 1, 0.12, 0.13, 0.24, 1, 0.5, 0.36, 0.36, 1)
+
+[sub_resource type="Gradient" id="Gradient_seck8"]
+colors = PackedColorArray(1, 0.35, 0.2, 1, 1, 0.72, 0.48, 1)
+
+[sub_resource type="Curve" id="Curve_i2x1b"]
+_data = [Vector2(0, 0.62), 0.0, 0.0, 0, 0, Vector2(0.7, 0.58), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_5c0sm"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.75, 0), 0.0, 0.0, 0, 0, Vector2(1, 0.9), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_kc261"]
+_data = [Vector2(0, 0.62), 0.0, 0.0, 0, 0, Vector2(0.7, 0.62), 0.0, 0.0, 0, 0, Vector2(1, 0.9), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve3D" id="Curve3D_2skrs"]
+_data = {
+"points": PackedVector3Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -22, 0, 0, 0, 0, 0, 0, 14, 0, -36, 0, 0, 0, 0, 0, 0, 34, 0, -38, 0, 0, 0, 0, 0, 0, 48, 0, -26, 0, 0, 0, 0, 0, 0, 54, 0, -8, 0, 0, 0, 0, 0, 0, 68, 0, 6, 0, 0, 0, 0, 0, 0, 88, 0, 4, 0, 0, 0, 0, 0, 0, 100, 0, -12, 0, 0, 0, 0, 0, 0, 104, 0, -34, 0, 0, 0, 0, 0, 0, 96, 0, -54, 0, 0, 0, 0, 0, 0, 110, 0, -70, 0, 0, 0, 0, 0, 0, 130, 0, -72),
+"tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 13
+
+[sub_resource type="Curve" id="Curve_034fh"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ni7v2"]
+dof_blur_far_distance = 24.0
+dof_blur_far_transition = 10.0
+dof_blur_near_distance = 12.0
+dof_blur_near_transition = 4.0
+dof_blur_amount = 0.04
+
+[node name="Valley" type="Node3D" unique_id=1363243890]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=612077177]
+environment = SubResource("Environment_j58y8")
+
+[node name="Moon" type="DirectionalLight3D" parent="." unique_id=938508870]
+transform = Transform3D(0.8660254, 0.39400536, -0.30783075, 0, 0.6156615, 0.7880107, 0.5, -0.6824373, 0.5331785, 0, 0, 0)
+light_color = Color(0.72, 0.8, 1, 1)
+light_energy = 0.45
+shadow_enabled = true
+shadow_blur = 1.5
+directional_shadow_max_distance = 45.0
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=1005871977]
+transform = Transform3D(0.34202015, 0.06554964, -0.9374036, 0, 0.9975641, 0.06975647, 0.9396926, -0.023858119, 0.34118703, 0, 0, 0)
+visible = false
+light_color = Color(1, 0.5, 0.3, 1)
+light_energy = 0.0
+shadow_enabled = true
+directional_shadow_max_distance = 45.0
+
+[node name="NightCycle" type="Node" parent="." unique_id=343912004 node_paths=PackedStringArray("environment", "moon", "sun")]
+script = ExtResource("1_xkm6l")
+environment = NodePath("../WorldEnvironment")
+moon = NodePath("../Moon")
+sun = NodePath("../Sun")
+sky_colors = SubResource("Gradient_3pawa")
+ambient_colors = SubResource("Gradient_yvwsj")
+fog_colors = SubResource("Gradient_gx4bx")
+sun_colors = SubResource("Gradient_seck8")
+moon_energy = SubResource("Curve_i2x1b")
+sun_energy = SubResource("Curve_5c0sm")
+ambient_energy = SubResource("Curve_kc261")
+
+[node name="Path" type="Path3D" parent="." unique_id=1303494857]
+curve = SubResource("Curve3D_2skrs")
+script = ExtResource("2_8eqgf")
+cliff_material = ExtResource("3_wot16")
+ground_material = ExtResource("4_rsrlj")
+trail_material = ExtResource("5_3pfkq")
+tree_scene = ExtResource("6_56c0d")
+bush_scene = ExtResource("7_gmpte")
+rock_scene = ExtResource("8_2m06k")
+grass_scene = ExtResource("9_xb1fq")
+lamp_scene = ExtResource("10_0q7pb")
+
+[node name="LootHome" type="Marker3D" parent="." unique_id=1951334897 groups=["storage_target"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 12)
+
+[node name="World" type="Node3D" parent="." unique_id=348386560]
+
+[node name="Player" type="CharacterBody3D" parent="World" unique_id=1550382453 instance=ExtResource("11_pgrf6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.5)
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("12_y883p")
+light_combo = ExtResource("13_krdi2")
+heavy_combo = ExtResource("14_7xpy3")
+charged_attack = ExtResource("15_7th37")
+spin_attack = ExtResource("16_w20hy")
+dust_scene = ExtResource("17_lhwfh")
+dust_burst_scene = ExtResource("18_xctod")
+afterimage_scene = ExtResource("19_x8d6j")
+ring_scene = ExtResource("20_3cq21")
+
+[node name="PlayerLight" type="OmniLight3D" parent="World/Player" unique_id=1528147727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0.6)
+light_color = Color(1, 0.82, 0.62, 1)
+light_energy = 0.7
+omni_range = 5.5
+omni_attenuation = 1.4
+
+[node name="HordeDirector" type="Node" parent="." unique_id=1128339525 node_paths=PackedStringArray("path", "player", "container")]
+script = ExtResource("21_37nuk")
+path = NodePath("../Path")
+player = NodePath("../World/Player")
+container = NodePath("../World")
+entries = Array[ExtResource("22_7i4k4")]([ExtResource("23_cr46d"), ExtResource("24_474aq")])
+density_curve = SubResource("Curve_034fh")
+spawn_fx = ExtResource("25_cb044")
+
+[node name="GameCamera" type="Camera3D" parent="." unique_id=671595863 node_paths=PackedStringArray("target") instance=ExtResource("26_oe0in")]
+attributes = SubResource("CameraAttributesPractical_ni7v2")
+fov = 32.0
+far = 120.0
+script = ExtResource("27_euyej")
+target = NodePath("../World/Player")
+lead_time = 0.35
+limit_enabled = false
+
+[node name="PlayerHud" type="CanvasLayer" parent="." unique_id=77052082 node_paths=PackedStringArray("player") instance=ExtResource("28_chpsp")]
+script = ExtResource("29_ikwui")
+player = NodePath("../World/Player")
+
+[node name="NightSummary" type="CanvasLayer" parent="." unique_id=152091868 instance=ExtResource("30_1kixo")]
+layer = 5
+script = ExtResource("31_hpjsh")
+loot_row_scene = ExtResource("32_8xpqm")
+
+[node name="NightRun" type="Node" parent="." unique_id=370958649 node_paths=PackedStringArray("player", "path", "night", "director", "summary")]
+script = ExtResource("33_7n4mn")
+player = NodePath("../World/Player")
+path = NodePath("../Path")
+night = NodePath("../NightCycle")
+director = NodePath("../HordeDirector")
+summary = NodePath("../NightSummary")
+
+[node name="NightHud" type="CanvasLayer" parent="." unique_id=475629446 node_paths=PackedStringArray("run", "night") instance=ExtResource("34_nxrvb")]
+script = ExtResource("35_yqn20")
+run = NodePath("../NightRun")
+night = NodePath("../NightCycle")
+loot_row_scene = ExtResource("32_8xpqm")
+
+[node name="PostFx" type="CanvasLayer" parent="." unique_id=741211325 instance=ExtResource("36_n08gl")]
+layer = 0
+script = ExtResource("37_7q5kx")
+tilt_shift_material = ExtResource("38_4vm3n")
+vignette_material = ExtResource("39_gmw22")

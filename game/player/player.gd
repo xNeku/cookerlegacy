@@ -5,6 +5,12 @@ extends CharacterBody3D
 ## El movimiento se piensa en el plano del suelo (Vector2, ver Flat); el salto es altura real.
 ## Unidades: metros (32 px de arte = 1 m).
 
+## Se queda sin vida (ya en el estado Dead).
+signal died
+
+## Modo dios: recibe golpes pero no muere (la sala de pruebas lo usa).
+@export var god_mode: bool = false
+
 @export_group("Movimiento")
 ## Velocidad máxima (m/s) con el stick al fondo.
 @export var max_speed: float = 3.45
@@ -90,6 +96,14 @@ extends CharacterBody3D
 ## Por encima de esta altura (m) el salto esquiva los ataques a ras de suelo.
 @export var jump_dodge_height: float = 0.25
 
+@export_group("Morir")
+## Congelado al caer (s).
+@export var death_hitstop: float = 0.25
+## Temblor de cámara al caer (m).
+@export var death_shake: float = 0.3
+## Color al que se apaga tumbado.
+@export var death_color: Color = Color(0.25, 0.22, 0.3)
+
 @export_group("Fluidez")
 ## Si pulsas una acción un poco antes de poder hacerla, se guarda este tiempo (s)
 ## y sale en cuanto se pueda. Es lo que hace que las cadenas encajen.
@@ -170,7 +184,9 @@ var _buffer: Dictionary = {}
 func _ready() -> void:
 	add_to_group(&"player")
 	_dash_charges = dash_max_charges
+	health.immortal = god_mode
 	hurtbox.hit_received.connect(_on_hit_received)
+	health.died.connect(_on_died)
 
 
 # Corre antes que la StateMachine (los padres procesan antes que los hijos).
@@ -389,8 +405,20 @@ func spawn_ring(color: Color, attack: AttackData = null) -> void:
 	FxSpawner.spawn(self, ring_scene, Vector3(global_position.x, 0.03, global_position.z), 0.0, color, attack)
 
 
+func is_dead() -> bool:
+	return health.current <= 0.0 and not god_mode
+
+
+func _on_died() -> void:
+	state_machine.change_to(&"Dead")
+	died.emit()
+
+
 func _on_hit_received(hb: Hitbox) -> void:
 	planar_velocity = hb.get_knockback_direction(global_position) * hb.knockback
+	if is_dead():
+		planar_velocity *= 1.6
+		return
 	_iframes_left = hurt_iframes
 	HitStop.freeze(hurt_hitstop)
 	get_tree().call_group(&"game_camera", &"shake", hurt_shake, 0.15)

@@ -1,0 +1,120 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/night_hud.gd" id="1_g8upj"]
+[ext_resource type="PackedScene" path="res://game/ui/loot_row.tscn" id="2_altcp"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/ui/moon.png" id="3_hs7vh"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/ui/sun.png" id="4_62rst"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/ui/flag.png" id="5_yvv3e"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/ui/skull.png" id="6_dj0s4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rpjrd"]
+bg_color = Color(0.09, 0.08, 0.14, 0.85)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.04, 0.03, 0.06, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bgdsf"]
+bg_color = Color(0.45, 0.55, 0.95, 1)
+
+[node name="NightHud" type="CanvasLayer" unique_id=475629446]
+script = ExtResource("1_g8upj")
+loot_row_scene = ExtResource("2_altcp")
+
+[node name="Top" type="VBoxContainer" parent="." unique_id=339235913]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 6.0
+offset_right = 70.0
+theme_override_constants/separation = 2
+
+[node name="NightRow" type="HBoxContainer" parent="Top" unique_id=1042693367]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Moon" type="TextureRect" parent="Top/NightRow" unique_id=1118543686]
+texture_filter = 1
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_hs7vh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NightBar" type="ProgressBar" parent="Top/NightRow" unique_id=1171409321]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_rpjrd")
+theme_override_styles/fill = SubResource("StyleBoxFlat_bgdsf")
+max_value = 1.0
+show_percentage = false
+
+[node name="Sun" type="TextureRect" parent="Top/NightRow" unique_id=1129309427]
+texture_filter = 1
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_62rst")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Stats" type="HBoxContainer" parent="Top" unique_id=954918729]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="FlagIcon" type="TextureRect" parent="Top/Stats" unique_id=803007282]
+texture_filter = 1
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("5_yvv3e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Distance" type="Label" parent="Top/Stats" unique_id=13329147]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "0 m"
+
+[node name="Gap" type="Control" parent="Top/Stats" unique_id=1073326348]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="SkullIcon" type="TextureRect" parent="Top/Stats" unique_id=1788696162]
+texture_filter = 1
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("6_dj0s4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Kills" type="Label" parent="Top/Stats" unique_id=242187569]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "0"
+
+[node name="LootList" type="VBoxContainer" parent="." unique_id=635581311]
+unique_name_in_owner = true
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -60.0
+offset_top = 8.0
+offset_right = -8.0
+theme_override_constants/separation = 1

@@ -7,6 +7,14 @@ extends Node
 ## Velocidad del juego durante el congelado (0 = parado del todo).
 @export_range(0.0, 1.0) var frozen_time_scale: float = 0.05
 
+## Velocidad normal del juego (1). Se baja para cámaras lentas largas (final de la noche);
+## el hitstop vuelve a esta al acabar.
+var base_time_scale: float = 1.0:
+	set(value):
+		base_time_scale = value
+		if _ends_at <= 0.0:
+			Engine.time_scale = value
+
 ## Momento (tiempo real, s) en que acaba el congelado actual.
 var _ends_at: float = 0.0
 
@@ -26,7 +34,7 @@ func freeze(duration: float) -> void:
 func _process(_delta: float) -> void:
 	if _ends_at > 0.0 and _real_now() >= _ends_at:
 		_ends_at = 0.0
-		Engine.time_scale = 1.0
+		Engine.time_scale = base_time_scale
 
 
 func _real_now() -> float:

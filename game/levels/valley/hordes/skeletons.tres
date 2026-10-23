@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HordeEntry" format=3]
+
+[ext_resource type="PackedScene" path="res://game/enemies/skeleton/skeleton.tscn" id="1_4omhm"]
+[ext_resource type="Script" path="res://game/levels/valley/horde_entry.gd" id="2_yqwqa"]
+
+[resource]
+script = ExtResource("2_yqwqa")
+enemy_scene = ExtResource("1_4omhm")
+group_size = Vector2i(1, 2)
+from_distance = 35.0

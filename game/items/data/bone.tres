@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/items/bone.png" id="1_mdtdp"]
+[ext_resource type="Script" path="res://game/items/item_data.gd" id="2_u08ns"]
+
+[resource]
+script = ExtResource("2_u08ns")
+id = &"bone"
+display_name = "Hueso"
+icon = ExtResource("1_mdtdp")
+color = Color(0.95, 0.9, 0.75, 1)
