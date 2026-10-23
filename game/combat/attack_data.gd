@@ -18,6 +18,9 @@ extends Resource
 @export var cancel_from: float = 0.0
 
 @export_group("Daño")
+## Cada cuánto vuelve a golpear mientras la ventana de daño sigue abierta (s).
+## 0 = un solo impacto por golpe.
+@export var multi_hit_interval: float = 0.0
 @export var damage: float = 10.0
 ## Fuerza del empujón al enemigo (px/s).
 @export var knockback: float = 80.0
@@ -28,6 +31,9 @@ extends Resource
 @export var knockup_height: float = 0.0
 
 @export_group("Área")
+## Área circular alrededor del atacante (giro...): empuja a cada uno hacia fuera.
+## Con radial, el diámetro es hitbox_size.x y hitbox_distance se ignora.
+@export var radial: bool = false
 ## Tamaño del área de golpe (largo hacia delante, ancho).
 @export var hitbox_size: Vector2 = Vector2(22, 18)
 ## Distancia del centro del área al cuerpo.

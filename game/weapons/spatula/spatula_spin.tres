@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="AttackData" format=3]
+
+[ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_a0c6w"]
+
+[resource]
+script = ExtResource("1_a0c6w")
+animation = &"spin"
+duration = 0.5
+hit_start = 0.03
+hit_end = 0.47
+multi_hit_interval = 0.12
+damage = 6.0
+knockback = 130.0
+radial = true
+hitbox_size = Vector2(56, 56)
+lunge_speed = 0.0
+lunge_time = 0.0
+hitstop_time = 0.02
+shake_strength = 1.0
+shake_time = 0.08
+move_speed_multiplier = 0.75

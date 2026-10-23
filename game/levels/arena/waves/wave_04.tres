@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WaveData" format=3]
+
+[ext_resource type="Script" path="res://game/levels/waves/wave_entry.gd" id="1_m1wpa"]
+[ext_resource type="PackedScene" path="res://game/enemies/skeleton/skeleton.tscn" id="2_i21oa"]
+[ext_resource type="Script" path="res://game/levels/waves/wave_data.gd" id="3_ju3qy"]
+
+[sub_resource type="Resource" id="Resource_nxlyh"]
+script = ExtResource("1_m1wpa")
+enemy_scene = ExtResource("2_i21oa")
+count = 2
+
+[resource]
+script = ExtResource("3_ju3qy")
+entries = Array[ExtResource("1_m1wpa")]([SubResource("Resource_nxlyh")])
+delay = 2.0

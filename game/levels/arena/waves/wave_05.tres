@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="WaveData" format=3]
+
+[ext_resource type="Script" path="res://game/levels/waves/wave_entry.gd" id="1_uxerd"]
+[ext_resource type="PackedScene" path="res://game/enemies/rat/rat.tscn" id="2_pgaye"]
+[ext_resource type="PackedScene" path="res://game/enemies/skeleton/skeleton.tscn" id="3_017ve"]
+[ext_resource type="Script" path="res://game/levels/waves/wave_data.gd" id="4_nfhh3"]
+
+[sub_resource type="Resource" id="Resource_d7s1l"]
+script = ExtResource("1_uxerd")
+enemy_scene = ExtResource("2_pgaye")
+count = 6
+
+[sub_resource type="Resource" id="Resource_wk5mp"]
+script = ExtResource("1_uxerd")
+enemy_scene = ExtResource("3_017ve")
+count = 2
+
+[resource]
+script = ExtResource("4_nfhh3")
+entries = Array[ExtResource("1_uxerd")]([SubResource("Resource_d7s1l"), SubResource("Resource_wk5mp")])
+delay = 2.0

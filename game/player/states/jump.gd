@@ -10,7 +10,7 @@ func enter(_previous: State) -> void:
 
 
 func physics_update(delta: float) -> void:
-	if try_dash() or try_attack():
+	if try_dash() or try_spin() or try_attack():
 		return
 	var input := player.get_move_input()
 	player.update_facing(input)
