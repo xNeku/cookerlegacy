@@ -1426,6 +1426,7 @@ collision_layer = 2
 collision_mask = 5
 motion_mode = 1
 script = ExtResource("11_5wvhd")
+god_mode = true
 light_combo = ExtResource("12_0qcjb")
 heavy_combo = ExtResource("13_dc8yf")
 charged_attack = ExtResource("14_1bs31")

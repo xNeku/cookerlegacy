@@ -9,5 +9,5 @@ func enter(_previous: State) -> void:
 func physics_update(delta: float) -> void:
 	enemy.apply_friction(delta)
 	enemy.move_and_slide()
-	if enemy.distance_to_target() <= enemy.data.detect_range:
+	if enemy.always_chase or enemy.distance_to_target() <= enemy.data.detect_range:
 		machine.change_to(&"Chase")

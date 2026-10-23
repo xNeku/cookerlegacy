@@ -60,3 +60,7 @@ extends Resource
 @export_range(0.05, 1.0) var reassemble_health_ratio: float = 0.5
 ## Golpes que aguanta el montón antes de morir del todo (vida del montón).
 @export var bones_health: float = 1.0
+
+@export_group("Loot")
+## Lo que suelta al morir. Cada línea: item, probabilidad y cantidad.
+@export var loot: Array[LootEntry] = []

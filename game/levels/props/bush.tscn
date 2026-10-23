@@ -1,0 +1,12 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/bush.png" id="1_5nkad"]
+
+[node name="Bush" type="Sprite3D" unique_id=591275377]
+offset = Vector2(0, 13)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_5nkad")

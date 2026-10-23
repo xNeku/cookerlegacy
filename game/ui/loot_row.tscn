@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/loot_row.gd" id="1_fsxxm"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/items/rat_meat.png" id="2_exkax"]
+
+[node name="LootRow" type="HBoxContainer" unique_id=905304094]
+theme_override_constants/separation = 2
+alignment = 2
+script = ExtResource("1_fsxxm")
+
+[node name="Icon" type="TextureRect" parent="." unique_id=384831970]
+unique_name_in_owner = true
+texture_filter = 1
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("2_exkax")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Amount" type="Label" parent="." unique_id=470333047]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "x0"

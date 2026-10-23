@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://game/fx/shaders/tilt_shift.gdshader" id="1_qxoy2"]
+
+[resource]
+shader = ExtResource("1_qxoy2")
+shader_parameter/focus_center = 0.52
+shader_parameter/focus_height = 0.6
+shader_parameter/falloff = 0.3
+shader_parameter/blur_top = 1.4
+shader_parameter/blur_bottom = 1.6

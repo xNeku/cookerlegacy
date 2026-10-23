@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="HordeEntry" format=3]
+
+[ext_resource type="PackedScene" path="res://game/enemies/rat/rat.tscn" id="1_s54ql"]
+[ext_resource type="Script" path="res://game/levels/valley/horde_entry.gd" id="2_jph3f"]
+
+[resource]
+script = ExtResource("2_jph3f")
+enemy_scene = ExtResource("1_s54ql")
+weight = 3.0
+group_size = Vector2i(2, 5)

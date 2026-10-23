@@ -31,6 +31,7 @@
 [ext_resource type="Script" path="res://game/player/states/jump.gd" id="29_mbvee"]
 [ext_resource type="Script" path="res://game/player/states/hurt.gd" id="30_ddimf"]
 [ext_resource type="Script" path="res://game/player/states/spin.gd" id="31_od043"]
+[ext_resource type="Script" path="res://game/player/states/dead.gd" id="32_dead1"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5en5a"]
 height = 0.6
@@ -86,7 +87,6 @@ script = ExtResource("13_4e7mj")
 [node name="Health" type="Node" parent="." unique_id=155789667]
 unique_name_in_owner = true
 script = ExtResource("14_uo4t5")
-immortal = true
 
 [node name="Hurtbox" type="Area3D" parent="." unique_id=1458852364 node_paths=PackedStringArray("health") instance=ExtResource("15_ppbyd")]
 unique_name_in_owner = true
@@ -177,3 +177,6 @@ script = ExtResource("30_ddimf")
 
 [node name="Spin" type="Node" parent="StateMachine" unique_id=494707389]
 script = ExtResource("31_od043")
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1733201946]
+script = ExtResource("32_dead1")

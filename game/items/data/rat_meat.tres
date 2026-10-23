@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/items/rat_meat.png" id="1_maqio"]
+[ext_resource type="Script" path="res://game/items/item_data.gd" id="2_012x6"]
+
+[resource]
+script = ExtResource("2_012x6")
+id = &"rat_meat"
+display_name = "Carne de rata"
+icon = ExtResource("1_maqio")
+color = Color(1, 0.45, 0.45, 1)

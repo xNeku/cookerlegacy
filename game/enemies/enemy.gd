@@ -34,6 +34,10 @@ signal died(enemy: Enemy)
 ## Polvo al caer tras ser levantado.
 @export var land_fx: PackedScene
 
+@export_group("Loot")
+## Lo que suelta al morir (sale volando al almacén). Qué y cuánto va en `data.loot`.
+@export var loot_drop_scene: PackedScene
+
 ## A quién persigue (el cocinero, por el grupo "player").
 var target: Node3D
 ## Hacia dónde mira (solo izquierda/derecha: el sprite se voltea).
@@ -46,6 +50,8 @@ var knockup_height: float = 0.0
 var surround_angle: float = 0.0
 ## Si está ahora como montón de huesos (rearmarse).
 var is_bones: bool = false
+## Viene a por ti aunque estés lejos (los que suelta el HordeDirector en el valle).
+var always_chase: bool = false
 ## Velocidad en el plano del suelo (los estados trabajan con esta).
 var planar_velocity: Vector2:
 	get:
@@ -187,7 +193,21 @@ func _on_died() -> void:
 		state_machine.change_to(&"Bones")
 		return
 	state_machine.change_to(&"Dead")
+	_drop_loot()
 	died.emit(self)
+
+
+func _drop_loot() -> void:
+	if loot_drop_scene == null:
+		return
+	for entry in data.loot:
+		if entry == null or entry.item == null or randf() > entry.chance:
+			continue
+		for i in randi_range(entry.amount.x, entry.amount.y):
+			var drop := loot_drop_scene.instantiate() as Node3D
+			drop.set(&"item", entry.item)
+			get_parent().add_child(drop)
+			drop.global_position = Vector3(global_position.x, 0.0, global_position.z)
 
 
 func _now() -> float:

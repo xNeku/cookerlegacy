@@ -1,0 +1,51 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/items/loot_drop.gd" id="1_40es0"]
+[ext_resource type="Texture2D" path="res://game/fx/materials/blob_shadow.tres" id="2_wqrg0"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/items/rat_meat.png" id="3_3udmh"]
+[ext_resource type="QuadMesh" path="res://game/fx/materials/particle_glow_quad.tres" id="4_v4ie4"]
+
+[sub_resource type="Curve" id="Curve_k8o3i"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_chx5j"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="LootDrop" type="Node3D" unique_id=2046339714]
+script = ExtResource("1_40es0")
+
+[node name="Shadow" type="Decal" parent="." unique_id=1000301430]
+unique_name_in_owner = true
+size = Vector3(0.4, 2, 0.3)
+texture_albedo = ExtResource("2_wqrg0")
+
+[node name="Icon" type="Sprite3D" parent="." unique_id=601594930]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+cast_shadow = 0
+pixel_size = 0.0375
+billboard = 1
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_3udmh")
+
+[node name="Glow" type="OmniLight3D" parent="Icon" unique_id=450868128]
+unique_name_in_owner = true
+light_color = Color(1, 0.8, 0.6, 1)
+light_energy = 0.8
+omni_range = 1.4
+
+[node name="Trail" type="CPUParticles3D" parent="Icon" unique_id=752179922]
+unique_name_in_owner = true
+emitting = false
+amount = 24
+lifetime = 0.35
+mesh = ExtResource("4_v4ie4")
+emission_shape = 1
+emission_sphere_radius = 0.05
+gravity = Vector3(0, 0, 0)
+scale_amount_min = 0.4
+scale_amount_max = 0.7
+scale_amount_curve = SubResource("Curve_k8o3i")
+color_ramp = SubResource("Gradient_chx5j")

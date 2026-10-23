@@ -1,0 +1,133 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/night_summary.gd" id="1_hx5a7"]
+[ext_resource type="PackedScene" path="res://game/ui/loot_row.tscn" id="2_fqsq6"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/ui/flag.png" id="3_p48bw"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/ui/skull.png" id="4_64aah"]
+
+[node name="NightSummary" type="CanvasLayer" unique_id=152091868]
+layer = 5
+script = ExtResource("1_hx5a7")
+loot_row_scene = ExtResource("2_fqsq6")
+
+[node name="Fade" type="ColorRect" parent="." unique_id=847322140]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.03, 0.02, 0.06, 0.92)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1355503418]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Panel" type="VBoxContainer" parent="Center" unique_id=909324712]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="Title" type="Label" parent="Center/Panel" unique_id=356933251]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+theme_override_colors/font_color = Color(1, 0.8, 0.5, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "Amanece"
+horizontal_alignment = 1
+
+[node name="DistanceRow" type="HBoxContainer" parent="Center/Panel" unique_id=1459599702]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Icon" type="TextureRect" parent="Center/Panel/DistanceRow" unique_id=595811057]
+texture_filter = 1
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("3_p48bw")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Center/Panel/DistanceRow" unique_id=1254319076]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.8, 0.78, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "Lo más lejos"
+
+[node name="Distance" type="Label" parent="Center/Panel/DistanceRow" unique_id=141338007]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "0"
+
+[node name="KillsRow" type="HBoxContainer" parent="Center/Panel" unique_id=662419651]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Icon" type="TextureRect" parent="Center/Panel/KillsRow" unique_id=1209623653]
+texture_filter = 1
+custom_minimum_size = Vector2(9, 9)
+layout_mode = 2
+size_flags_vertical = 4
+texture = ExtResource("4_64aah")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Name" type="Label" parent="Center/Panel/KillsRow" unique_id=564540821]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.8, 0.78, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "Bichos tumbados"
+
+[node name="Kills" type="Label" parent="Center/Panel/KillsRow" unique_id=712116454]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "0"
+
+[node name="LootTitle" type="Label" parent="Center/Panel" unique_id=1869737135]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.8, 0.78, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "Al almacén"
+
+[node name="LootList" type="HFlowContainer" parent="Center/Panel" unique_id=1946366855]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 8
+
+[node name="EmptyLoot" type="Label" parent="Center/Panel" unique_id=872132168]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.6, 0.58, 0.65, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "Nada esta vez"
+
+[node name="Hint" type="Label" parent="Center/Panel" unique_id=1401798202]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "□ / clic para volver"
+horizontal_alignment = 1

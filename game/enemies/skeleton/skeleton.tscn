@@ -1,5 +1,6 @@
 [gd_scene format=3]
 
+[ext_resource type="PackedScene" path="res://game/items/loot_drop.tscn" id="40_loot1"]
 [ext_resource type="Script" path="res://game/enemies/enemy.gd" id="1_41co2"]
 [ext_resource type="Resource" path="res://game/enemies/skeleton/skeleton_data.tres" id="2_3urpy"]
 [ext_resource type="PackedScene" path="res://game/fx/death_fx.tscn" id="3_p42s7"]
@@ -46,6 +47,7 @@ windup_shake = 0.015
 death_fx = ExtResource("3_p42s7")
 death_color = Color(0.9, 0.9, 0.85, 1)
 land_fx = ExtResource("4_s2kpf")
+loot_drop_scene = ExtResource("40_loot1")
 
 [node name="Shadow" type="Decal" parent="." unique_id=227453343]
 unique_name_in_owner = true
