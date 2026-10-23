@@ -8,7 +8,7 @@ var _time: float = 0.0
 func enter(_previous: State) -> void:
 	_time = 0.0
 	player.sprite.speed_scale = 1.0
-	player.play_animation("hurt", "idle")
+	player.play_animation("hurt", "idle", true)
 
 
 func physics_update(delta: float) -> void:

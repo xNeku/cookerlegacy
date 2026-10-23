@@ -26,7 +26,7 @@ window/size/viewport_width=480
 window/size/viewport_height=270
 window/size/window_width_override=1440
 window/size/window_height_override=810
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
 
 [input]
@@ -111,6 +111,13 @@ pause={
 
 [layer_names]
 
+3d_physics/layer_1="world"
+3d_physics/layer_2="player"
+3d_physics/layer_3="enemies"
+3d_physics/layer_4="player_hitbox"
+3d_physics/layer_5="enemy_hitbox"
+3d_physics/layer_6="pickups"
+
 2d_physics/layer_1="world"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
@@ -123,5 +130,11 @@ pause={
 common/physics_interpolation=true
 
 [rendering]
+
+anti_aliasing/quality/msaa_3d=1
+lights_and_shadows/directional_shadow/size=4096
+lights_and_shadows/directional_shadow/soft_shadow_filter_quality=3
+lights_and_shadows/positional_shadow/soft_shadow_filter_quality=3
+environment/defaults/default_clear_color=Color(0.03, 0.035, 0.07, 1)
 
 textures/canvas_textures/default_texture_filter=0

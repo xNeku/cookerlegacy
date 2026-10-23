@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ComboData" format=3]
 
 [ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_kj1ad"]
+[ext_resource type="PackedScene" path="res://game/fx/slash_fx.tscn" id="2_bamdr"]
 [ext_resource type="Script" path="res://game/combat/combo_data.gd" id="2_m567o"]
 
 [sub_resource type="Resource" id="Resource_bamdr"]
@@ -11,16 +12,22 @@ hit_start = 0.08
 hit_end = 0.22
 chain_from = 0.6
 damage = 45.0
-knockback = 360.0
+knockback = 11.25
 is_heavy = true
-knockup_height = 26.0
-hitbox_size = Vector2(44, 40)
-hitbox_distance = 20.0
-lunge_speed = 260.0
+knockup_height = 0.8
+hitbox_size = Vector2(1.38, 1.25)
+hitbox_distance = 0.62
+lunge_speed = 8.1
 lunge_time = 0.14
 hitstop_time = 0.13
-shake_strength = 6.0
+shake_strength = 0.19
 shake_time = 0.25
+camera_punch = 3.5
+vfx_scene = ExtResource("2_bamdr")
+vfx_color = Color(1, 0.55, 0.2, 1)
+vfx_arc_degrees = 260.0
+vfx_radius = 1.6
+vfx_ring = true
 move_speed_multiplier = 0.1
 
 [resource]

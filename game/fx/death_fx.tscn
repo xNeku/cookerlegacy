@@ -1,0 +1,65 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/fx/oneshot_fx.gd" id="1_nrpkx"]
+[ext_resource type="QuadMesh" path="res://game/fx/materials/particle_smoke_quad.tres" id="2_6ndel"]
+[ext_resource type="QuadMesh" path="res://game/fx/materials/particle_glow_quad.tres" id="3_4jd0k"]
+[ext_resource type="Material" path="res://game/fx/materials/star_flash_material.tres" id="4_0cet3"]
+
+[sub_resource type="Curve" id="Curve_fqahg"]
+_data = [Vector2(0, 0.45), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_cawpv"]
+colors = PackedColorArray(0.42, 0.38, 0.5, 0.85, 0.2, 0.18, 0.26, 0)
+
+[sub_resource type="Gradient" id="Gradient_uccn2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_55dol"]
+
+[node name="DeathFx" type="Node3D" unique_id=1855250157]
+script = ExtResource("1_nrpkx")
+lifetime = 1.0
+flash_size = 1.3
+flash_time = 0.16
+
+[node name="Smoke" type="CPUParticles3D" parent="." unique_id=1188090176]
+emitting = false
+amount = 9
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+mesh = ExtResource("2_6ndel")
+emission_shape = 1
+emission_sphere_radius = 0.2
+direction = Vector3(0, 1, 0)
+spread = 90.0
+gravity = Vector3(0, 0.8, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 1.6
+damping_min = 2.0
+damping_max = 3.0
+scale_amount_min = 0.9
+scale_amount_max = 1.7
+scale_amount_curve = SubResource("Curve_fqahg")
+color_ramp = SubResource("Gradient_cawpv")
+
+[node name="Bits" type="CPUParticles3D" parent="." unique_id=1322146483]
+emitting = false
+amount = 7
+lifetime = 0.55
+one_shot = true
+explosiveness = 1.0
+mesh = ExtResource("3_4jd0k")
+direction = Vector3(0, 1, 0)
+spread = 70.0
+gravity = Vector3(0, -9, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_uccn2")
+
+[node name="Flash" type="MeshInstance3D" parent="." unique_id=483022488]
+material_override = ExtResource("4_0cet3")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_55dol")

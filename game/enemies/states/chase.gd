@@ -3,6 +3,9 @@ extends EnemyState
 ## cocinero (cada uno tiene su ángulo), así un grupo te rodea en vez de ir en fila.
 ## Cuando está a `attack_range` y puede atacar, pasa al aviso (Windup).
 
+## Distancia (m) a su hueco a partir de la que deja de moverse.
+const ARRIVE_DISTANCE: float = 0.1
+
 
 func enter(_previous: State) -> void:
 	enemy.play_animation(&"run", &"idle")
@@ -19,11 +22,11 @@ func physics_update(delta: float) -> void:
 		return
 
 	enemy.surround_angle += data.surround_spin * delta
-	var target_pos := enemy.target.global_position
+	var target_pos := Flat.of(enemy.target.global_position)
 	var slot := target_pos + Vector2.from_angle(enemy.surround_angle) * data.surround_radius
 	# Lejos va más directo; cerca se reparte en su hueco.
 	var point := target_pos.lerp(slot, data.surround_weight)
-	if enemy.global_position.distance_to(point) > 3.0:
+	if enemy.ground_position.distance_to(point) > ARRIVE_DISTANCE:
 		enemy.move_towards(point, delta)
 		enemy.play_animation(&"run", &"idle")
 	else:

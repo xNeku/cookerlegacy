@@ -7,6 +7,7 @@ var _time: float = 0.0
 
 func enter(_previous: State) -> void:
 	_time = 0.0
+	enemy.hide_telegraph()
 	enemy.play_animation(&"hurt", &"idle")
 
 

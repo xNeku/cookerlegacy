@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/fx/ring_fx.gd" id="1_lpc53"]
+[ext_resource type="Material" path="res://game/fx/materials/ring_material.tres" id="2_phj43"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0sj57"]
+size = Vector2(1, 1)
+
+[node name="RingFx" type="Node3D" unique_id=1379001135]
+script = ExtResource("1_lpc53")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1167353091]
+unique_name_in_owner = true
+material_override = ExtResource("2_phj43")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_0sj57")

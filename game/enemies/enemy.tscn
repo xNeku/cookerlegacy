@@ -1,98 +1,134 @@
-[gd_scene load_steps=25 format=3]
+[gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/enemies/enemy.gd" id="1_enemy"]
-[ext_resource type="Texture2D" path="res://assets/placeholder/shadow_placeholder.png" id="2_shadow"]
-[ext_resource type="PackedScene" path="res://game/combat/hitbox.tscn" id="3_hitbox"]
-[ext_resource type="PackedScene" path="res://game/combat/hurtbox.tscn" id="4_hurtbox"]
-[ext_resource type="Script" path="res://game/combat/health.gd" id="5_health"]
-[ext_resource type="Script" path="res://game/fx/hit_flash.gd" id="6_flash"]
-[ext_resource type="Material" path="res://game/fx/hit_flash_material.tres" id="7_mat"]
-[ext_resource type="Script" path="res://game/core/state_machine.gd" id="8_sm"]
-[ext_resource type="Script" path="res://game/enemies/states/idle.gd" id="9_idle"]
-[ext_resource type="Script" path="res://game/enemies/states/chase.gd" id="10_chase"]
-[ext_resource type="Script" path="res://game/enemies/states/windup.gd" id="11_windup"]
-[ext_resource type="Script" path="res://game/enemies/states/attack.gd" id="12_attack"]
-[ext_resource type="Script" path="res://game/enemies/states/recover.gd" id="13_recover"]
-[ext_resource type="Script" path="res://game/enemies/states/hurt.gd" id="14_hurt"]
-[ext_resource type="Script" path="res://game/enemies/states/airborne.gd" id="15_air"]
-[ext_resource type="Script" path="res://game/enemies/states/dead.gd" id="16_dead"]
-[ext_resource type="Script" path="res://game/enemies/states/bones.gd" id="17_bones"]
+[ext_resource type="Script" path="res://game/enemies/enemy.gd" id="1_etqdh"]
+[ext_resource type="PackedScene" path="res://game/fx/death_fx.tscn" id="2_dx7oo"]
+[ext_resource type="PackedScene" path="res://game/fx/dust_burst.tscn" id="3_fj0w4"]
+[ext_resource type="Texture2D" path="res://game/fx/materials/blob_shadow.tres" id="4_ty6dl"]
+[ext_resource type="PackedScene" path="res://game/combat/hitbox.tscn" id="5_r3sxo"]
+[ext_resource type="Script" path="res://game/combat/hitbox.gd" id="6_71qrw"]
+[ext_resource type="Script" path="res://game/combat/health.gd" id="7_kbt45"]
+[ext_resource type="PackedScene" path="res://game/combat/hurtbox.tscn" id="8_e38s3"]
+[ext_resource type="Script" path="res://game/combat/hurtbox.gd" id="9_7jsdu"]
+[ext_resource type="Script" path="res://game/fx/sprite_fx.gd" id="10_j0cii"]
+[ext_resource type="Material" path="res://game/fx/materials/character_sprite_material.tres" id="11_hnq4e"]
+[ext_resource type="Script" path="res://game/fx/damage_numbers.gd" id="12_6iu18"]
+[ext_resource type="PackedScene" path="res://game/fx/damage_number.tscn" id="13_ajbqy"]
+[ext_resource type="Material" path="res://game/fx/materials/telegraph_material.tres" id="14_bkqo8"]
+[ext_resource type="Script" path="res://game/core/state_machine.gd" id="15_oon3h"]
+[ext_resource type="Script" path="res://game/enemies/states/idle.gd" id="16_ho400"]
+[ext_resource type="Script" path="res://game/enemies/states/chase.gd" id="17_ug2iy"]
+[ext_resource type="Script" path="res://game/enemies/states/windup.gd" id="18_na3am"]
+[ext_resource type="Script" path="res://game/enemies/states/attack.gd" id="19_eot4r"]
+[ext_resource type="Script" path="res://game/enemies/states/recover.gd" id="20_h8fmc"]
+[ext_resource type="Script" path="res://game/enemies/states/hurt.gd" id="21_8qkug"]
+[ext_resource type="Script" path="res://game/enemies/states/airborne.gd" id="22_mg7eg"]
+[ext_resource type="Script" path="res://game/enemies/states/dead.gd" id="23_k2kai"]
+[ext_resource type="Script" path="res://game/enemies/states/bones.gd" id="24_6sb8v"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_feet"]
-radius = 4.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_kgi7x"]
+height = 0.5
+radius = 0.14
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(16, 12)
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvyga"]
+size = Vector3(0.5, 0.45, 0.4)
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_j2may"]
+size = Vector2(1, 1)
+
+[node name="Enemy" type="CharacterBody3D" unique_id=1774664457]
 collision_layer = 4
 collision_mask = 7
 motion_mode = 1
-script = ExtResource("1_enemy")
+script = ExtResource("1_etqdh")
+death_fx = ExtResource("2_dx7oo")
+land_fx = ExtResource("3_fj0w4")
 
-[node name="Shadow" type="Sprite2D" parent="."]
+[node name="Shadow" type="Decal" parent="." unique_id=227453343]
 unique_name_in_owner = true
-texture = ExtResource("2_shadow")
+size = Vector3(0.7, 3, 0.45)
+texture_albedo = ExtResource("4_ty6dl")
 
-[node name="Sprite" type="AnimatedSprite2D" parent="."]
+[node name="Sprite" type="AnimatedSprite3D" parent="." unique_id=455966604]
 unique_name_in_owner = true
+pixel_size = 0.03125
+texture_filter = 0
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_feet")
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=1192641991]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("CylinderShape3D_kgi7x")
 
-[node name="Hitbox" parent="." instance=ExtResource("3_hitbox")]
+[node name="Hitbox" type="Area3D" parent="." unique_id=733369082 instance=ExtResource("5_r3sxo")]
 unique_name_in_owner = true
-position = Vector2(0, -5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 collision_layer = 16
+collision_mask = 0
+monitoring = false
+script = ExtResource("6_71qrw")
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_hurtbox")]
+[node name="Health" type="Node" parent="." unique_id=956433061]
 unique_name_in_owner = true
+script = ExtResource("7_kbt45")
+
+[node name="Hurtbox" type="Area3D" parent="." unique_id=1360192447 node_paths=PackedStringArray("health") instance=ExtResource("8_e38s3")]
+unique_name_in_owner = true
+collision_layer = 0
 collision_mask = 8
+monitorable = false
+script = ExtResource("9_7jsdu")
 health = NodePath("../Health")
 
-[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -6)
-shape = SubResource("RectangleShape2D_body")
+[node name="Shape" type="CollisionShape3D" parent="Hurtbox" unique_id=1479575008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+shape = SubResource("BoxShape3D_wvyga")
 
-[node name="Health" type="Node" parent="."]
+[node name="SpriteFX" type="Node" parent="." unique_id=162754403 node_paths=PackedStringArray("sprite", "hurtbox")]
 unique_name_in_owner = true
-script = ExtResource("5_health")
-
-[node name="HitFlash" type="Node" parent="." node_paths=PackedStringArray("hurtbox", "target")]
-script = ExtResource("6_flash")
+script = ExtResource("10_j0cii")
+sprite = NodePath("../Sprite")
+material = ExtResource("11_hnq4e")
 hurtbox = NodePath("../Hurtbox")
-target = NodePath("../Sprite")
-flash_material = ExtResource("7_mat")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="DamageNumbers" type="Node" parent="." unique_id=5492257 node_paths=PackedStringArray("hurtbox")]
+script = ExtResource("12_6iu18")
+hurtbox = NodePath("../Hurtbox")
+number_scene = ExtResource("13_ajbqy")
+
+[node name="Telegraph" type="MeshInstance3D" parent="." unique_id=969650452]
 unique_name_in_owner = true
-script = ExtResource("8_sm")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0)
+visible = false
+material_override = ExtResource("14_bkqo8")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_j2may")
+
+[node name="StateMachine" type="Node" parent="." unique_id=1705792143 node_paths=PackedStringArray("initial_state")]
+unique_name_in_owner = true
+script = ExtResource("15_oon3h")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("9_idle")
+[node name="Idle" type="Node" parent="StateMachine" unique_id=300019547]
+script = ExtResource("16_ho400")
 
-[node name="Chase" type="Node" parent="StateMachine"]
-script = ExtResource("10_chase")
+[node name="Chase" type="Node" parent="StateMachine" unique_id=1166872212]
+script = ExtResource("17_ug2iy")
 
-[node name="Windup" type="Node" parent="StateMachine"]
-script = ExtResource("11_windup")
+[node name="Windup" type="Node" parent="StateMachine" unique_id=1301186778]
+script = ExtResource("18_na3am")
 
-[node name="Attack" type="Node" parent="StateMachine"]
-script = ExtResource("12_attack")
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1093042317]
+script = ExtResource("19_eot4r")
 
-[node name="Recover" type="Node" parent="StateMachine"]
-script = ExtResource("13_recover")
+[node name="Recover" type="Node" parent="StateMachine" unique_id=691006919]
+script = ExtResource("20_h8fmc")
 
-[node name="Hurt" type="Node" parent="StateMachine"]
-script = ExtResource("14_hurt")
+[node name="Hurt" type="Node" parent="StateMachine" unique_id=201667273]
+script = ExtResource("21_8qkug")
 
-[node name="Airborne" type="Node" parent="StateMachine"]
-script = ExtResource("15_air")
+[node name="Airborne" type="Node" parent="StateMachine" unique_id=2098240521]
+script = ExtResource("22_mg7eg")
 
-[node name="Dead" type="Node" parent="StateMachine"]
-script = ExtResource("16_dead")
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1161358144]
+script = ExtResource("23_k2kai")
 
-[node name="Bones" type="Node" parent="StateMachine"]
-script = ExtResource("17_bones")
+[node name="Bones" type="Node" parent="StateMachine" unique_id=1835270018]
+script = ExtResource("24_6sb8v")

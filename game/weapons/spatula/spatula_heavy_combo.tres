@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ComboData" format=3]
 
 [ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_02tf5"]
+[ext_resource type="PackedScene" path="res://game/fx/slash_fx.tscn" id="2_5ge3v"]
 [ext_resource type="Script" path="res://game/combat/combo_data.gd" id="2_lguhw"]
 
 [sub_resource type="Resource" id="Resource_5ge3v"]
@@ -11,15 +12,20 @@ hit_start = 0.14
 hit_end = 0.24
 chain_from = 0.32
 damage = 18.0
-knockback = 160.0
+knockback = 5.0
 is_heavy = true
-hitbox_size = Vector2(28, 24)
-hitbox_distance = 16.0
-lunge_speed = 150.0
+hitbox_size = Vector2(0.88, 0.75)
+hitbox_distance = 0.5
+lunge_speed = 4.69
 lunge_time = 0.1
 hitstop_time = 0.07
-shake_strength = 3.0
+shake_strength = 0.094
 shake_time = 0.15
+camera_punch = 1.0
+vfx_scene = ExtResource("2_5ge3v")
+vfx_color = Color(1, 0.62, 0.3, 1)
+vfx_arc_degrees = 185.0
+vfx_radius = 1.2
 move_speed_multiplier = 0.2
 
 [sub_resource type="Resource" id="Resource_8rpoc"]
@@ -30,15 +36,22 @@ hit_start = 0.16
 hit_end = 0.28
 chain_from = 0.55
 damage = 26.0
-knockback = 240.0
+knockback = 7.5
 is_heavy = true
-hitbox_size = Vector2(32, 30)
-hitbox_distance = 17.0
-lunge_speed = 170.0
+hitbox_size = Vector2(1, 0.94)
+hitbox_distance = 0.53
+lunge_speed = 5.31
 lunge_time = 0.12
 hitstop_time = 0.09
-shake_strength = 4.0
+shake_strength = 0.125
 shake_time = 0.18
+camera_punch = 2.0
+vfx_scene = ExtResource("2_5ge3v")
+vfx_color = Color(1, 0.62, 0.3, 1)
+vfx_arc_degrees = 225.0
+vfx_radius = 1.3
+vfx_flip = true
+vfx_ring = true
 move_speed_multiplier = 0.15
 
 [resource]

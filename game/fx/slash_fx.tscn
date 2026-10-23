@@ -1,0 +1,16 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/fx/slash_fx.gd" id="1_gdlbe"]
+[ext_resource type="Material" path="res://game/fx/materials/slash_material.tres" id="2_v54hx"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_t0pg1"]
+size = Vector2(1, 1)
+
+[node name="SlashFx" type="Node3D" unique_id=149718252]
+script = ExtResource("1_gdlbe")
+
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=833760382]
+unique_name_in_owner = true
+material_override = ExtResource("2_v54hx")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_t0pg1")

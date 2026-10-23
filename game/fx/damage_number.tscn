@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/fx/damage_number.gd" id="1_mjbtj"]
+
+[node name="DamageNumber" type="Label3D" unique_id=1078454652]
+billboard = 1
+no_depth_test = true
+render_priority = 10
+outline_render_priority = 9
+outline_modulate = Color(0.12, 0.05, 0.1, 1)
+text = "10"
+font_size = 40
+script = ExtResource("1_mjbtj")
