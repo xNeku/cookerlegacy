@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/ui/day_banner.gd" id="1_dk2fv"]
+
+[node name="DayBanner" type="CanvasLayer" unique_id=502104456]
+layer = 2
+script = ExtResource("1_dk2fv")
+
+[node name="DayCorner" type="Label" parent="." unique_id=550121560]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = 6.0
+offset_right = 8.0
+offset_bottom = 6.0
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(1, 0.95, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "Día 1"
+
+[node name="Banner" type="VBoxContainer" parent="." unique_id=590010557]
+unique_name_in_owner = true
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_top = 40.0
+offset_right = 100.0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="Banner" unique_id=969142154]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 0.86, 0.55, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "Día 1"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Banner" unique_id=1294605510]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+theme_override_colors/font_color = Color(0.95, 0.92, 0.85, 1)
+theme_override_colors/font_outline_color = Color(0.06, 0.04, 0.09, 1)
+theme_override_constants/outline_size = 3
+text = "Amanece en la villa"
+horizontal_alignment = 1

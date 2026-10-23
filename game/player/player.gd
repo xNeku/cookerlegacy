@@ -7,6 +7,8 @@ extends CharacterBody3D
 
 ## Se queda sin vida (ya en el estado Dead).
 signal died
+## Llega al final de un `walk_path()` (paseo automático).
+signal scripted_walk_finished
 
 ## Modo dios: recibe golpes pero no muere (la sala de pruebas lo usa).
 @export var god_mode: bool = false
@@ -151,7 +153,12 @@ var ground_position: Vector2:
 		return Flat.of(global_position)
 
 ## Acciones que pasan por el buffer de input.
-const BUFFERED_ACTIONS: Array[StringName] = [&"attack_light", &"attack_heavy", &"dash", &"jump", &"skill_1"]
+const BUFFERED_ACTIONS: Array[StringName] = [&"attack_light", &"attack_heavy", &"dash", &"jump", &"skill_1", &"interact"]
+
+## Puntos que le quedan por recorrer en un paseo automático (estado Scripted).
+var scripted_points: Array[Vector3] = []
+## Velocidad del paseo automático (1 = velocidad máxima andando).
+var scripted_speed: float = 0.7
 
 ## Reloj de juego (s): avanza con el tiempo del juego, así que se para en el hitstop.
 ## El buffer y los combos miden con este, no con el reloj real.
@@ -167,6 +174,8 @@ var _dash_recharge: float = 0.0
 var _dust_distance: float = 0.0
 ## Momento (reloj de juego) en que se pulsó cada acción y aún no se ha usado.
 var _buffer: Dictionary = {}
+## Cosas con las que puede interactuar ahora mismo (está dentro de su área).
+var _interactables: Array[Interactable] = []
 
 @onready var sprite: AnimatedSprite3D = %Sprite
 @onready var sprite_fx: SpriteFX = %SpriteFX
@@ -403,6 +412,44 @@ func spawn_afterimage(color: Color) -> void:
 ## Onda expansiva en los pies.
 func spawn_ring(color: Color, attack: AttackData = null) -> void:
 	FxSpawner.spawn(self, ring_scene, Vector3(global_position.x, 0.03, global_position.z), 0.0, color, attack)
+
+
+# --- Interactuar y paseos automáticos ------------------------------------------
+
+func add_interactable(target: Interactable) -> void:
+	if not _interactables.has(target):
+		_interactables.append(target)
+
+
+func remove_interactable(target: Interactable) -> void:
+	_interactables.erase(target)
+
+
+## La más cercana de las que tiene al lado y están activas (o null).
+func get_interactable() -> Interactable:
+	var best: Interactable = null
+	var best_dist := INF
+	for target in _interactables:
+		if not is_instance_valid(target) or not target.enabled:
+			continue
+		var d := global_position.distance_to(target.global_position)
+		if d < best_dist:
+			best_dist = d
+			best = target
+	return best
+
+
+## Camina solo por `points` (sin input). Al acabar emite `scripted_walk_finished`.
+func walk_path(points: Array[Vector3], speed: float = 0.7) -> void:
+	scripted_points = points.duplicate()
+	scripted_speed = speed
+	state_machine.change_to(&"Scripted")
+
+
+## Devuelve el control al jugador tras un paseo automático.
+func release_control() -> void:
+	scripted_points.clear()
+	state_machine.change_to(&"Idle")
 
 
 func is_dead() -> bool:

@@ -28,6 +28,8 @@ var is_over: bool = false
 
 
 func _ready() -> void:
+	if ScreenFade.is_black():
+		ScreenFade.fade_in(0.8)
 	Storage.begin_night()
 	var p := path.point_at(start_offset)
 	player.global_position = p
@@ -66,7 +68,9 @@ func _on_continue() -> void:
 	get_tree().paused = false
 	HitStop.base_time_scale = 1.0
 	Engine.time_scale = 1.0
+	ScreenFade.set_black()
 	if return_scene.is_empty():
 		get_tree().reload_current_scene()
 	else:
+		GameState.next_day()
 		get_tree().change_scene_to_file(return_scene)

@@ -32,6 +32,7 @@
 [ext_resource type="Script" path="res://game/player/states/hurt.gd" id="30_ddimf"]
 [ext_resource type="Script" path="res://game/player/states/spin.gd" id="31_od043"]
 [ext_resource type="Script" path="res://game/player/states/dead.gd" id="32_dead1"]
+[ext_resource type="Script" path="res://game/player/states/scripted.gd" id="33_scr1"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_5en5a"]
 height = 0.6
@@ -180,3 +181,6 @@ script = ExtResource("31_od043")
 
 [node name="Dead" type="Node" parent="StateMachine" unique_id=1733201946]
 script = ExtResource("32_dead1")
+
+[node name="Scripted" type="Node" parent="StateMachine" unique_id=1733201947]
+script = ExtResource("33_scr1")
