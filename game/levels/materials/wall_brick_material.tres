@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/wall_brick.png" id="1_7irs3"]
+
+[resource]
+albedo_texture = ExtResource("1_7irs3")
+roughness = 0.95
+uv1_triplanar = true
+texture_filter = 0

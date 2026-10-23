@@ -1,63 +1,79 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/levels/props/training_dummy.gd" id="1_td"]
-[ext_resource type="Texture2D" path="res://assets/placeholder/dummy_placeholder.png" id="2_tex"]
-[ext_resource type="Texture2D" path="res://assets/placeholder/shadow_placeholder.png" id="3_sh"]
-[ext_resource type="PackedScene" path="res://game/combat/hurtbox.tscn" id="4_hu"]
-[ext_resource type="Script" path="res://game/combat/health.gd" id="5_he"]
-[ext_resource type="Script" path="res://game/fx/hit_flash.gd" id="6_fl"]
-[ext_resource type="Material" path="res://game/fx/hit_flash_material.tres" id="7_mat"]
+[ext_resource type="Script" path="res://game/levels/props/training_dummy.gd" id="1_bfxmu"]
+[ext_resource type="Texture2D" path="res://game/fx/materials/blob_shadow.tres" id="2_sglyh"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/dummy_placeholder.png" id="3_wfugb"]
+[ext_resource type="Script" path="res://game/combat/health.gd" id="4_ddhpi"]
+[ext_resource type="PackedScene" path="res://game/combat/hurtbox.tscn" id="5_fmh65"]
+[ext_resource type="Script" path="res://game/combat/hurtbox.gd" id="6_gir0e"]
+[ext_resource type="Script" path="res://game/fx/sprite_fx.gd" id="7_gi7iw"]
+[ext_resource type="Material" path="res://game/fx/materials/character_sprite_material.tres" id="8_wsjwv"]
+[ext_resource type="Script" path="res://game/fx/damage_numbers.gd" id="9_b5661"]
+[ext_resource type="PackedScene" path="res://game/fx/damage_number.tscn" id="10_mh0u1"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_base"]
-radius = 5.0
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_fd78e"]
+height = 0.6
+radius = 0.15
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(14, 22)
+[sub_resource type="BoxShape3D" id="BoxShape3D_g2hy7"]
+size = Vector3(0.45, 0.75, 0.35)
 
-[node name="TrainingDummy" type="StaticBody2D"]
+[node name="TrainingDummy" type="StaticBody3D" unique_id=1828741436]
 collision_mask = 0
-script = ExtResource("1_td")
+script = ExtResource("1_bfxmu")
 
-[node name="Shadow" type="Sprite2D" parent="."]
-texture = ExtResource("3_sh")
+[node name="Shadow" type="Decal" parent="." unique_id=1961368731]
+size = Vector3(0.7, 3, 0.45)
+texture_albedo = ExtResource("2_sglyh")
 
-[node name="Sprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite3D" parent="." unique_id=1930182673]
 unique_name_in_owner = true
-texture = ExtResource("2_tex")
-offset = Vector2(0, -16)
+offset = Vector2(0, 16)
+pixel_size = 0.03125
+texture_filter = 0
+texture = ExtResource("3_wfugb")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
-shape = SubResource("CircleShape2D_base")
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=1357889784]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+shape = SubResource("CylinderShape3D_fd78e")
 
-[node name="Health" type="Node" parent="."]
-script = ExtResource("5_he")
+[node name="Health" type="Node" parent="." unique_id=231438893]
+script = ExtResource("4_ddhpi")
 immortal = true
 
-[node name="Hurtbox" parent="." node_paths=PackedStringArray("health") instance=ExtResource("4_hu")]
+[node name="Hurtbox" type="Area3D" parent="." unique_id=573030650 node_paths=PackedStringArray("health") instance=ExtResource("5_fmh65")]
 unique_name_in_owner = true
+collision_layer = 0
 collision_mask = 8
+monitorable = false
+script = ExtResource("6_gir0e")
 health = NodePath("../Health")
 
-[node name="Shape" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -14)
-shape = SubResource("RectangleShape2D_body")
+[node name="Shape" type="CollisionShape3D" parent="Hurtbox" unique_id=1417037640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, 0)
+shape = SubResource("BoxShape3D_g2hy7")
 
-[node name="HitFlash" type="Node" parent="." node_paths=PackedStringArray("hurtbox", "target")]
-script = ExtResource("6_fl")
+[node name="SpriteFX" type="Node" parent="." unique_id=786037467 node_paths=PackedStringArray("sprite", "hurtbox")]
+script = ExtResource("7_gi7iw")
+sprite = NodePath("../Sprite")
+material = ExtResource("8_wsjwv")
 hurtbox = NodePath("../Hurtbox")
-target = NodePath("../Sprite")
-flash_material = ExtResource("7_mat")
 
-[node name="InfoLabel" type="Label" parent="."]
+[node name="DamageNumbers" type="Node" parent="." unique_id=1482709473 node_paths=PackedStringArray("hurtbox")]
+script = ExtResource("9_b5661")
+hurtbox = NodePath("../Hurtbox")
+number_scene = ExtResource("10_mh0u1")
+
+[node name="InfoLabel" type="Label3D" parent="." unique_id=997962284]
 unique_name_in_owner = true
-offset_left = -30.0
-offset_top = -58.0
-offset_right = 30.0
-offset_bottom = -34.0
-theme_override_font_sizes/font_size = 8
-horizontal_alignment = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, 0)
+billboard = 1
+no_depth_test = true
+modulate = Color(1, 0.85, 0.5, 1)
+outline_modulate = Color(0.1, 0.05, 0.1, 1)
+font_size = 30
+outline_size = 10
 
-[node name="ResetTimer" type="Timer" parent="."]
+[node name="ResetTimer" type="Timer" parent="." unique_id=1080735450]
 unique_name_in_owner = true
 one_shot = true

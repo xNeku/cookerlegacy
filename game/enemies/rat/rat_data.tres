@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_iis1h"]
 [ext_resource type="Script" path="res://game/enemies/enemy_data.gd" id="2_8xinm"]
+[ext_resource type="PackedScene" path="res://game/fx/slash_fx.tscn" id="2_csfny"]
 
 [sub_resource type="Resource" id="Resource_csfny"]
 script = ExtResource("1_iis1h")
@@ -10,23 +11,28 @@ duration = 0.3
 hit_start = 0.02
 hit_end = 0.16
 damage = 6.0
-knockback = 140.0
-hitbox_size = Vector2(14, 12)
-hitbox_distance = 8.0
-lunge_speed = 240.0
+knockback = 4.4
+hitbox_size = Vector2(0.44, 0.38)
+hitbox_height = 0.5
+hitbox_distance = 0.25
+lunge_speed = 7.5
 lunge_time = 0.12
 hitstop_time = 0.0
 shake_strength = 0.0
+vfx_scene = ExtResource("2_csfny")
+vfx_color = Color(1, 0.4, 0.35, 1)
+vfx_arc_degrees = 100.0
+vfx_radius = 0.5
 
 [resource]
 script = ExtResource("2_8xinm")
 max_health = 22.0
-move_speed = 145.0
-acceleration = 1000.0
-detect_range = 220.0
-lose_range = 420.0
-attack_range = 42.0
-surround_radius = 32.0
+move_speed = 4.53
+acceleration = 31.0
+detect_range = 6.9
+lose_range = 13.1
+attack_range = 1.31
+surround_radius = 1.0
 surround_weight = 1.0
 surround_spin = 0.6
 attack = SubResource("Resource_csfny")

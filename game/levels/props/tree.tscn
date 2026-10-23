@@ -1,0 +1,12 @@
+[gd_scene format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/tree_pine.png" id="1_6g00d"]
+
+[node name="Tree" type="Sprite3D" unique_id=172263879]
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("1_6g00d")

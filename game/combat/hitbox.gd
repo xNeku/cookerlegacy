@@ -1,19 +1,20 @@
 class_name Hitbox
-extends Area2D
+extends Area3D
 ## Área que hace daño. La activa quien ataca durante la ventana de golpe.
 ## Quien recibe es la Hurtbox (ella detecta a la Hitbox).
+## La forma se elige por golpe: caja delante (largo × ancho × alto) o cilindro alrededor (radial).
 
-## Emitida cuando este golpe impacta en una Hurtbox (para hitstop, sonido...).
-signal hit_landed(hurtbox: Area2D)
+## Emitida cuando este golpe impacta en una Hurtbox (para hitstop, chispas, sonido...).
+signal hit_landed(hurtbox: Area3D)
 
-## Pinta el área mientras está activa. Útil mientras no hay animación de ataque.
-@export var show_debug_shape: bool = true
-## Color del área pintada.
-@export var debug_color: Color = Color(1, 0.85, 0.4, 0.45)
+## Muestra el área mientras está activa (para ajustar golpes).
+@export var show_debug_shape: bool = false
+## Color del área mostrada.
+@export var debug_color: Color = Color(1, 0.85, 0.4, 0.35)
 
 ## Golpe actual (daño, empuje, hitstop, temblor...). Lo lee quien recibe y el feedback.
 var attack: AttackData
-## Dirección del golpe (para el empujón y las chispas).
+## Dirección del golpe en el suelo (para el empujón y las chispas).
 var direction: Vector2 = Vector2.RIGHT
 var damage: float:
 	get:
@@ -23,35 +24,53 @@ var knockback: float:
 		return attack.knockback if attack else 0.0
 
 var _active_flag: bool = false
-var _debug_visible: bool = false
-var _rect_shape: RectangleShape2D
-var _circle_shape: CircleShape2D
+var _box_shape: BoxShape3D
+var _cylinder_shape: CylinderShape3D
+var _debug_material: StandardMaterial3D
 
-@onready var _shape: CollisionShape2D = %Shape
+@onready var _shape: CollisionShape3D = %Shape
+@onready var _debug_mesh: MeshInstance3D = %DebugMesh
 
 
 func _ready() -> void:
 	# Cada instancia tiene sus propias formas, porque cambian de tamaño por golpe.
-	_rect_shape = _shape.shape.duplicate()
-	_circle_shape = CircleShape2D.new()
-	_shape.shape = _rect_shape
+	_box_shape = BoxShape3D.new()
+	_cylinder_shape = CylinderShape3D.new()
+	_shape.shape = _box_shape
+	_debug_material = StandardMaterial3D.new()
+	_debug_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	_debug_material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_debug_material.albedo_color = debug_color
+	_debug_mesh.visible = false
 	set_active(false)
 
 
-## Prepara el área para el golpe `new_attack` en dirección `dir`.
+## Prepara el área para el golpe `new_attack` en dirección `dir` (en el suelo).
 func configure(new_attack: AttackData, dir: Vector2) -> void:
 	attack = new_attack
 	direction = dir
-	rotation = dir.angle()
+	rotation.y = Flat.yaw(dir)
+	var height := new_attack.hitbox_height
 	if new_attack.radial:
-		_circle_shape.radius = new_attack.hitbox_size.x / 2.0
-		_shape.shape = _circle_shape
-		_shape.position = Vector2.ZERO
+		_cylinder_shape.radius = new_attack.hitbox_size.x / 2.0
+		_cylinder_shape.height = height
+		_shape.shape = _cylinder_shape
+		_shape.position = Vector3.ZERO
+		var cyl := CylinderMesh.new()
+		cyl.top_radius = _cylinder_shape.radius
+		cyl.bottom_radius = _cylinder_shape.radius
+		cyl.height = height
+		_debug_mesh.mesh = cyl
 	else:
-		_rect_shape.size = new_attack.hitbox_size
-		_shape.shape = _rect_shape
-		_shape.position = Vector2(new_attack.hitbox_distance, 0.0)
-	queue_redraw()
+		# hitbox_size.x = largo hacia delante, .y = ancho.
+		_box_shape.size = Vector3(new_attack.hitbox_size.x, height, new_attack.hitbox_size.y)
+		_shape.shape = _box_shape
+		_shape.position = Vector3(new_attack.hitbox_distance, 0.0, 0.0)
+		var box := BoxMesh.new()
+		box.size = _box_shape.size
+		_debug_mesh.mesh = box
+	_debug_mesh.position = _shape.position
+	_debug_mesh.material_override = _debug_material
 
 
 func set_active(active: bool) -> void:
@@ -59,28 +78,17 @@ func set_active(active: bool) -> void:
 		return
 	_active_flag = active
 	_shape.set_deferred("disabled", not active)
-	_debug_visible = active and show_debug_shape
-	queue_redraw()
+	_debug_mesh.visible = active and show_debug_shape
 
 
 func is_active() -> bool:
 	return _active_flag
 
 
-## Dirección del empujón para quien está en `target_position`: la del golpe,
-## o hacia fuera desde el centro si el golpe es radial.
-func get_knockback_direction(target_position: Vector2) -> Vector2:
+## Dirección del empujón (en el suelo) para quien está en `target_position`:
+## la del golpe, o hacia fuera desde el centro si el golpe es radial.
+func get_knockback_direction(target_position: Vector3) -> Vector2:
 	if attack and attack.radial:
-		var away := target_position - global_position
+		var away := Flat.of(target_position - global_position)
 		return away.normalized() if not away.is_zero_approx() else direction
 	return direction
-
-
-
-func _draw() -> void:
-	if not _debug_visible or attack == null:
-		return
-	if attack.radial:
-		draw_circle(Vector2.ZERO, _circle_shape.radius, debug_color)
-	else:
-		draw_rect(Rect2(_shape.position - _rect_shape.size / 2.0, _rect_shape.size), debug_color)

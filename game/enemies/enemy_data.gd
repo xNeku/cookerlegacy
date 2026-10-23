@@ -5,7 +5,7 @@ extends Resource
 
 @export_group("Vida")
 @export var max_health: float = 30.0
-## Cuánto ignora los empujones de golpes ligeros (0 = vuela, 1 = no se mueve).
+## Cuánto ignora los empujones de golpes ligeros (0 = vuela, 1 = no se mueve). Distancias en m.
 @export_range(0.0, 1.0) var knockback_resistance: float = 0.0
 ## Lo mismo para golpes fuertes (△, cargado).
 @export_range(0.0, 1.0) var heavy_knockback_resistance: float = 0.0
@@ -18,20 +18,21 @@ extends Resource
 @export var hurt_time: float = 0.22
 
 @export_group("Movimiento")
-@export var move_speed: float = 100.0
-@export var acceleration: float = 900.0
-@export var friction: float = 900.0
+## m/s y m/s².
+@export var move_speed: float = 3.0
+@export var acceleration: float = 28.0
+@export var friction: float = 28.0
 
 @export_group("Detección")
-## A esta distancia del cocinero empieza a perseguir (px).
-@export var detect_range: float = 200.0
-## Si se aleja más que esto, deja de perseguir (px).
-@export var lose_range: float = 400.0
-## A esta distancia empieza el aviso y ataca (px).
-@export var attack_range: float = 30.0
+## A esta distancia del cocinero empieza a perseguir (m).
+@export var detect_range: float = 6.5
+## Si se aleja más que esto, deja de perseguir (m).
+@export var lose_range: float = 12.5
+## A esta distancia empieza el aviso y ataca (m).
+@export var attack_range: float = 1.0
 
 @export_group("Rodear")
-## Distancia a la que intenta colocarse alrededor del cocinero (px).
+## Distancia a la que intenta colocarse alrededor del cocinero (m).
 @export var surround_radius: float = 0.0
 ## 0 = va recto hacia ti; 1 = busca su hueco alrededor (rodea).
 @export_range(0.0, 1.0) var surround_weight: float = 0.0

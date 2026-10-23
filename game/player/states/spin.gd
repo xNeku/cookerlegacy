@@ -4,23 +4,23 @@ extends PlayerState
 ## Si el golpe tiene `multi_hit_interval`, vuelve a golpear cada ese tiempo.
 ## Dash y salto lo cortan. (En Fase 5 este mismo giro cosechará.)
 
-const FACINGS: Array[Vector2] = [Vector2.DOWN, Vector2.RIGHT, Vector2.UP, Vector2.LEFT]
-
 var _time: float = 0.0
 var _since_hit: float = 0.0
-var _face_index: int = 0
-var _face_time: float = 0.0
 
 
 func enter(_previous: State) -> void:
+	var attack := player.spin_attack
 	_time = 0.0
 	_since_hit = 0.0
-	_face_time = 0.0
-	_face_index = FACINGS.find(player.facing)
 	player.start_spin_cooldown()
 	player.sprite.speed_scale = 1.0
-	player.hitbox.configure(player.spin_attack, player.facing)
+	player.hitbox.configure(attack, player.facing)
 	player.hitbox.set_active(false)
+	player.play_animation("spin", "idle", true)
+	FxSpawner.attach(player, attack.vfx_scene, Vector3(0.0, player.hitbox.position.y, 0.0),
+			Flat.yaw(player.facing), attack.vfx_color, attack)
+	if attack.vfx_ring:
+		player.spawn_ring(attack.vfx_color, attack)
 
 
 func exit() -> void:
@@ -38,7 +38,7 @@ func physics_update(delta: float) -> void:
 	var input := player.get_move_input()
 	player.steer(input, attack.move_speed_multiplier, delta)
 	player.move_and_slide()
-	_spin_visual(delta)
+	player.play_animation("spin", "idle")
 
 	if _time >= attack.duration:
 		player.hitbox.set_active(false)
@@ -60,16 +60,3 @@ func _update_hits(attack: AttackData, delta: float) -> void:
 		player.hitbox.set_active(false)
 		return
 	player.hitbox.set_active(true)
-
-
-## Placeholder: sin animación de giro, recorre las 4 direcciones muy rápido.
-func _spin_visual(delta: float) -> void:
-	if player.sprite.sprite_frames.has_animation(&"spin_down"):
-		player.play_animation("spin")
-		return
-	_face_time += delta
-	if _face_time >= player.spin_face_period:
-		_face_time = 0.0
-		_face_index = (_face_index + 1) % FACINGS.size()
-		player.facing = FACINGS[_face_index]
-	player.play_animation("idle")

@@ -1,7 +1,7 @@
 [gd_scene format=3]
 
-[ext_resource type="PackedScene" path="res://game/levels/arena/arena.tscn" id="1_arena"]
+[ext_resource type="PackedScene" path="res://game/levels/arena/arena.tscn" id="1_5520f"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node" unique_id=361176867]
 
-[node name="Arena" parent="." instance=ExtResource("1_arena")]
+[node name="Arena" type="Node3D" parent="." unique_id=52464802 instance=ExtResource("1_5520f")]

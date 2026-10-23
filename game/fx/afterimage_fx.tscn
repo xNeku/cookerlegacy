@@ -1,0 +1,11 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://game/fx/materials/ghost_sprite_material.tres" id="1_lsnms"]
+[ext_resource type="Script" path="res://game/fx/afterimage_fx.gd" id="2_mv5cn"]
+
+[node name="AfterimageFx" type="Sprite3D" unique_id=1736445341]
+material_override = ExtResource("1_lsnms")
+cast_shadow = 0
+pixel_size = 0.03125
+texture_filter = 0
+script = ExtResource("2_mv5cn")

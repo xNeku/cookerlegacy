@@ -1,0 +1,57 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/fx/oneshot_fx.gd" id="1_8ls62"]
+[ext_resource type="QuadMesh" path="res://game/fx/materials/particle_smoke_quad.tres" id="2_udpcx"]
+[ext_resource type="QuadMesh" path="res://game/fx/materials/particle_glow_quad.tres" id="3_bq4kc"]
+
+[sub_resource type="Curve" id="Curve_fqahg"]
+_data = [Vector2(0, 0.45), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_m7dvm"]
+colors = PackedColorArray(0.5, 0.35, 0.7, 0.9, 0.2, 0.12, 0.3, 0)
+
+[sub_resource type="Gradient" id="Gradient_uccn2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="SpawnFx" type="Node3D" unique_id=593656274]
+script = ExtResource("1_8ls62")
+tint_particles = false
+lifetime = 1.0
+
+[node name="Smoke" type="CPUParticles3D" parent="." unique_id=43161909]
+emitting = false
+amount = 14
+lifetime = 0.7
+one_shot = true
+explosiveness = 1.0
+mesh = ExtResource("2_udpcx")
+emission_shape = 1
+emission_sphere_radius = 0.25
+direction = Vector3(0, 1, 0)
+spread = 25.0
+gravity = Vector3(0, 0.5, 0)
+initial_velocity_min = 0.6
+initial_velocity_max = 1.6
+damping_min = 1.0
+damping_max = 2.0
+scale_amount_min = 0.8
+scale_amount_max = 1.5
+scale_amount_curve = SubResource("Curve_fqahg")
+color_ramp = SubResource("Gradient_m7dvm")
+
+[node name="Sparks" type="CPUParticles3D" parent="." unique_id=1664659524]
+emitting = false
+lifetime = 0.6
+one_shot = true
+explosiveness = 1.0
+mesh = ExtResource("3_bq4kc")
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+spread = 20.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.2
+color = Color(0.75, 0.5, 1, 1)
+color_ramp = SubResource("Gradient_uccn2")

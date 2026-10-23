@@ -1,0 +1,21 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://game/fx/materials/tilt_shift_material.tres" id="1_qquvu"]
+[ext_resource type="Material" path="res://game/fx/materials/vignette_material.tres" id="2_o5of8"]
+
+[node name="PostFx" type="CanvasLayer" unique_id=741211325]
+layer = 0
+
+[node name="TiltShift" type="ColorRect" parent="." unique_id=1210705918]
+material = ExtResource("1_qquvu")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="Vignette" type="ColorRect" parent="." unique_id=457242928]
+material = ExtResource("2_o5of8")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2

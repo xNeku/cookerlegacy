@@ -15,3 +15,4 @@ func physics_update(delta: float) -> void:
 		return
 	player.apply_friction(delta)
 	player.move_and_slide()
+	player.play_animation("idle")

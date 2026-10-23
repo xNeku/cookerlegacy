@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/ground_grass.png" id="1_tb2v4"]
+
+[resource]
+albedo_texture = ExtResource("1_tb2v4")
+roughness = 0.95
+uv1_scale = Vector3(20, 15, 1)
+texture_filter = 0

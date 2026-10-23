@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://assets/placeholder/wood_planks.png" id="1_14tsb"]
+
+[resource]
+albedo_texture = ExtResource("1_14tsb")
+roughness = 0.95
+uv1_scale = Vector3(1.33, 1.33, 1.33)
+uv1_triplanar = true
+texture_filter = 0

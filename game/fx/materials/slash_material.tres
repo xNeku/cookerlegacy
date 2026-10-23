@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://game/fx/shaders/slash.gdshader" id="1_ka7ro"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_ka7ro")
+shader_parameter/color = null
+shader_parameter/core_color = null
+shader_parameter/arc_degrees = null
+shader_parameter/inner_radius = null
+shader_parameter/outer_radius = null
+shader_parameter/progress = null
+shader_parameter/fade = null
+shader_parameter/trail = null
+shader_parameter/flip = null
+shader_parameter/pixel_steps = null
+shader_parameter/energy = null

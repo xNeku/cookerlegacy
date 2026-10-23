@@ -1,0 +1,35 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/fx/oneshot_fx.gd" id="1_qsbnq"]
+[ext_resource type="QuadMesh" path="res://game/fx/materials/particle_smoke_quad.tres" id="2_b0ec6"]
+
+[sub_resource type="Curve" id="Curve_fqahg"]
+_data = [Vector2(0, 0.45), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_obaq5"]
+colors = PackedColorArray(0.78, 0.72, 0.64, 0.6, 0.6, 0.58, 0.55, 0)
+
+[node name="DustPuff" type="Node3D" unique_id=992718252]
+script = ExtResource("1_qsbnq")
+tint_particles = false
+
+[node name="Puffs" type="CPUParticles3D" parent="." unique_id=495318212]
+emitting = false
+amount = 3
+lifetime = 0.55
+one_shot = true
+explosiveness = 0.9
+mesh = ExtResource("2_b0ec6")
+emission_shape = 1
+emission_sphere_radius = 0.08
+direction = Vector3(0, 1, 0)
+spread = 75.0
+gravity = Vector3(0, 0.6, 0)
+initial_velocity_min = 0.3
+initial_velocity_max = 0.9
+damping_min = 1.5
+damping_max = 2.0
+scale_amount_min = 0.5
+scale_amount_curve = SubResource("Curve_fqahg")
+color_ramp = SubResource("Gradient_obaq5")

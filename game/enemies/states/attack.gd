@@ -11,8 +11,10 @@ func enter(_previous: State) -> void:
 	var dir := enemy.direction_to_target()
 	enemy.face(dir)
 	enemy.hitbox.configure(attack, dir)
-	enemy.velocity = dir * attack.lunge_speed
+	enemy.planar_velocity = dir * attack.lunge_speed
 	enemy.play_animation(&"attack", &"idle")
+	FxSpawner.attach(enemy, attack.vfx_scene, Vector3(0.0, enemy.hitbox.position.y, 0.0),
+			Flat.yaw(dir), attack.vfx_color, attack)
 
 
 func exit() -> void:

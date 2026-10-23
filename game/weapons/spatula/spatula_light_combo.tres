@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="ComboData" format=3]
 
 [ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_a6h4c"]
+[ext_resource type="PackedScene" path="res://game/fx/slash_fx.tscn" id="2_n1q5f"]
 [ext_resource type="Script" path="res://game/combat/combo_data.gd" id="2_ukdw2"]
 
 [sub_resource type="Resource" id="Resource_n1q5f"]
@@ -8,9 +9,14 @@ script = ExtResource("1_a6h4c")
 duration = 0.3
 hit_end = 0.13
 chain_from = 0.16
-knockback = 60.0
-lunge_speed = 110.0
+knockback = 1.9
+hitbox_size = Vector2(0.69, 0.56)
+hitbox_distance = 0.44
+lunge_speed = 3.44
 lunge_time = 0.07
+shake_strength = 0.047
+vfx_scene = ExtResource("2_n1q5f")
+vfx_radius = 1.0
 
 [sub_resource type="Resource" id="Resource_1d2p2"]
 script = ExtResource("1_a6h4c")
@@ -18,9 +24,15 @@ animation = &"attack_2"
 duration = 0.3
 hit_end = 0.13
 chain_from = 0.16
-knockback = 60.0
-lunge_speed = 110.0
+knockback = 1.9
+hitbox_size = Vector2(0.69, 0.56)
+hitbox_distance = 0.44
+lunge_speed = 3.44
 lunge_time = 0.07
+shake_strength = 0.047
+vfx_scene = ExtResource("2_n1q5f")
+vfx_radius = 1.0
+vfx_flip = true
 
 [sub_resource type="Resource" id="Resource_rc3nb"]
 script = ExtResource("1_a6h4c")
@@ -28,11 +40,14 @@ animation = &"attack_3"
 hit_start = 0.07
 hit_end = 0.15
 damage = 12.0
-hitbox_size = Vector2(24, 22)
-hitbox_distance = 15.0
-lunge_speed = 130.0
+hitbox_size = Vector2(0.75, 0.69)
+hitbox_distance = 0.47
+lunge_speed = 4.06
 hitstop_time = 0.05
-shake_strength = 2.0
+shake_strength = 0.0625
+vfx_scene = ExtResource("2_n1q5f")
+vfx_arc_degrees = 175.0
+vfx_radius = 1.05
 
 [sub_resource type="Resource" id="Resource_vymmo"]
 script = ExtResource("1_a6h4c")
@@ -42,14 +57,20 @@ hit_start = 0.12
 hit_end = 0.22
 chain_from = 0.48
 damage = 22.0
-knockback = 220.0
-hitbox_size = Vector2(30, 28)
-hitbox_distance = 17.0
-lunge_speed = 190.0
+knockback = 6.9
+hitbox_size = Vector2(0.94, 0.88)
+hitbox_distance = 0.53
+lunge_speed = 5.94
 lunge_time = 0.11
 hitstop_time = 0.09
-shake_strength = 4.0
+shake_strength = 0.125
 shake_time = 0.18
+camera_punch = 1.5
+vfx_scene = ExtResource("2_n1q5f")
+vfx_color = Color(1, 0.62, 0.3, 1)
+vfx_arc_degrees = 210.0
+vfx_radius = 1.25
+vfx_flip = true
 move_speed_multiplier = 0.15
 
 [resource]

@@ -1,17 +1,21 @@
 [gd_scene format=3]
 
-[ext_resource type="Texture2D" path="res://assets/placeholder/crate_placeholder.png" id="1_tex"]
+[ext_resource type="Material" path="res://game/levels/materials/wood_material.tres" id="1_sjh4u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_base"]
-size = Vector2(22, 8)
+[sub_resource type="BoxMesh" id="BoxMesh_7xg7x"]
+material = ExtResource("1_sjh4u")
+size = Vector3(0.75, 0.75, 0.75)
 
-[node name="Crate" type="StaticBody2D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_43efq"]
+size = Vector3(0.75, 0.75, 0.75)
+
+[node name="Crate" type="StaticBody3D" unique_id=2057918844]
 collision_mask = 0
 
-[node name="Sprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_tex")
-offset = Vector2(0, -14)
+[node name="Mesh" type="MeshInstance3D" parent="." unique_id=1163782172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+mesh = SubResource("BoxMesh_7xg7x")
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_base")
+[node name="Collision" type="CollisionShape3D" parent="." unique_id=921729432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.375, 0)
+shape = SubResource("BoxShape3D_43efq")

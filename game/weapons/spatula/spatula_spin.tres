@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="AttackData" format=3]
 
 [ext_resource type="Script" path="res://game/combat/attack_data.gd" id="1_a0c6w"]
+[ext_resource type="PackedScene" path="res://game/fx/slash_fx.tscn" id="2_xd2m7"]
 
 [resource]
 script = ExtResource("1_a0c6w")
@@ -10,12 +11,18 @@ hit_start = 0.03
 hit_end = 0.47
 multi_hit_interval = 0.12
 damage = 6.0
-knockback = 130.0
+knockback = 4.06
 radial = true
-hitbox_size = Vector2(56, 56)
+hitbox_size = Vector2(1.75, 1.75)
 lunge_speed = 0.0
 lunge_time = 0.0
 hitstop_time = 0.02
-shake_strength = 1.0
+shake_strength = 0.03
 shake_time = 0.08
+vfx_scene = ExtResource("2_xd2m7")
+vfx_color = Color(0.85, 0.9, 1, 1)
+vfx_arc_degrees = 300.0
+vfx_radius = 0.95
+vfx_turns = 2.0
+vfx_ring = true
 move_speed_multiplier = 0.75

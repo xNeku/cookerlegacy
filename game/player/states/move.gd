@@ -1,5 +1,6 @@
 extends PlayerState
 ## Andando. Movimiento analógico; la animación sigue la dirección cardinal más cercana.
+## Levanta polvo cada pocos pasos.
 
 
 func physics_update(delta: float) -> void:
@@ -14,3 +15,4 @@ func physics_update(delta: float) -> void:
 	player.move_and_slide()
 	player.play_animation("walk")
 	player.update_walk_anim_speed()
+	player.track_run_dust(delta)
