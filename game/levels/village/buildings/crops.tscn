@@ -1,0 +1,480 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://game/levels/materials/soil_material.tres" id="1_5teqq"]
+[ext_resource type="Material" path="res://game/levels/materials/wood_material.tres" id="2_jakfv"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/sprout.png" id="3_pt67s"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w12ah"]
+size = Vector2(2.5, 1.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_68ouy"]
+size = Vector3(2.7, 0.12, 2.1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e4jdf"]
+size = Vector2(2.5, 1.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ltuxk"]
+size = Vector3(2.7, 0.12, 2.1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_omdtu"]
+size = Vector2(2.5, 1.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_b3eo7"]
+size = Vector3(2.7, 0.12, 2.1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_dk6e7"]
+size = Vector2(2.5, 1.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kb3p2"]
+size = Vector3(2.7, 0.12, 2.1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2orty"]
+size = Vector2(2.5, 1.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_svqfw"]
+size = Vector3(2.7, 0.12, 2.1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_s82if"]
+size = Vector2(2.5, 1.9)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6wgb1"]
+size = Vector3(2.7, 0.12, 2.1)
+
+[node name="Crops" type="Node3D" unique_id=390282066]
+
+[node name="Model" type="Node3D" parent="." unique_id=572842587]
+
+[node name="Plot1" type="MeshInstance3D" parent="Model" unique_id=261632357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.02, -1.3)
+material_override = ExtResource("1_5teqq")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_w12ah")
+
+[node name="Edge1" type="MeshInstance3D" parent="Model" unique_id=1086544187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.040000003, -1.3)
+material_override = ExtResource("2_jakfv")
+mesh = SubResource("BoxMesh_68ouy")
+
+[node name="Sprout1_1" type="Sprite3D" parent="Model" unique_id=180471242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.136986, 0.02, -1.010102)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout1_2" type="Sprite3D" parent="Model" unique_id=87722004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1991944, 0.02, -1.0611959)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout1_3" type="Sprite3D" parent="Model" unique_id=720624079]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.399361, 0.02, -0.94204324)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout1_4" type="Sprite3D" parent="Model" unique_id=1438458861]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.903932, 0.02, -1.724943)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout1_5" type="Sprite3D" parent="Model" unique_id=683789728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.274189, 0.02, -1.4651592)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout1_6" type="Sprite3D" parent="Model" unique_id=439199525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9184713, 0.02, -1.4843386)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Plot2" type="MeshInstance3D" parent="Model" unique_id=591220440]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, -1.3)
+material_override = ExtResource("1_5teqq")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_e4jdf")
+
+[node name="Edge2" type="MeshInstance3D" parent="Model" unique_id=819426431]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.040000003, -1.3)
+material_override = ExtResource("2_jakfv")
+mesh = SubResource("BoxMesh_ltuxk")
+
+[node name="Sprout2_1" type="Sprite3D" parent="Model" unique_id=1245857293]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12418014, 0.02, -1.1891043)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout2_2" type="Sprite3D" parent="Model" unique_id=1013267004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053999543, 0.02, -0.83586174)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout2_3" type="Sprite3D" parent="Model" unique_id=587828710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008360028, 0.02, -0.6589609)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout2_4" type="Sprite3D" parent="Model" unique_id=428066042]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.23478043, 0.02, -1.2408595)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout2_5" type="Sprite3D" parent="Model" unique_id=898866623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19979644, 0.02, -1.4642448)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout2_6" type="Sprite3D" parent="Model" unique_id=461797642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35291433, 0.02, -1.5458188)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Plot3" type="MeshInstance3D" parent="Model" unique_id=717580089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.02, -1.3)
+material_override = ExtResource("1_5teqq")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_omdtu")
+
+[node name="Edge3" type="MeshInstance3D" parent="Model" unique_id=562672401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.040000003, -1.3)
+material_override = ExtResource("2_jakfv")
+mesh = SubResource("BoxMesh_b3eo7")
+
+[node name="Sprout3_1" type="Sprite3D" parent="Model" unique_id=1402816984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8935108, 0.02, -0.8627959)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout3_2" type="Sprite3D" parent="Model" unique_id=472259475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0499768, 0.02, -1.1385101)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout3_3" type="Sprite3D" parent="Model" unique_id=609779415]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.8446817, 0.02, -1.8571932)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout3_4" type="Sprite3D" parent="Model" unique_id=1924982322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6472876, 0.02, -1.1758704)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout3_5" type="Sprite3D" parent="Model" unique_id=558796077]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1730485, 0.02, -1.9776376)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout3_6" type="Sprite3D" parent="Model" unique_id=888372437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9544177, 0.02, -1.5142723)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Plot4" type="MeshInstance3D" parent="Model" unique_id=767477820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0.02, 1.3)
+material_override = ExtResource("1_5teqq")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_dk6e7")
+
+[node name="Edge4" type="MeshInstance3D" parent="Model" unique_id=2112590965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.040000003, 1.3)
+material_override = ExtResource("2_jakfv")
+mesh = SubResource("BoxMesh_kb3p2")
+
+[node name="Sprout4_1" type="Sprite3D" parent="Model" unique_id=638603316]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3817244, 0.02, 0.6626073)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout4_2" type="Sprite3D" parent="Model" unique_id=1749326013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3854682, 0.02, 1.0453554)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout4_3" type="Sprite3D" parent="Model" unique_id=1234633962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5704122, 0.02, 1.2574041)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout4_4" type="Sprite3D" parent="Model" unique_id=121757045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0692074, 0.02, 0.7894649)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout4_5" type="Sprite3D" parent="Model" unique_id=2056032626]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5552263, 0.02, 0.8223483)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout4_6" type="Sprite3D" parent="Model" unique_id=1011855116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.084715, 0.02, 1.059103)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Plot5" type="MeshInstance3D" parent="Model" unique_id=1637086195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 1.3)
+material_override = ExtResource("1_5teqq")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_2orty")
+
+[node name="Edge5" type="MeshInstance3D" parent="Model" unique_id=1199172976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.040000003, 1.3)
+material_override = ExtResource("2_jakfv")
+mesh = SubResource("BoxMesh_svqfw")
+
+[node name="Sprout5_1" type="Sprite3D" parent="Model" unique_id=779327103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.80564606, 0.02, 1.0419669)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout5_2" type="Sprite3D" parent="Model" unique_id=641140692]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8940681, 0.02, 1.8279529)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout5_3" type="Sprite3D" parent="Model" unique_id=888520923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7495431, 0.02, 1.9985948)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout5_4" type="Sprite3D" parent="Model" unique_id=1964847247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75786954, 0.02, 1.6037183)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout5_5" type="Sprite3D" parent="Model" unique_id=1766702954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7924051, 0.02, 1.582483)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout5_6" type="Sprite3D" parent="Model" unique_id=1862776025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8571349, 0.02, 1.6022823)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Plot6" type="MeshInstance3D" parent="Model" unique_id=995795400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0.02, 1.3)
+material_override = ExtResource("1_5teqq")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_s82if")
+
+[node name="Edge6" type="MeshInstance3D" parent="Model" unique_id=1094583623]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.040000003, 1.3)
+material_override = ExtResource("2_jakfv")
+mesh = SubResource("BoxMesh_6wgb1")
+
+[node name="Sprout6_1" type="Sprite3D" parent="Model" unique_id=1024116224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7984014, 0.02, 1.1282167)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout6_2" type="Sprite3D" parent="Model" unique_id=1649925073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.7332752, 0.02, 1.7096343)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout6_3" type="Sprite3D" parent="Model" unique_id=630971586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6458354, 0.02, 0.87353754)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout6_4" type="Sprite3D" parent="Model" unique_id=1292503980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3570867, 0.02, 1.2943052)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout6_5" type="Sprite3D" parent="Model" unique_id=646690340]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6730506, 0.02, 1.6323373)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sprout6_6" type="Sprite3D" parent="Model" unique_id=415801879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.4991565, 0.02, 1.8927877)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_pt67s")
+
+[node name="Sign" type="Label3D" parent="." unique_id=494254110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -2.6)
+pixel_size = 0.006
+billboard = 1
+modulate = Color(1, 0.92, 0.72, 1)
+outline_modulate = Color(0.12, 0.07, 0.06, 1)
+text = "Cultivos"
+font_size = 40

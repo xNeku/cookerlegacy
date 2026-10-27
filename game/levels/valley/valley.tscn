@@ -214,6 +214,7 @@ path = NodePath("../Path")
 night = NodePath("../NightCycle")
 director = NodePath("../HordeDirector")
 summary = NodePath("../NightSummary")
+return_scene = "res://game/levels/village/village.tscn"
 
 [node name="NightHud" type="CanvasLayer" parent="." unique_id=475629446 node_paths=PackedStringArray("run", "night") instance=ExtResource("34_nxrvb")]
 script = ExtResource("35_yqn20")

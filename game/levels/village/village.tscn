@@ -1,0 +1,2211 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://game/levels/materials/valley_ground_material.tres" id="1_0paye"]
+[ext_resource type="Material" path="res://game/levels/materials/dirt_path_material.tres" id="2_qa76t"]
+[ext_resource type="Material" path="res://game/levels/materials/cliff_rock_material.tres" id="3_m3gan"]
+[ext_resource type="PackedScene" path="res://game/levels/props/tree.tscn" id="4_sq6nd"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/tree_pine.png" id="5_xsb0w"]
+[ext_resource type="Material" path="res://game/levels/materials/water_material.tres" id="6_k5ja5"]
+[ext_resource type="Material" path="res://game/levels/materials/riverbed_material.tres" id="7_dqx3r"]
+[ext_resource type="PackedScene" path="res://game/levels/village/buildings/bar.tscn" id="8_3fvpb"]
+[ext_resource type="PackedScene" path="res://game/levels/village/buildings/forge.tscn" id="9_5clwl"]
+[ext_resource type="PackedScene" path="res://game/levels/village/buildings/ovens.tscn" id="10_kfxov"]
+[ext_resource type="PackedScene" path="res://game/levels/village/buildings/storage.tscn" id="11_lj7qo"]
+[ext_resource type="Script" path="res://game/levels/village/buildings/storage_building.gd" id="12_86pkj"]
+[ext_resource type="PackedScene" path="res://game/levels/village/buildings/crops.tscn" id="13_kpar1"]
+[ext_resource type="PackedScene" path="res://game/levels/village/buildings/dock.tscn" id="14_eioh2"]
+[ext_resource type="PackedScene" path="res://game/levels/village/buildings/tunnel.tscn" id="15_ltspw"]
+[ext_resource type="Script" path="res://game/levels/village/buildings/tunnel_exit.gd" id="16_kk6ke"]
+[ext_resource type="PackedScene" path="res://game/levels/props/bush.tscn" id="17_x6hla"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/bush.png" id="18_bqckr"]
+[ext_resource type="PackedScene" path="res://game/levels/props/grass_tuft.tscn" id="19_08i8h"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/grass_tuft.png" id="20_n2f4u"]
+[ext_resource type="PackedScene" path="res://game/levels/props/rock.tscn" id="21_nuh2r"]
+[ext_resource type="Texture2D" path="res://assets/placeholder/rock.png" id="22_3ux3j"]
+[ext_resource type="PackedScene" path="res://game/player/player.tscn" id="23_te4fm"]
+[ext_resource type="Script" path="res://game/player/player.gd" id="24_a7lh5"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_light_combo.tres" id="25_pddk8"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_heavy_combo.tres" id="26_mrd3t"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_charged_attack.tres" id="27_75807"]
+[ext_resource type="Resource" path="res://game/weapons/spatula/spatula_spin.tres" id="28_in006"]
+[ext_resource type="PackedScene" path="res://game/fx/dust_puff.tscn" id="29_paa8c"]
+[ext_resource type="PackedScene" path="res://game/fx/dust_burst.tscn" id="30_w6wbw"]
+[ext_resource type="PackedScene" path="res://game/fx/afterimage_fx.tscn" id="31_n53kq"]
+[ext_resource type="PackedScene" path="res://game/fx/ring_fx.tscn" id="32_0huii"]
+[ext_resource type="PackedScene" path="res://game/camera/game_camera.tscn" id="33_7lkp8"]
+[ext_resource type="Script" path="res://game/camera/game_camera.gd" id="34_a10nf"]
+[ext_resource type="PackedScene" path="res://game/ui/day_banner.tscn" id="35_vkdhe"]
+[ext_resource type="Script" path="res://game/ui/day_banner.gd" id="36_ms0wt"]
+[ext_resource type="PackedScene" path="res://game/ui/storage_panel.tscn" id="37_nawop"]
+[ext_resource type="Script" path="res://game/ui/storage_panel.gd" id="38_8kwx5"]
+[ext_resource type="PackedScene" path="res://game/ui/loot_row.tscn" id="39_0g1a2"]
+[ext_resource type="Script" path="res://game/levels/village/village_day.gd" id="40_6et1f"]
+[ext_resource type="PackedScene" path="res://game/ui/post_fx.tscn" id="41_7debm"]
+[ext_resource type="Script" path="res://game/ui/post_fx.gd" id="42_0gb1h"]
+[ext_resource type="Material" path="res://game/levels/village/village_tilt_shift.tres" id="90_vtil"]
+[ext_resource type="Material" path="res://game/levels/village/village_vignette.tres" id="91_vvig"]
+
+[sub_resource type="Environment" id="Environment_p28xq"]
+background_mode = 1
+background_color = Color(0.56, 0.74, 0.9, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.72, 0.78, 0.9, 1)
+ambient_light_energy = 0.55
+tonemap_mode = 3
+tonemap_exposure = 1.05
+ssao_enabled = true
+ssao_radius = 0.8
+ssao_intensity = 1.4
+glow_enabled = true
+glow_intensity = 0.6
+glow_bloom = 0.02
+glow_hdr_threshold = 1.2
+fog_enabled = true
+fog_light_color = Color(0.74, 0.82, 0.92, 1)
+fog_density = 0.0025
+fog_sky_affect = 0.0
+adjustment_enabled = true
+adjustment_contrast = 1.05
+adjustment_saturation = 1.12
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w5nfw"]
+size = Vector2(52, 40)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_hvx77"]
+size = Vector2(14, 40)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ey23s"]
+size = Vector2(31, 2.4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_4ecpr"]
+size = Vector2(2.2, 10.5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_npmir"]
+size = Vector2(2, 3)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7356n"]
+size = Vector2(2, 3.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xfaxj"]
+size = Vector3(3.3562992, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tmn20"]
+size = Vector3(4.3757195, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wpi80"]
+size = Vector3(3.3572152, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u14yc"]
+size = Vector3(3.1964061, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0yh18"]
+size = Vector3(3.6503773, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6qjbl"]
+size = Vector3(3.6733422, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_oknae"]
+size = Vector3(3.2850978, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_urn3f"]
+size = Vector3(1.1055427, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hwex2"]
+size = Vector3(2.730894, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gsqo0"]
+size = Vector3(2.5109625, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_eu1lf"]
+size = Vector3(4.0936875, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tlr45"]
+size = Vector3(3.247827, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ukc3t"]
+size = Vector3(3.6167212, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6y6yv"]
+size = Vector3(4.093172, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nxwcy"]
+size = Vector3(3.4682822, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kn5cx"]
+size = Vector3(2.6336942, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4x14t"]
+size = Vector3(3.395707, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3k7dh"]
+size = Vector3(4.2880845, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rs4i1"]
+size = Vector3(4.219257, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6qggm"]
+size = Vector3(2.894749, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xxngb"]
+size = Vector3(4.280841, 4, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iky1t"]
+size = Vector3(3.5852332, 4, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_768jh"]
+size = Vector3(3.656299, 6.7412634, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tpq61"]
+size = Vector3(4.3562994, 9.979631, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hicst"]
+size = Vector3(4.6757197, 7.0962234, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y2cn2"]
+size = Vector3(5.3757195, 13.685328, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_525x7"]
+size = Vector3(3.657215, 6.0619545, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_caoi8"]
+size = Vector3(4.357215, 12.725116, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gi8td"]
+size = Vector3(3.496406, 6.4370446, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ieg1j"]
+size = Vector3(4.1964064, 9.583847, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ws58"]
+size = Vector3(3.9503772, 6.7151403, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3pwtu"]
+size = Vector3(4.6503773, 12.8783865, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p2v0b"]
+size = Vector3(3.9733422, 5.3105445, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4013i"]
+size = Vector3(4.673342, 9.103006, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bbul3"]
+size = Vector3(3.5850978, 7.1335793, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_mbnoj"]
+size = Vector3(4.285098, 11.984069, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_emsna"]
+size = Vector3(3.5483437, 4.4975815, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_163em"]
+size = Vector3(1.1055427, 3.2, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6j66r"]
+size = Vector3(4.5483437, 11.323761, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ms7a5"]
+size = Vector3(3.288093, 3.7598994, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dx3dd"]
+size = Vector3(2.730894, 3.2, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5af5i"]
+size = Vector3(4.288093, 12.90769, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_g6463"]
+size = Vector3(2.8109624, 5.299876, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nnw0c"]
+size = Vector3(3.5109625, 9.2389965, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_h0v2k"]
+size = Vector3(4.3936877, 8.024179, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbnje"]
+size = Vector3(5.0936875, 12.710923, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ial38"]
+size = Vector3(3.547827, 7.009362, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jtfue"]
+size = Vector3(4.247827, 11.915937, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xtdxf"]
+size = Vector3(3.916721, 5.011245, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_obu3t"]
+size = Vector3(4.616721, 11.519495, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0kheq"]
+size = Vector3(4.3931723, 7.899399, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jobeh"]
+size = Vector3(5.093172, 11.300827, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2a2ds"]
+size = Vector3(3.7682822, 5.5392857, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_qmuph"]
+size = Vector3(4.468282, 11.633806, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y182h"]
+size = Vector3(2.9336941, 5.007356, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_01wfb"]
+size = Vector3(3.6336942, 11.4392185, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_knbbi"]
+size = Vector3(3.6957068, 8.433832, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ngqay"]
+size = Vector3(4.395707, 11.533652, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_utprt"]
+size = Vector3(4.5880847, 7.885674, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lg16n"]
+size = Vector3(5.2880845, 12.647581, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_sbf58"]
+size = Vector3(4.519257, 5.815934, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6v6y7"]
+size = Vector3(5.219257, 11.184736, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ep47w"]
+size = Vector3(3.1947489, 5.1797147, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vm68i"]
+size = Vector3(3.894749, 9.086302, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nuqnw"]
+size = Vector3(4.580841, 7.4328427, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ehysd"]
+size = Vector3(5.280841, 10.898607, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jtxug"]
+size = Vector3(3.8852332, 6.4101477, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6tmvt"]
+size = Vector3(4.585233, 9.451847, 6)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sfcq5"]
+size = Vector2(7, 40)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_rp07p"]
+size = Vector2(7, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0ccvk"]
+size = Vector3(0.4, 0.7, 40)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bcso1"]
+size = Vector3(0.4, 0.7, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8gfp"]
+size = Vector3(1, 3, 15.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nodia"]
+size = Vector3(1, 3, 21.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_54ayy"]
+size = Vector3(0.5985115, 0.27173334, 0.90005744)
+
+[sub_resource type="BoxMesh" id="BoxMesh_44uvu"]
+size = Vector3(0.6493543, 0.32142156, 0.88365054)
+
+[sub_resource type="BoxMesh" id="BoxMesh_s4hbm"]
+size = Vector3(0.8312068, 0.26298133, 1.1598527)
+
+[sub_resource type="BoxMesh" id="BoxMesh_psgrd"]
+size = Vector3(0.89728355, 0.38282686, 0.8914584)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xts8l"]
+size = Vector3(0.72280765, 0.44254524, 1.1361936)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqdwt"]
+size = Vector3(0.6904065, 0.3565789, 0.8626912)
+
+[sub_resource type="BoxMesh" id="BoxMesh_1uh6l"]
+size = Vector3(0.62507725, 0.36246032, 0.7609793)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8xibi"]
+size = Vector3(0.8943546, 0.494621, 0.82654613)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lpn2d"]
+size = Vector3(0.56224096, 0.2884921, 0.83178174)
+
+[sub_resource type="BoxMesh" id="BoxMesh_juw7b"]
+size = Vector3(0.8559228, 0.2737996, 0.72017413)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wqa4y"]
+size = Vector3(0.5969448, 0.26463377, 0.7329469)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y524l"]
+size = Vector3(0.82110167, 0.4869827, 1.0961348)
+
+[sub_resource type="BoxMesh" id="BoxMesh_xjjvw"]
+size = Vector3(0.65194464, 0.2856628, 0.84913594)
+
+[sub_resource type="BoxMesh" id="BoxMesh_41doc"]
+size = Vector3(0.797536, 0.3745523, 0.86334217)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u765o"]
+size = Vector3(1, 3, 30)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jplo1"]
+size = Vector3(42, 3, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ni7v2"]
+dof_blur_far_distance = 24.0
+dof_blur_far_transition = 10.0
+dof_blur_near_distance = 12.0
+dof_blur_near_transition = 4.0
+dof_blur_amount = 0.04
+
+[node name="Village" type="Node3D" unique_id=1272017920]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1860278074]
+environment = SubResource("Environment_p28xq")
+
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=215964518]
+transform = Transform3D(0.81915206, 0.4262504, -0.38379753, 0, 0.66913056, 0.74314487, 0.57357645, -0.6087487, 0.54811966, 0, 0, 0)
+light_color = Color(1, 0.93, 0.8, 1)
+light_energy = 1.25
+shadow_enabled = true
+shadow_blur = 1.2
+directional_shadow_max_distance = 50.0
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=4580004]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, -1)
+material_override = ExtResource("1_0paye")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_w5nfw")
+
+[node name="FarBank" type="MeshInstance3D" parent="." unique_id=502522632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 31, 0, -1)
+material_override = ExtResource("1_0paye")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_hvx77")
+
+[node name="Paths" type="Node3D" parent="." unique_id=2085966881]
+
+[node name="Road" type="MeshInstance3D" parent="Paths" unique_id=1078645384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.01, -3.5)
+material_override = ExtResource("2_qa76t")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_ey23s")
+
+[node name="ToTunnel" type="MeshInstance3D" parent="Paths" unique_id=1718881905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0.011, -8.9)
+material_override = ExtResource("2_qa76t")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_4ecpr")
+
+[node name="ToStorage" type="MeshInstance3D" parent="Paths" unique_id=1856778836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.011, -1.3)
+material_override = ExtResource("2_qa76t")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_npmir")
+
+[node name="ToForge" type="MeshInstance3D" parent="Paths" unique_id=1302170749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.011, -6.4)
+material_override = ExtResource("2_qa76t")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_7356n")
+
+[node name="Mountains" type="Node3D" parent="." unique_id=1882926008]
+
+[node name="Body" type="StaticBody3D" parent="Mountains" unique_id=704922529]
+collision_mask = 0
+
+[node name="Rock0" type="CollisionShape3D" parent="Mountains/Body" unique_id=1629160266]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.32185, 2, -18)
+shape = SubResource("BoxShape3D_xfaxj")
+
+[node name="Rock1" type="CollisionShape3D" parent="Mountains/Body" unique_id=1913783895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.455841, 2, -18)
+shape = SubResource("BoxShape3D_tmn20")
+
+[node name="Rock2" type="CollisionShape3D" parent="Mountains/Body" unique_id=2049718196]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.589375, 2, -18)
+shape = SubResource("BoxShape3D_wpi80")
+
+[node name="Rock3" type="CollisionShape3D" parent="Mountains/Body" unique_id=769073967]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.312563, 2, -18)
+shape = SubResource("BoxShape3D_u14yc")
+
+[node name="Rock4" type="CollisionShape3D" parent="Mountains/Body" unique_id=1771845061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.889172, 2, -18)
+shape = SubResource("BoxShape3D_0yh18")
+
+[node name="Rock5" type="CollisionShape3D" parent="Mountains/Body" unique_id=218780580]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.227312, 2, -18)
+shape = SubResource("BoxShape3D_6qjbl")
+
+[node name="Rock6" type="CollisionShape3D" parent="Mountains/Body" unique_id=2127364887]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.748092, 2, -18)
+shape = SubResource("BoxShape3D_oknae")
+
+[node name="SideL7" type="CollisionShape3D" parent="Mountains/Body" unique_id=1188268135]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.552772, 2, -18)
+shape = SubResource("BoxShape3D_urn3f")
+
+[node name="SideR8" type="CollisionShape3D" parent="Mountains/Body" unique_id=1626880144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.634553, 2, -18)
+shape = SubResource("BoxShape3D_hwex2")
+
+[node name="Rock9" type="CollisionShape3D" parent="Mountains/Body" unique_id=161967825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0136247, 2, -18)
+shape = SubResource("BoxShape3D_gsqo0")
+
+[node name="Rock10" type="CollisionShape3D" parent="Mountains/Body" unique_id=758010437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28870034, 2, -18)
+shape = SubResource("BoxShape3D_eu1lf")
+
+[node name="Rock11" type="CollisionShape3D" parent="Mountains/Body" unique_id=1666363845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9594576, 2, -18)
+shape = SubResource("BoxShape3D_tlr45")
+
+[node name="Rock12" type="CollisionShape3D" parent="Mountains/Body" unique_id=765133909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3917317, 2, -18)
+shape = SubResource("BoxShape3D_ukc3t")
+
+[node name="Rock13" type="CollisionShape3D" parent="Mountains/Body" unique_id=1822998432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.246678, 2, -18)
+shape = SubResource("BoxShape3D_6y6yv")
+
+[node name="Rock14" type="CollisionShape3D" parent="Mountains/Body" unique_id=51942914]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.027406, 2, -18)
+shape = SubResource("BoxShape3D_nxwcy")
+
+[node name="Rock15" type="CollisionShape3D" parent="Mountains/Body" unique_id=712708103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.078394, 2, -18)
+shape = SubResource("BoxShape3D_kn5cx")
+
+[node name="Rock16" type="CollisionShape3D" parent="Mountains/Body" unique_id=2119988990]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.093094, 2, -18)
+shape = SubResource("BoxShape3D_4x14t")
+
+[node name="Rock17" type="CollisionShape3D" parent="Mountains/Body" unique_id=383288312]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.93499, 2, -18)
+shape = SubResource("BoxShape3D_3k7dh")
+
+[node name="Rock18" type="CollisionShape3D" parent="Mountains/Body" unique_id=2099161358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.18866, 2, -18)
+shape = SubResource("BoxShape3D_rs4i1")
+
+[node name="Rock19" type="CollisionShape3D" parent="Mountains/Body" unique_id=1837892232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.745663, 2, -18)
+shape = SubResource("BoxShape3D_6qggm")
+
+[node name="Rock20" type="CollisionShape3D" parent="Mountains/Body" unique_id=59112382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.333458, 2, -18)
+shape = SubResource("BoxShape3D_xxngb")
+
+[node name="Rock21" type="CollisionShape3D" parent="Mountains/Body" unique_id=2147027382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.266495, 2, -18)
+shape = SubResource("BoxShape3D_iky1t")
+
+[node name="Rock0" type="MeshInstance3D" parent="Mountains" unique_id=1741550986]
+transform = Transform3D(0.9956104, 0, -0.09359437, 0, 1, 0, 0.09359437, 0, 0.9956104, -34.32185, 3.3706317, -17.768097)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_768jh")
+
+[node name="Peak0" type="MeshInstance3D" parent="Mountains" unique_id=777061809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.32185, 4.9898157, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_tpq61")
+
+[node name="Tree0" type="Sprite3D" parent="Mountains" unique_id=172263879 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0474111, 0, 0, 0, 1.0474111, 0, 0, 0, 1.0474111, -35.12056, 6.7412634, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock1" type="MeshInstance3D" parent="Mountains" unique_id=1488776070]
+transform = Transform3D(0.9955481, 0, 0.09425456, 0, 1, 0, -0.09425456, 0, 0.9955481, -30.455841, 3.5481117, -17.762335)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_hicst")
+
+[node name="Peak1" type="MeshInstance3D" parent="Mountains" unique_id=1663336422]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.455841, 6.842664, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_y2cn2")
+
+[node name="Rock2" type="MeshInstance3D" parent="Mountains" unique_id=749936677]
+transform = Transform3D(0.9986169, 0, 0.052577272, 0, 1, 0, -0.052577272, 0, 0.9986169, -26.589375, 3.0309772, -18.043133)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_525x7")
+
+[node name="Peak2" type="MeshInstance3D" parent="Mountains" unique_id=26552247]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.589375, 6.362558, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_caoi8")
+
+[node name="Rock3" type="MeshInstance3D" parent="Mountains" unique_id=2088054756]
+transform = Transform3D(0.99742186, 0, -0.07176101, 0, 1, 0, 0.07176101, 0, 0.99742186, -23.312563, 3.2185223, -18.128302)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_gi8td")
+
+[node name="Peak3" type="MeshInstance3D" parent="Mountains" unique_id=1618748050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.312563, 4.7919235, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_ieg1j")
+
+[node name="Rock4" type="MeshInstance3D" parent="Mountains" unique_id=713890791]
+transform = Transform3D(0.9997825, 0, -0.02085664, 0, 1, 0, 0.02085664, 0, 0.9997825, -19.889172, 3.3575702, -17.916725)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_0ws58")
+
+[node name="Peak4" type="MeshInstance3D" parent="Mountains" unique_id=1662842161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.889172, 6.4391932, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_3pwtu")
+
+[node name="Tree4" type="Sprite3D" parent="Mountains" unique_id=1107722189 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1503422, 0, 0, 0, 1.1503422, 0, 0, 0, 1.1503422, -20.747097, 6.7151403, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock5" type="MeshInstance3D" parent="Mountains" unique_id=509509704]
+transform = Transform3D(0.99990815, 0, 0.013551721, 0, 1, 0, -0.013551721, 0, 0.99990815, -16.227312, 2.6552722, -18.090925)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_p2v0b")
+
+[node name="Peak5" type="MeshInstance3D" parent="Mountains" unique_id=537140374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.227312, 4.551503, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_4013i")
+
+[node name="Tree5" type="Sprite3D" parent="Mountains" unique_id=717661949 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.2252495, 0, 0, 0, 1.2252495, 0, 0, 0, 1.2252495, -16.778042, 5.3105445, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock6" type="MeshInstance3D" parent="Mountains" unique_id=684131749]
+transform = Transform3D(0.9984748, 0, 0.055209838, 0, 1, 0, -0.055209838, 0, 0.9984748, -12.748092, 3.5667896, -18.262367)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_bbul3")
+
+[node name="Peak6" type="MeshInstance3D" parent="Mountains" unique_id=324584899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.748092, 5.9920344, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_mbnoj")
+
+[node name="Lintel7" type="MeshInstance3D" parent="Mountains" unique_id=1466770873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.331371, 5.4487906, -18)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_emsna")
+
+[node name="SideL7" type="MeshInstance3D" parent="Mountains" unique_id=1831268812]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.552772, 1.6, -18)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_163em")
+
+[node name="Peak7" type="MeshInstance3D" parent="Mountains" unique_id=571774362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.331371, 5.6618805, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_6j66r")
+
+[node name="Lintel8" type="MeshInstance3D" parent="Mountains" unique_id=1810197913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9131527, 5.07995, -18)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_ms7a5")
+
+[node name="SideR8" type="MeshInstance3D" parent="Mountains" unique_id=1858186263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.634553, 1.6, -18)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_dx3dd")
+
+[node name="Peak8" type="MeshInstance3D" parent="Mountains" unique_id=234218589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9131527, 6.453845, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_5af5i")
+
+[node name="Tree8" type="Sprite3D" parent="Mountains" unique_id=1435453395 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(0.9136833, 0, 0, 0, 0.9136833, 0, 0, 0, 0.9136833, -6.4984894, 6.9598994, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock9" type="MeshInstance3D" parent="Mountains" unique_id=1415731612]
+transform = Transform3D(0.9948064, 0, 0.10178484, 0, 1, 0, -0.10178484, 0, 0.9948064, -3.0136247, 2.649938, -18.381691)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_g6463")
+
+[node name="Peak9" type="MeshInstance3D" parent="Mountains" unique_id=554458497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.0136247, 4.6194983, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_nnw0c")
+
+[node name="Tree9" type="Sprite3D" parent="Mountains" unique_id=947604694 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.230953, 0, 0, 0, 1.230953, 0, 0, 0, 1.230953, -2.081423, 5.299876, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock10" type="MeshInstance3D" parent="Mountains" unique_id=949892898]
+transform = Transform3D(0.99621564, 0, 0.086916074, 0, 1, 0, -0.086916074, 0, 0.99621564, 0.28870034, 4.0120897, -17.847025)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_h0v2k")
+
+[node name="Peak10" type="MeshInstance3D" parent="Mountains" unique_id=1428161702]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28870034, 6.3554616, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_sbnje")
+
+[node name="Rock11" type="MeshInstance3D" parent="Mountains" unique_id=83843698]
+transform = Transform3D(0.9950858, 0, -0.099016525, 0, 1, 0, 0.099016525, 0, 0.9950858, 3.9594576, 3.504681, -17.767513)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_ial38")
+
+[node name="Peak11" type="MeshInstance3D" parent="Mountains" unique_id=483068264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9594576, 5.9579687, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_jtfue")
+
+[node name="Rock12" type="MeshInstance3D" parent="Mountains" unique_id=1997214967]
+transform = Transform3D(0.99661916, 0, -0.08215969, 0, 1, 0, 0.08215969, 0, 0.99661916, 7.3917317, 2.5056224, -18.20797)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_xtdxf")
+
+[node name="Peak12" type="MeshInstance3D" parent="Mountains" unique_id=1498894833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.3917317, 5.7597475, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_obu3t")
+
+[node name="Rock13" type="MeshInstance3D" parent="Mountains" unique_id=1043210057]
+transform = Transform3D(0.99935305, 0, 0.03596496, 0, 1, 0, -0.03596496, 0, 0.99935305, 11.246678, 3.9496994, -17.999641)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_0kheq")
+
+[node name="Peak13" type="MeshInstance3D" parent="Mountains" unique_id=1368660811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.246678, 5.6504135, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_jobeh")
+
+[node name="Rock14" type="MeshInstance3D" parent="Mountains" unique_id=1412835938]
+transform = Transform3D(0.99878234, 0, 0.0493342, 0, 1, 0, -0.0493342, 0, 0.99878234, 15.027406, 2.7696428, -17.950666)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_2a2ds")
+
+[node name="Peak14" type="MeshInstance3D" parent="Mountains" unique_id=917572484]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.027406, 5.816903, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_qmuph")
+
+[node name="Tree14" type="Sprite3D" parent="Mountains" unique_id=1741173401 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(0.9859232, 0, 0, 0, 0.9859232, 0, 0, 0, 0.9859232, 15.439603, 5.5392857, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock15" type="MeshInstance3D" parent="Mountains" unique_id=1045654967]
+transform = Transform3D(0.9984023, 0, -0.05650552, 0, 1, 0, 0.05650552, 0, 0.9984023, 18.078394, 2.503678, -18.327845)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_y182h")
+
+[node name="Peak15" type="MeshInstance3D" parent="Mountains" unique_id=2000990305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.078394, 5.7196093, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_01wfb")
+
+[node name="Tree15" type="Sprite3D" parent="Mountains" unique_id=449616992 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1387706, 0, 0, 0, 1.1387706, 0, 0, 0, 1.1387706, 18.623621, 5.007356, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock16" type="MeshInstance3D" parent="Mountains" unique_id=1653380940]
+transform = Transform3D(0.9959418, 0, -0.089999534, 0, 1, 0, 0.089999534, 0, 0.9959418, 21.093094, 4.216916, -18.339935)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_knbbi")
+
+[node name="Peak16" type="MeshInstance3D" parent="Mountains" unique_id=1541221931]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.093094, 5.766826, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_ngqay")
+
+[node name="Rock17" type="MeshInstance3D" parent="Mountains" unique_id=60852235]
+transform = Transform3D(0.99815595, 0, 0.06070194, 0, 1, 0, -0.06070194, 0, 0.99815595, 24.93499, 3.942837, -17.861763)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_utprt")
+
+[node name="Peak17" type="MeshInstance3D" parent="Mountains" unique_id=2050269946]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.93499, 6.3237906, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_lg16n")
+
+[node name="Rock18" type="MeshInstance3D" parent="Mountains" unique_id=395000288]
+transform = Transform3D(0.99970883, 0, 0.02412922, 0, 1, 0, -0.02412922, 0, 0.99970883, 29.18866, 2.907967, -18.245918)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_sbf58")
+
+[node name="Peak18" type="MeshInstance3D" parent="Mountains" unique_id=697078363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.18866, 5.592368, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_6v6y7")
+
+[node name="Tree18" type="Sprite3D" parent="Mountains" unique_id=1439394175 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0404117, 0, 0, 0, 1.0404117, 0, 0, 0, 1.0404117, 29.395136, 5.815934, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock19" type="MeshInstance3D" parent="Mountains" unique_id=1748500720]
+transform = Transform3D(0.99825865, 0, -0.058988623, 0, 1, 0, 0.058988623, 0, 0.99825865, 32.745663, 2.5898573, -17.619396)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_ep47w")
+
+[node name="Peak19" type="MeshInstance3D" parent="Mountains" unique_id=943735716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.745663, 4.543151, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_vm68i")
+
+[node name="Rock20" type="MeshInstance3D" parent="Mountains" unique_id=978213413]
+transform = Transform3D(0.99498224, 0, 0.10005158, 0, 1, 0, -0.10005158, 0, 0.99498224, 36.333458, 3.7164214, -17.760363)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_nuqnw")
+
+[node name="Peak20" type="MeshInstance3D" parent="Mountains" unique_id=1087373330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.333458, 5.4493036, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_ehysd")
+
+[node name="Tree20" type="Sprite3D" parent="Mountains" unique_id=745844903 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0630461, 0, 0, 0, 1.0630461, 0, 0, 0, 1.0630461, 35.77212, 7.4328427, -17.5)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Rock21" type="MeshInstance3D" parent="Mountains" unique_id=1455656158]
+transform = Transform3D(0.998306, 0, -0.058182187, 0, 1, 0, 0.058182187, 0, 0.998306, 40.266495, 3.2050738, -18.230219)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_jtxug")
+
+[node name="Peak21" type="MeshInstance3D" parent="Mountains" unique_id=1437275276]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.266495, 4.7259235, -24)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_6tmvt")
+
+[node name="River" type="Node3D" parent="." unique_id=1449060181]
+
+[node name="Water" type="MeshInstance3D" parent="River" unique_id=1943672629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, -0.22, -1)
+material_override = ExtResource("6_k5ja5")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_sfcq5")
+
+[node name="Bed" type="MeshInstance3D" parent="River" unique_id=1792120918]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, -0.7, -1)
+material_override = ExtResource("7_dqx3r")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_rp07p")
+
+[node name="BankNear" type="MeshInstance3D" parent="River" unique_id=949520487]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8, -0.35, -1)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_0ccvk")
+
+[node name="BankFar" type="MeshInstance3D" parent="River" unique_id=1171604508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.2, -0.35, -1)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_bcso1")
+
+[node name="Body" type="StaticBody3D" parent="River" unique_id=1230001328]
+collision_mask = 0
+
+[node name="BankNorth" type="CollisionShape3D" parent="River/Body" unique_id=947508809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3, 1.5, -12.15)
+shape = SubResource("BoxShape3D_r8gfp")
+
+[node name="BankSouth" type="CollisionShape3D" parent="River/Body" unique_id=1541973576]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.3, 1.5, 8.05)
+shape = SubResource("BoxShape3D_nodia")
+
+[node name="Stone6" type="MeshInstance3D" parent="River" unique_id=141631581]
+transform = Transform3D(0.95355403, 0, 0.30122206, 0, 1, 0, -0.30122206, 0, 0.95355403, 17, 0.085866675, -13.888001)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_54ayy")
+
+[node name="Stone8" type="MeshInstance3D" parent="River" unique_id=984782438]
+transform = Transform3D(0.71144617, 0, 0.7027406, 0, 1, 0, -0.7027406, 0, 0.71144617, 17, 0.110710785, -11.119211)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_44uvu")
+
+[node name="Stone10" type="MeshInstance3D" parent="River" unique_id=1655996822]
+transform = Transform3D(0.94467115, 0, 0.328019, 0, 1, 0, -0.328019, 0, 0.94467115, 17, 0.081490666, -9.098567)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_s4hbm")
+
+[node name="Stone12" type="MeshInstance3D" parent="River" unique_id=872763332]
+transform = Transform3D(0.8852409, 0, 0.46513283, 0, 1, 0, -0.46513283, 0, 0.8852409, 17, 0.14141344, -7.9721465)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_psgrd")
+
+[node name="Stone14" type="MeshInstance3D" parent="River" unique_id=1363324176]
+transform = Transform3D(0.9997834, 0, 0.020812152, 0, 1, 0, -0.020812152, 0, 0.9997834, 17, 0.17127262, -5.8529477)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_xts8l")
+
+[node name="Stone20" type="MeshInstance3D" parent="River" unique_id=119514767]
+transform = Transform3D(0.994762, 0, 0.10221823, 0, 1, 0, -0.10221823, 0, 0.994762, 17, 0.12828945, 0.9833361)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_gqdwt")
+
+[node name="Stone22" type="MeshInstance3D" parent="River" unique_id=1724592740]
+transform = Transform3D(0.8801414, 0, 0.4747117, 0, 1, 0, -0.4747117, 0, 0.8801414, 17, 0.13123016, 2.861243)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_1uh6l")
+
+[node name="Stone24" type="MeshInstance3D" parent="River" unique_id=1197403574]
+transform = Transform3D(0.9064861, 0, 0.4222357, 0, 1, 0, -0.4222357, 0, 0.9064861, 17, 0.1973105, 4.796397)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_8xibi")
+
+[node name="Stone26" type="MeshInstance3D" parent="River" unique_id=965284616]
+transform = Transform3D(0.7224694, 0, 0.6914029, 0, 1, 0, -0.6914029, 0, 0.7224694, 17, 0.09424606, 6.190879)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_lpn2d")
+
+[node name="Stone28" type="MeshInstance3D" parent="River" unique_id=583858292]
+transform = Transform3D(0.94981337, 0, 0.31281722, 0, 1, 0, -0.31281722, 0, 0.94981337, 17, 0.0868998, 8.924207)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_juw7b")
+
+[node name="Stone30" type="MeshInstance3D" parent="River" unique_id=1738182317]
+transform = Transform3D(0.99676913, 0, 0.08031997, 0, 1, 0, -0.08031997, 0, 0.99676913, 17, 0.08231689, 10.277266)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_wqa4y")
+
+[node name="Stone32" type="MeshInstance3D" parent="River" unique_id=810478055]
+transform = Transform3D(0.75819796, 0, 0.6520244, 0, 1, 0, -0.6520244, 0, 0.75819796, 17, 0.19349135, 12.315212)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_y524l")
+
+[node name="Stone34" type="MeshInstance3D" parent="River" unique_id=642774130]
+transform = Transform3D(0.9376131, 0, 0.34768036, 0, 1, 0, -0.34768036, 0, 0.9376131, 17, 0.0928314, 14.649514)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_xjjvw")
+
+[node name="Stone36" type="MeshInstance3D" parent="River" unique_id=1554745931]
+transform = Transform3D(0.8826438, 0, 0.47004244, 0, 1, 0, -0.47004244, 0, 0.8826438, 17, 0.13727616, 16.98238)
+material_override = ExtResource("3_m3gan")
+mesh = SubResource("BoxMesh_41doc")
+
+[node name="Buildings" type="Node3D" parent="." unique_id=589813073]
+
+[node name="Bar" type="Node3D" parent="Buildings" unique_id=991916661 instance=ExtResource("8_3fvpb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -8)
+
+[node name="Forge" type="Node3D" parent="Buildings" unique_id=1659791769 instance=ExtResource("9_5clwl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0, -9.6)
+
+[node name="Ovens" type="Node3D" parent="Buildings" unique_id=820926289 instance=ExtResource("10_kfxov")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -10)
+
+[node name="Storage" type="Node3D" parent="Buildings" unique_id=1212104594 node_paths=PackedStringArray("interactable") instance=ExtResource("11_lj7qo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 1.6)
+script = ExtResource("12_86pkj")
+interactable = NodePath("Interactable")
+
+[node name="Crops" type="Node3D" parent="Buildings" unique_id=390282066 instance=ExtResource("13_kpar1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, -8.6)
+
+[node name="Dock" type="Node3D" parent="Buildings" unique_id=427918658 instance=ExtResource("14_eioh2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.6, 0, -3.5)
+
+[node name="Tunnel" type="Node3D" parent="Buildings" unique_id=1528798271 node_paths=PackedStringArray("interactable", "path") instance=ExtResource("15_ltspw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.5, 0, -15)
+script = ExtResource("16_kk6ke")
+interactable = NodePath("Interactable")
+path = NodePath("Path")
+
+[node name="Decor" type="Node3D" parent="." unique_id=42515442]
+
+[node name="Tree0" type="Sprite3D" parent="Decor" unique_id=1690114403 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1966577, 0, 0, 0, 1.1966577, 0, 0, 0, 1.1966577, -28.414082, 0, -12.841921)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree1" type="Sprite3D" parent="Decor" unique_id=1294014866 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1114273, 0, 0, 0, 1.1114273, 0, 0, 0, 1.1114273, -32.084805, 0, -2.2055893)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree2" type="Sprite3D" parent="Decor" unique_id=201087611 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0391575, 0, 0, 0, 1.0391575, 0, 0, 0, 1.0391575, -33.96113, 0, -2.374712)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree3" type="Sprite3D" parent="Decor" unique_id=1649793001 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.3214693, 0, 0, 0, 1.3214693, 0, 0, 0, 1.3214693, -28.684235, 0, 3.8293133)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree4" type="Sprite3D" parent="Decor" unique_id=835057161 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1308157, 0, 0, 0, 1.1308157, 0, 0, 0, 1.1308157, -29.913239, 0, 3.3677197)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree5" type="Sprite3D" parent="Decor" unique_id=1213069195 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0706853, 0, 0, 0, 1.0706853, 0, 0, 0, 1.0706853, -28.604961, 0, 2.7778778)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree6" type="Sprite3D" parent="Decor" unique_id=210791393 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.3293413, 0, 0, 0, 1.3293413, 0, 0, 0, 1.3293413, -32.347363, 0, -7.964769)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree7" type="Sprite3D" parent="Decor" unique_id=477982103 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1050861, 0, 0, 0, 1.1050861, 0, 0, 0, 1.1050861, -27.866955, 0, -5.1318192)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree8" type="Sprite3D" parent="Decor" unique_id=998874160 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1346931, 0, 0, 0, 1.1346931, 0, 0, 0, 1.1346931, -30.383589, 0, -12.626423)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree9" type="Sprite3D" parent="Decor" unique_id=1169775852 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0896162, 0, 0, 0, 1.0896162, 0, 0, 0, 1.0896162, -25.33368, 0, -9.826094)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree10" type="Sprite3D" parent="Decor" unique_id=1239666536 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.2669635, 0, 0, 0, 1.2669635, 0, 0, 0, 1.2669635, -32.685394, 0, -7.148434)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree11" type="Sprite3D" parent="Decor" unique_id=1086222231 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1951087, 0, 0, 0, 1.1951087, 0, 0, 0, 1.1951087, -30.149595, 0, -2.3101273)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree12" type="Sprite3D" parent="Decor" unique_id=2031818610 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0015483, 0, 0, 0, 1.0015483, 0, 0, 0, 1.0015483, -28.862476, 0, -7.60104)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree13" type="Sprite3D" parent="Decor" unique_id=227722597 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.2393737, 0, 0, 0, 1.2393737, 0, 0, 0, 1.2393737, -25.461048, 0, 5.874851)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree14" type="Sprite3D" parent="Decor" unique_id=1188328412 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.2729731, 0, 0, 0, 1.2729731, 0, 0, 0, 1.2729731, -26.501404, 0, -7.9888377)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree15" type="Sprite3D" parent="Decor" unique_id=429801546 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1753235, 0, 0, 0, 1.1753235, 0, 0, 0, 1.1753235, -32.542274, 0, -7.171749)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree16" type="Sprite3D" parent="Decor" unique_id=1520370839 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.2274985, 0, 0, 0, 1.2274985, 0, 0, 0, 1.2274985, -25.68501, 0, -0.8054552)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree17" type="Sprite3D" parent="Decor" unique_id=2062340093 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1579394, 0, 0, 0, 1.1579394, 0, 0, 0, 1.1579394, -30.66182, 0, -6.3065004)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree18" type="Sprite3D" parent="Decor" unique_id=1254149527 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(0.9008744, 0, 0, 0, 0.9008744, 0, 0, 0, 0.9008744, 31.746157, 0, -11.241583)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree19" type="Sprite3D" parent="Decor" unique_id=780143234 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.332478, 0, 0, 0, 1.332478, 0, 0, 0, 1.332478, 35.287018, 0, 1.2672167)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree20" type="Sprite3D" parent="Decor" unique_id=1679930527 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.3095423, 0, 0, 0, 1.3095423, 0, 0, 0, 1.3095423, 30.623514, 0, -1.16014)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree21" type="Sprite3D" parent="Decor" unique_id=195770376 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1184995, 0, 0, 0, 1.1184995, 0, 0, 0, 1.1184995, 27.918102, 0, -5.451497)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree22" type="Sprite3D" parent="Decor" unique_id=267596303 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(0.93035114, 0, 0, 0, 0.93035114, 0, 0, 0, 0.93035114, 34.60567, 0, 8.773916)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree23" type="Sprite3D" parent="Decor" unique_id=250605384 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.20353, 0, 0, 0, 1.20353, 0, 0, 0, 1.20353, 30.129322, 0, -4.1844463)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree24" type="Sprite3D" parent="Decor" unique_id=303129490 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(0.9440124, 0, 0, 0, 0.9440124, 0, 0, 0, 0.9440124, 28.488455, 0, -11.019546)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree25" type="Sprite3D" parent="Decor" unique_id=407248861 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1091285, 0, 0, 0, 1.1091285, 0, 0, 0, 1.1091285, 26.820528, 0, -0.30464363)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree26" type="Sprite3D" parent="Decor" unique_id=733769118 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1732405, 0, 0, 0, 1.1732405, 0, 0, 0, 1.1732405, 27.1216, 0, -8.041464)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree27" type="Sprite3D" parent="Decor" unique_id=1384637769 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.059203, 0, 0, 0, 1.059203, 0, 0, 0, 1.059203, 35.948875, 0, -10.991363)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree28" type="Sprite3D" parent="Decor" unique_id=46396527 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.339174, 0, 0, 0, 1.339174, 0, 0, 0, 1.339174, 34.094437, 0, -11.777761)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree29" type="Sprite3D" parent="Decor" unique_id=1669875656 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.2114068, 0, 0, 0, 1.2114068, 0, 0, 0, 1.2114068, 30.408146, 0, -2.5281363)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree30" type="Sprite3D" parent="Decor" unique_id=378044230 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0559478, 0, 0, 0, 1.0559478, 0, 0, 0, 1.0559478, 29.775934, 0, 9.947681)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree31" type="Sprite3D" parent="Decor" unique_id=1754727057 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1924394, 0, 0, 0, 1.1924394, 0, 0, 0, 1.1924394, 27.792616, 0, -10.046726)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree32" type="Sprite3D" parent="Decor" unique_id=686442845 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(0.9118134, 0, 0, 0, 0.9118134, 0, 0, 0, 0.9118134, 35.13854, 0, -3.0364475)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree33" type="Sprite3D" parent="Decor" unique_id=1957424541 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(0.86563414, 0, 0, 0, 0.86563414, 0, 0, 0, 0.86563414, 35.61034, 0, 2.0243626)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree34" type="Sprite3D" parent="Decor" unique_id=1683452879 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(0.9531691, 0, 0, 0, 0.9531691, 0, 0, 0, 0.9531691, -12.315672, 0, 10.471703)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree35" type="Sprite3D" parent="Decor" unique_id=1272784712 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.2767605, 0, 0, 0, 1.2767605, 0, 0, 0, 1.2767605, 4.4466267, 0, 12.73843)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree36" type="Sprite3D" parent="Decor" unique_id=279812531 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0419042, 0, 0, 0, 1.0419042, 0, 0, 0, 1.0419042, -5.4294357, 0, 11.70046)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree37" type="Sprite3D" parent="Decor" unique_id=131043882 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.3216385, 0, 0, 0, 1.3216385, 0, 0, 0, 1.3216385, -15.397978, 0, 10.564523)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree38" type="Sprite3D" parent="Decor" unique_id=693797648 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.2296737, 0, 0, 0, 1.2296737, 0, 0, 0, 1.2296737, -5.113676, 0, 11.690239)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree39" type="Sprite3D" parent="Decor" unique_id=602311889 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0639124, 0, 0, 0, 1.0639124, 0, 0, 0, 1.0639124, 7.930382, 0, 9.574839)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree40" type="Sprite3D" parent="Decor" unique_id=342706123 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1376402, 0, 0, 0, 1.1376402, 0, 0, 0, 1.1376402, -13.183607, 0, 12.273418)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree41" type="Sprite3D" parent="Decor" unique_id=1143200317 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.1181779, 0, 0, 0, 1.1181779, 0, 0, 0, 1.1181779, -0.80384254, 0, 11.391001)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Tree42" type="Sprite3D" parent="Decor" unique_id=802950684 instance=ExtResource("4_sq6nd")]
+transform = Transform3D(1.0776607, 0, 0, 0, 1.0776607, 0, 0, 0, 1.0776607, 1.1532784, 0, 9.751019)
+offset = Vector2(0, 40)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("5_xsb0w")
+
+[node name="Decor0" type="Sprite3D" parent="Decor" unique_id=591275377 instance=ExtResource("17_x6hla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42926025, 0, 7.305773)
+offset = Vector2(0, 13)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("18_bqckr")
+
+[node name="Decor1" type="Sprite3D" parent="Decor" unique_id=271867099 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81092834, 0, 6.7979774)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor2" type="Sprite3D" parent="Decor" unique_id=1576059057 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.8219566, 0, 4.289015)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor3" type="Sprite3D" parent="Decor" unique_id=1053414665 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6891956, 0, 6.2925816)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor4" type="Sprite3D" parent="Decor" unique_id=2064657739 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9516907, 0, -13.378137)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor5" type="Sprite3D" parent="Decor" unique_id=2075702165 instance=ExtResource("21_nuh2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.61608, 0, 3.0872974)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_3ux3j")
+
+[node name="Decor6" type="Sprite3D" parent="Decor" unique_id=819070377 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.570269, 0, -10.766052)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor7" type="Sprite3D" parent="Decor" unique_id=1852728989 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.887123, 0, -5.3135567)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor8" type="Sprite3D" parent="Decor" unique_id=1070787171 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0475407, 0, 8.364437)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor9" type="Sprite3D" parent="Decor" unique_id=1081236815 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3174076, 0, -5.0579405)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor10" type="Sprite3D" parent="Decor" unique_id=747773886 instance=ExtResource("17_x6hla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.930073, 0, 1.1678581)
+offset = Vector2(0, 13)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("18_bqckr")
+
+[node name="Decor11" type="Sprite3D" parent="Decor" unique_id=1279367060 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3246288, 0, 4.8435955)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor12" type="Sprite3D" parent="Decor" unique_id=1455086081 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6401234, 0, -12.296818)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor13" type="Sprite3D" parent="Decor" unique_id=374759798 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.720616, 0, -2.5165358)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor14" type="Sprite3D" parent="Decor" unique_id=1664077335 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.927556, 0, 6.1969814)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor15" type="Sprite3D" parent="Decor" unique_id=1340910707 instance=ExtResource("21_nuh2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.102373, 0, 3.8236065)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_3ux3j")
+
+[node name="Decor16" type="Sprite3D" parent="Decor" unique_id=1833912045 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.000309, 0, -7.429515)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor17" type="Sprite3D" parent="Decor" unique_id=1377266708 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.4144325, 0, -1.0174112)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor18" type="Sprite3D" parent="Decor" unique_id=1912866775 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.4732685, 0, 5.857174)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor19" type="Sprite3D" parent="Decor" unique_id=530216157 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9093132, 0, 4.8007526)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor20" type="Sprite3D" parent="Decor" unique_id=558077768 instance=ExtResource("17_x6hla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.013054, 0, 4.506523)
+offset = Vector2(0, 13)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("18_bqckr")
+
+[node name="Decor21" type="Sprite3D" parent="Decor" unique_id=196435699 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.603449, 0, -0.2548418)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor22" type="Sprite3D" parent="Decor" unique_id=593486065 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.72842, 0, 1.9328022)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor23" type="Sprite3D" parent="Decor" unique_id=906104360 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.535801, 0, -0.9403486)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor24" type="Sprite3D" parent="Decor" unique_id=160795529 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.110985, 0, 8.251108)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor25" type="Sprite3D" parent="Decor" unique_id=1933268550 instance=ExtResource("21_nuh2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.171609, 0, 5.0642967)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_3ux3j")
+
+[node name="Decor26" type="Sprite3D" parent="Decor" unique_id=591784354 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.048693, 0, 5.089613)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor27" type="Sprite3D" parent="Decor" unique_id=761705867 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.298885, 0, 6.2678757)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor28" type="Sprite3D" parent="Decor" unique_id=440008378 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.153799, 0, -0.59386253)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor29" type="Sprite3D" parent="Decor" unique_id=794215221 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.346962, 0, 8.445042)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor30" type="Sprite3D" parent="Decor" unique_id=1326213587 instance=ExtResource("17_x6hla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5266, 0, 4.386673)
+offset = Vector2(0, 13)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("18_bqckr")
+
+[node name="Decor31" type="Sprite3D" parent="Decor" unique_id=653702939 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3176336, 0, 2.8057861)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor32" type="Sprite3D" parent="Decor" unique_id=284257260 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41832352, 0, -1.9298315)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor33" type="Sprite3D" parent="Decor" unique_id=296343436 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.828228, 0, -5.9599314)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor34" type="Sprite3D" parent="Decor" unique_id=1751822608 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.6690025, 0, 8.257736)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor35" type="Sprite3D" parent="Decor" unique_id=1827324645 instance=ExtResource("21_nuh2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.325645, 0, 6.8162937)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_3ux3j")
+
+[node name="Decor36" type="Sprite3D" parent="Decor" unique_id=1370659398 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.419903, 0, 5.9083023)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor37" type="Sprite3D" parent="Decor" unique_id=168880229 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.9081955, 0, 7.377716)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor38" type="Sprite3D" parent="Decor" unique_id=243878404 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6430111, 0, 0.004609108)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor39" type="Sprite3D" parent="Decor" unique_id=1759270027 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.708069, 0, 8.481686)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor40" type="Sprite3D" parent="Decor" unique_id=2137772477 instance=ExtResource("17_x6hla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.838272, 0, 6.0068665)
+offset = Vector2(0, 13)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("18_bqckr")
+
+[node name="Decor41" type="Sprite3D" parent="Decor" unique_id=1974366516 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.107893, 0, -5.593704)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor42" type="Sprite3D" parent="Decor" unique_id=1096806275 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.529846, 0, -12.034396)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor43" type="Sprite3D" parent="Decor" unique_id=1769320940 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.30825, 0, -7.8916497)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor44" type="Sprite3D" parent="Decor" unique_id=472520771 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.92809, 0, -4.2373915)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor45" type="Sprite3D" parent="Decor" unique_id=1638268312 instance=ExtResource("21_nuh2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.702957, 0, 7.8302097)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_3ux3j")
+
+[node name="Decor46" type="Sprite3D" parent="Decor" unique_id=2035168391 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.536413, 0, -3.6611967)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor47" type="Sprite3D" parent="Decor" unique_id=1399812016 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.996104, 0, 7.097807)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor48" type="Sprite3D" parent="Decor" unique_id=1025034670 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.54348564, 0, 6.4780025)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor49" type="Sprite3D" parent="Decor" unique_id=580884377 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3049297, 0, 7.6591797)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor50" type="Sprite3D" parent="Decor" unique_id=8228909 instance=ExtResource("17_x6hla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.692571, 0, -1.574358)
+offset = Vector2(0, 13)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("18_bqckr")
+
+[node name="Decor51" type="Sprite3D" parent="Decor" unique_id=1476596750 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6285553, 0, 5.1888866)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor52" type="Sprite3D" parent="Decor" unique_id=876116775 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.237793, 0, -9.2140465)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor53" type="Sprite3D" parent="Decor" unique_id=629343220 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.413485, 0, -0.38493538)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor54" type="Sprite3D" parent="Decor" unique_id=1137074963 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.636768, 0, -13.376259)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor55" type="Sprite3D" parent="Decor" unique_id=1111618161 instance=ExtResource("21_nuh2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0705833, 0, -12.304787)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_3ux3j")
+
+[node name="Decor56" type="Sprite3D" parent="Decor" unique_id=2036821247 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.731951, 0, 5.7528095)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor57" type="Sprite3D" parent="Decor" unique_id=1342418415 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.728726, 0, -1.2197428)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor58" type="Sprite3D" parent="Decor" unique_id=472781650 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.029217, 0, -9.592841)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor59" type="Sprite3D" parent="Decor" unique_id=1952085436 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.751344, 0, 5.792412)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor60" type="Sprite3D" parent="Decor" unique_id=1492738407 instance=ExtResource("17_x6hla")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9191532, 0, 8.048576)
+offset = Vector2(0, 13)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("18_bqckr")
+
+[node name="Decor61" type="Sprite3D" parent="Decor" unique_id=2122097112 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.338025, 0, -5.0896606)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor62" type="Sprite3D" parent="Decor" unique_id=135830557 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.457228, 0, -10.475301)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor63" type="Sprite3D" parent="Decor" unique_id=1178364668 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3856068, 0, 4.1987724)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor64" type="Sprite3D" parent="Decor" unique_id=965383655 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.809596, 0, 5.7926464)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor65" type="Sprite3D" parent="Decor" unique_id=187566847 instance=ExtResource("21_nuh2r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.454368, 0, 8.07394)
+offset = Vector2(0, 7)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("22_3ux3j")
+
+[node name="Decor66" type="Sprite3D" parent="Decor" unique_id=1845796292 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.788536, 0, -5.60099)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor67" type="Sprite3D" parent="Decor" unique_id=2106311143 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.024754, 0, -10.499338)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor68" type="Sprite3D" parent="Decor" unique_id=1974086740 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.782927, 0, -12.474002)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Decor69" type="Sprite3D" parent="Decor" unique_id=485264889 instance=ExtResource("19_08i8h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.475483, 0, 0.8750248)
+cast_shadow = 0
+offset = Vector2(0, 5)
+pixel_size = 0.03125
+billboard = 2
+shaded = true
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("20_n2f4u")
+
+[node name="Bounds" type="StaticBody3D" parent="." unique_id=509835263]
+collision_mask = 0
+
+[node name="West" type="CollisionShape3D" parent="Bounds" unique_id=1818507425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5, 1.5, -1)
+shape = SubResource("BoxShape3D_u765o")
+
+[node name="South" type="CollisionShape3D" parent="Bounds" unique_id=1659140453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 9.5)
+shape = SubResource("BoxShape3D_jplo1")
+
+[node name="World" type="Node3D" parent="." unique_id=1542152738]
+
+[node name="Player" type="CharacterBody3D" parent="World" unique_id=1550382453 instance=ExtResource("23_te4fm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -4.2)
+collision_layer = 2
+collision_mask = 5
+motion_mode = 1
+script = ExtResource("24_a7lh5")
+light_combo = ExtResource("25_pddk8")
+heavy_combo = ExtResource("26_mrd3t")
+charged_attack = ExtResource("27_75807")
+spin_attack = ExtResource("28_in006")
+dust_scene = ExtResource("29_paa8c")
+dust_burst_scene = ExtResource("30_w6wbw")
+afterimage_scene = ExtResource("31_n53kq")
+ring_scene = ExtResource("32_0huii")
+
+[node name="PlayerSpawn" type="Marker3D" parent="." unique_id=546596494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -4.2)
+
+[node name="GameCamera" type="Camera3D" parent="." unique_id=671595863 node_paths=PackedStringArray("target") instance=ExtResource("33_7lkp8")]
+attributes = SubResource("CameraAttributesPractical_ni7v2")
+fov = 32.0
+far = 120.0
+script = ExtResource("34_a10nf")
+target = NodePath("../World/Player")
+lead_time = 0.2
+limit_min = Vector2(-13, -10)
+limit_max = Vector2(13, 5)
+
+[node name="DayBanner" type="CanvasLayer" parent="." unique_id=502104456 instance=ExtResource("35_vkdhe")]
+layer = 2
+script = ExtResource("36_ms0wt")
+
+[node name="StoragePanel" type="CanvasLayer" parent="." unique_id=540912838 instance=ExtResource("37_nawop")]
+layer = 2
+script = ExtResource("38_8kwx5")
+loot_row_scene = ExtResource("39_0g1a2")
+
+[node name="VillageDay" type="Node" parent="." unique_id=580505894 node_paths=PackedStringArray("player", "spawn", "banner")]
+script = ExtResource("40_6et1f")
+player = NodePath("../World/Player")
+spawn = NodePath("../PlayerSpawn")
+banner = NodePath("../DayBanner")
+
+[node name="PostFx" type="CanvasLayer" parent="." unique_id=741211325 instance=ExtResource("41_7debm")]
+tilt_shift_material = ExtResource("90_vtil")
+vignette_material = ExtResource("91_vvig")
+layer = 0
+script = ExtResource("42_0gb1h")

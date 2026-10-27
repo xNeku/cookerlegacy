@@ -18,6 +18,17 @@ func try_dash() -> bool:
 	return false
 
 
+## Interactuar (X / E) si hay algo al lado. En mando X es también saltar: si hay algo
+## con lo que interactuar, gana interactuar y esa pulsación no salta.
+func try_interact() -> bool:
+	var target := player.get_interactable()
+	if target and not player.is_airborne() and player.consume_action(&"interact"):
+		player.consume_action(&"jump")
+		target.interact(player)
+		return true
+	return false
+
+
 ## Salto si se ha pulsado y está en el suelo.
 func try_jump() -> bool:
 	if player.can_jump() and player.consume_action(&"jump"):
@@ -49,4 +60,4 @@ func try_attack() -> bool:
 
 ## Todas las acciones, en orden de prioridad. Para estados libres (Idle, Move, Jump).
 func try_start_action() -> bool:
-	return try_dash() or try_jump() or try_spin() or try_attack()
+	return try_interact() or try_dash() or try_jump() or try_spin() or try_attack()

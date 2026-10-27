@@ -1,0 +1,112 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://game/levels/village/buildings/tunnel_exit.gd" id="1_plv8q"]
+[ext_resource type="Material" path="res://game/levels/materials/tunnel_dark_material.tres" id="2_ot2ki"]
+[ext_resource type="Material" path="res://game/levels/materials/wood_material.tres" id="3_awbva"]
+[ext_resource type="PackedScene" path="res://game/interaction/interactable.tscn" id="4_txnw2"]
+[ext_resource type="Script" path="res://game/interaction/interactable.gd" id="5_l5sqh"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_iib1p"]
+size = Vector3(3, 3.2, 6)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7mtg2"]
+size = Vector2(3, 6)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ac6bk"]
+size = Vector3(0.35, 3.2, 0.35)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ohdpk"]
+size = Vector3(0.35, 3.2, 0.35)
+
+[sub_resource type="BoxMesh" id="BoxMesh_swwr2"]
+size = Vector3(3.8, 0.4, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2e06s"]
+size = Vector3(1.3, 2.4, 0.12)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tlyxg"]
+size = Vector3(1.3, 0.12, 2.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x5m21"]
+size = Vector3(3, 3, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vm8hc"]
+size = Vector3(0.4, 3, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8k43"]
+size = Vector3(0.4, 3, 0.4)
+
+[node name="Tunnel" type="Node3D" unique_id=1528798271 node_paths=PackedStringArray("interactable", "path")]
+script = ExtResource("1_plv8q")
+interactable = NodePath("Interactable")
+path = NodePath("Path")
+
+[node name="Model" type="Node3D" parent="." unique_id=923807935]
+
+[node name="Inside" type="MeshInstance3D" parent="Model" unique_id=1428604779]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -3.2)
+material_override = ExtResource("2_ot2ki")
+mesh = SubResource("BoxMesh_iib1p")
+
+[node name="InsideFloor" type="MeshInstance3D" parent="Model" unique_id=2147206172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, -3)
+material_override = ExtResource("2_ot2ki")
+cast_shadow = 0
+mesh = SubResource("PlaneMesh_7mtg2")
+
+[node name="PostL" type="MeshInstance3D" parent="Model" unique_id=1976818682]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1.6, 0.1)
+material_override = ExtResource("3_awbva")
+mesh = SubResource("BoxMesh_ac6bk")
+
+[node name="PostR" type="MeshInstance3D" parent="Model" unique_id=1176212468]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1.6, 0.1)
+material_override = ExtResource("3_awbva")
+mesh = SubResource("BoxMesh_ohdpk")
+
+[node name="Beam" type="MeshInstance3D" parent="Model" unique_id=1639666503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.3, 0.1)
+material_override = ExtResource("3_awbva")
+mesh = SubResource("BoxMesh_swwr2")
+
+[node name="DoorHanging" type="MeshInstance3D" parent="Model" unique_id=711246845]
+transform = Transform3D(0.9393475, -0.14877804, 0.309017, 0.15643448, 0.98768836, 0, -0.3052125, 0.048340913, 0.95105654, -0.85, 1.5500001, 0.25)
+material_override = ExtResource("3_awbva")
+mesh = SubResource("BoxMesh_2e06s")
+
+[node name="DoorFallen" type="MeshInstance3D" parent="Model" unique_id=1708259425]
+transform = Transform3D(0.90630776, -0.029480359, -0.4215888, 0, 0.9975641, -0.06975647, 0.42261827, 0.06322083, 0.90410006, 0.9, 0.06, 1.2)
+material_override = ExtResource("3_awbva")
+mesh = SubResource("BoxMesh_tlyxg")
+
+[node name="Body" type="StaticBody3D" parent="." unique_id=1323159440]
+collision_mask = 0
+
+[node name="Back" type="CollisionShape3D" parent="Body" unique_id=1357423147]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -5.4)
+shape = SubResource("BoxShape3D_x5m21")
+
+[node name="PostL" type="CollisionShape3D" parent="Body" unique_id=255502941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 1.5, 0.1)
+shape = SubResource("BoxShape3D_vm8hc")
+
+[node name="PostR" type="CollisionShape3D" parent="Body" unique_id=533208119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 1.5, 0.1)
+shape = SubResource("BoxShape3D_r8k43")
+
+[node name="Path" type="Node3D" parent="." unique_id=159306903]
+
+[node name="Enter" type="Marker3D" parent="Path" unique_id=1002539566]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.8)
+
+[node name="Deep" type="Marker3D" parent="Path" unique_id=1920334401]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.5)
+
+[node name="Interactable" type="Area3D" parent="." unique_id=902412439 instance=ExtResource("4_txnw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.4)
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+script = ExtResource("5_l5sqh")
+prompt_text = "Salir al valle"
+radius = 1.5
